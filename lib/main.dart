@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:super_market_app/features/about/presentation/view/about_app.dart';
 import 'package:super_market_app/features/home/presentation/view/home_view.dart';
 import 'package:super_market_app/features/splash/presentation/view/splash_view.dart';
 
@@ -17,6 +18,7 @@ class SuperMarketDelivery extends StatelessWidget {
       routes: <String,WidgetBuilder>{
         "/":(context) => const SplashView(),
         HomeView.homeId: (context) => HomeView(),
+        AboutApp.aboutAppId : (context) => AboutApp(),
       },
     );
   }

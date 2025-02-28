@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:super_market_app/constant.dart';
+import 'package:super_market_app/features/about/presentation/view/about_app.dart';
 
 class SplashView extends StatefulWidget {
   const SplashView({super.key});
@@ -16,7 +17,7 @@ class _SplashViewState extends State<SplashView>  with SingleTickerProviderState
   @override
   void initState() {
     initSplashAnimation();
-    // navigateToHome();
+    navigateToHome();
     super.initState();
   }
 
@@ -70,7 +71,7 @@ class _SplashViewState extends State<SplashView>  with SingleTickerProviderState
 
   void navigateToHome() {
     Future.delayed(Duration(seconds: 3),(){
-        Navigator.pushReplacementNamed(context, "/homeView");
+        Navigator.pushReplacementNamed(context, AboutApp.aboutAppId);
       });
   }
 
