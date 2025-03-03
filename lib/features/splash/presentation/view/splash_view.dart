@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:super_market_app/constant.dart';
+import 'package:super_market_app/core/utils/first_display_shared_preference.dart';
 import 'package:super_market_app/features/about/presentation/view/about_app.dart';
+import 'package:super_market_app/features/home/presentation/view/home_view.dart';
 
 class SplashView extends StatefulWidget {
   const SplashView({super.key});
@@ -70,8 +72,10 @@ class _SplashViewState extends State<SplashView>  with SingleTickerProviderState
   }
 
   void navigateToHome() {
-    Future.delayed(Duration(seconds: 3),(){
-        Navigator.pushReplacementNamed(context, AboutApp.aboutAppId);
+    Future.delayed(Duration(seconds: 3),() async{
+        bool isDisplay = await FirstDisplaySharedPreference.getData() ?? false;
+        isDisplay ? Navigator.pushReplacementNamed(context, HomeView.homeId) 
+        : Navigator.pushReplacementNamed(context, AboutApp.aboutAppId);
       });
   }
 

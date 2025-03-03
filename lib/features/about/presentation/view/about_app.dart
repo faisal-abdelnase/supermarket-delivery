@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
+import 'package:super_market_app/core/utils/first_display_shared_preference.dart';
 import 'package:super_market_app/features/about/data/model/about_data_model.dart';
 import 'package:super_market_app/features/home/presentation/view/home_view.dart';
 
@@ -26,6 +27,7 @@ class _AboutAppState extends State<AboutApp> {
         actions: [
           TextButton(
                 onPressed: (){
+                  FirstDisplaySharedPreference.saveData(isDisplay: true);
                   Navigator.pushReplacementNamed(context, HomeView.homeId);
                 }, 
                 child: Text("Skip", 
@@ -82,7 +84,9 @@ class _AboutAppState extends State<AboutApp> {
                         index++;
                       }
                       else{
+                        FirstDisplaySharedPreference.saveData(isDisplay: true);
                         Navigator.pushReplacementNamed(context, HomeView.homeId);
+                        
                       }
                       
 
