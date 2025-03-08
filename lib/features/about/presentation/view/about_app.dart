@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:super_market_app/core/utils/first_display_shared_preference.dart';
+import 'package:super_market_app/features/Auth/presentation/view/type_of_registeration.dart';
 import 'package:super_market_app/features/about/data/model/about_data_model.dart';
-import 'package:super_market_app/features/home/presentation/view/home_view.dart';
+
 
 class AboutApp extends StatefulWidget {
   const AboutApp({super.key});
@@ -28,7 +29,7 @@ class _AboutAppState extends State<AboutApp> {
           TextButton(
                 onPressed: (){
                   FirstDisplaySharedPreference.saveData(isDisplay: true);
-                  Navigator.pushReplacementNamed(context, HomeView.homeId);
+                  Navigator.pushReplacementNamed(context, TypeOfRegisteration.registeration);
                 }, 
                 child: Text("Skip", 
                 style: TextStyle(
@@ -85,7 +86,7 @@ class _AboutAppState extends State<AboutApp> {
                       }
                       else{
                         FirstDisplaySharedPreference.saveData(isDisplay: true);
-                        Navigator.pushReplacementNamed(context, HomeView.homeId);
+                        Navigator.pushReplacementNamed(context, TypeOfRegisteration.registeration);
                         
                       }
                       
