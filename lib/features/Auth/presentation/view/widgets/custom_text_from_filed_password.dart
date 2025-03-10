@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class CustomTextFromFiledPassword extends StatefulWidget {
   const CustomTextFromFiledPassword({super.key});
@@ -29,7 +30,7 @@ class _CustomTextFromFiledPasswordState extends State<CustomTextFromFiledPasswor
             obscureText = obscureText ? false : true;
             setState(() {});
           }, 
-          icon: Icon(Icons.remove_red_eye)
+          icon: obscureText ? Icon(FontAwesomeIcons.solidEyeSlash) : Icon(FontAwesomeIcons.solidEye)
           ),
         suffixIconColor: Colors.blue,
         
