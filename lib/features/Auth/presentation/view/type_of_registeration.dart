@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:super_market_app/features/Auth/presentation/view/sign_up.dart';
 
 class TypeOfRegisteration extends StatelessWidget {
   const TypeOfRegisteration({super.key});
@@ -41,7 +42,9 @@ class TypeOfRegisteration extends StatelessWidget {
                   foregroundColor: Colors.white,
                   
                 ),
-                onPressed: (){}, 
+                onPressed: (){
+                  Navigator.of(context).pushNamed(SignUpPage.signUpId);
+                }, 
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 16),
                   child: Text("Sign up"),

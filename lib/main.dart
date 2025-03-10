@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:super_market_app/features/Auth/presentation/view/sign_up.dart';
 import 'package:super_market_app/features/Auth/presentation/view/type_of_registeration.dart';
 import 'package:super_market_app/features/about/presentation/view/about_app.dart';
 import 'package:super_market_app/features/home/presentation/view/home_view.dart';
@@ -20,7 +21,8 @@ class SuperMarketDelivery extends StatelessWidget {
         "/":(context) => const SplashView(),
         HomeView.homeId: (context) => HomeView(),
         AboutApp.aboutAppId : (context) => AboutApp(),
-        TypeOfRegisteration.registeration : (context) => TypeOfRegisteration()
+        TypeOfRegisteration.registeration : (context) => TypeOfRegisteration(),
+        SignUpPage.signUpId : (context) => SignUpPage(),
       },
     );
   }
