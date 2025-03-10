@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:super_market_app/features/Auth/presentation/view/widgets/custom_arrow_back_button.dart';
+import 'package:super_market_app/features/Auth/presentation/view/widgets/custom_divider_or.dart';
+import 'package:super_market_app/features/Auth/presentation/view/widgets/custom_elvated_button.dart';
 import 'package:super_market_app/features/Auth/presentation/view/widgets/custom_text_form_filed.dart';
 import 'package:super_market_app/features/Auth/presentation/view/widgets/custom_text_from_filed_password.dart';
 import 'package:super_market_app/features/Auth/presentation/view/widgets/rich_text_to_agree_radio.dart';
@@ -19,6 +21,8 @@ class _SignUpPageState extends State<SignUpPage> {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    final screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
       body: SafeArea(
         top: true,
@@ -55,6 +59,10 @@ class _SignUpPageState extends State<SignUpPage> {
                     RichTextToAgreeRadio()
                 ],
               ),
+
+              CustomElvatedButton(screenWidth: screenWidth, screenHeight: screenHeight),
+
+              CustomDividerOR()
             ],
           ),
         ),
