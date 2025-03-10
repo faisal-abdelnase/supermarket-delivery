@@ -2,11 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:super_market_app/features/Auth/presentation/view/widgets/custom_arrow_back_button.dart';
 import 'package:super_market_app/features/Auth/presentation/view/widgets/custom_text_form_filed.dart';
 import 'package:super_market_app/features/Auth/presentation/view/widgets/custom_text_from_filed_password.dart';
+import 'package:super_market_app/features/Auth/presentation/view/widgets/rich_text_to_agree_radio.dart';
 
-class SignUpPage extends StatelessWidget {
+class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});
 
   static final signUpId = "/signUpPage";
+
+  @override
+  State<SignUpPage> createState() => _SignUpPageState();
+}
+
+class _SignUpPageState extends State<SignUpPage> {
+
+  String groupValue = "";
 
   @override
   Widget build(BuildContext context) {
@@ -30,6 +39,22 @@ class SignUpPage extends StatelessWidget {
               CustomTextFormField(hintText: "Full Name", icon: Icons.account_circle,),
               CustomTextFormField(hintText: "Email", icon: Icons.email,),
               CustomTextFromFiledPassword(),
+
+              Row(
+                children: [
+                  Radio(
+                    value: "agree", 
+                    groupValue: groupValue, 
+                    onChanged: (value){
+                      groupValue = value!;
+                      setState(() {});
+                    },
+                    activeColor: Colors.blue,
+                    ),
+
+                    RichTextToAgreeRadio()
+                ],
+              ),
             ],
           ),
         ),
@@ -37,6 +62,8 @@ class SignUpPage extends StatelessWidget {
     );
   }
 }
+
+
 
 
 
