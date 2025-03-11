@@ -31,6 +31,7 @@ class _SignUpPageState extends State<SignUpPage> {
         child: Padding(
           padding: const EdgeInsets.all(16),
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               CustomArrowBackButton(),
@@ -65,7 +66,23 @@ class _SignUpPageState extends State<SignUpPage> {
 
               CustomDividerOR(),
 
-              CustomDifferentSign()
+              CustomDifferentSign(),
+
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text("Already Have An Account?", style: TextStyle(color: Colors.black),),
+                  TextButton(
+                    onPressed: (){}, 
+                    child: Text("Sign in", 
+                    style: TextStyle(
+                      color: Colors.blue,
+                      decoration: TextDecoration.underline,
+                      decorationColor: Colors.blue
+                      ),
+                    ),),
+                ],
+              )
             ],
           ),
         ),

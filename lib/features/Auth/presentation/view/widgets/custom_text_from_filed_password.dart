@@ -30,7 +30,7 @@ class _CustomTextFromFiledPasswordState extends State<CustomTextFromFiledPasswor
             obscureText = obscureText ? false : true;
             setState(() {});
           }, 
-          icon: obscureText ? Icon(FontAwesomeIcons.solidEyeSlash) : Icon(FontAwesomeIcons.solidEye)
+          icon: obscureText ? Icon(FontAwesomeIcons.solidEyeSlash,size: 20,) : Icon(FontAwesomeIcons.solidEye, size: 20,)
           ),
         suffixIconColor: Colors.blue,
         
