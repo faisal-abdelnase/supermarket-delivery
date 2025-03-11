@@ -1,25 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:super_market_app/features/Auth/presentation/view/sign_in.dart';
+import 'package:super_market_app/features/Auth/presentation/view/sign_up.dart';
 import 'package:super_market_app/features/Auth/presentation/view/widgets/custom_arrow_back_button.dart';
 import 'package:super_market_app/features/Auth/presentation/view/widgets/custom_different_sign.dart';
 import 'package:super_market_app/features/Auth/presentation/view/widgets/custom_divider_or.dart';
 import 'package:super_market_app/features/Auth/presentation/view/widgets/custom_elvated_button.dart';
 import 'package:super_market_app/features/Auth/presentation/view/widgets/custom_text_form_filed.dart';
 import 'package:super_market_app/features/Auth/presentation/view/widgets/custom_text_from_filed_password.dart';
-import 'package:super_market_app/features/Auth/presentation/view/widgets/rich_text_to_agree_radio.dart';
 
-class SignUpPage extends StatefulWidget {
-  const SignUpPage({super.key});
 
-  static final signUpId = "/signUpPage";
+class SignInPage extends StatefulWidget {
+  const SignInPage({super.key});
+
+  static final signInId = "/signIn";
 
   @override
-  State<SignUpPage> createState() => _SignUpPageState();
+  State<SignInPage> createState() => _SignInPageState();
 }
 
-class _SignUpPageState extends State<SignUpPage> {
+class _SignInPageState extends State<SignInPage> {
 
-  String groupValue = "";
+    String groupValue = "";
 
   @override
   Widget build(BuildContext context) {
@@ -37,33 +37,48 @@ class _SignUpPageState extends State<SignUpPage> {
             children: [
               CustomArrowBackButton(),
               
-              Text("Sign Up Your Account", 
+              Text("Sign In Your Account", 
               style: TextStyle(
                 fontSize: 22,
                 fontWeight: FontWeight.w900
               ),),
 
-              CustomTextFormField(hintText: "Full Name", icon: Icons.account_circle,),
+              
               CustomTextFormField(hintText: "Email", icon: Icons.email,),
               CustomTextFromFiledPassword(),
 
+              // Remember me and forgot your password
               Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Radio(
-                    value: "agree", 
-                    groupValue: groupValue, 
-                    onChanged: (value){
-                      groupValue = value!;
-                      setState(() {});
-                    },
-                    activeColor: Colors.blue,
+                  Expanded(
+                    child: ListTile(
+                      title: Text("Remember Me", style: TextStyle(fontSize: 14),),
+                      leading: Radio(
+                      materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                      value: "yes", 
+                      groupValue: groupValue, 
+                      onChanged: (value){
+                        groupValue = value!;
+                        setState(() {});
+                      },
+                      activeColor: Colors.blue,
+                      ),
+                      horizontalTitleGap: -5,
+                    
                     ),
+                  ),
 
-                    RichTextToAgreeRadio()
+
+                  TextButton(
+                    onPressed: (){}, 
+                    child: Text("Forgot Password?", 
+                    style: TextStyle(color: Colors.blue),),
+                    ),
                 ],
               ),
 
-              CustomElvatedButton(screenWidth: screenWidth, screenHeight: screenHeight, text: "Sign Up",),
+              CustomElvatedButton(screenWidth: screenWidth, screenHeight: screenHeight, text: "Sign In",),
 
               CustomDividerOR(),
 
@@ -72,12 +87,12 @@ class _SignUpPageState extends State<SignUpPage> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text("Already Have An Account?", style: TextStyle(color: Colors.black),),
+                  Text("Don't Have An Account?", style: TextStyle(color: Colors.black),),
                   TextButton(
                     onPressed: (){
-                      Navigator.pushNamed(context, SignInPage.signInId);
+                      Navigator.pushNamed(context, SignUpPage.signUpId);
                     }, 
-                    child: Text("Sign in", 
+                    child: Text("Sign up", 
                     style: TextStyle(
                       color: Colors.blue,
                       decoration: TextDecoration.underline,
@@ -93,10 +108,3 @@ class _SignUpPageState extends State<SignUpPage> {
     );
   }
 }
-
-
-
-
-
-
-

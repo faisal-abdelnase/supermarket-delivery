@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:super_market_app/features/Auth/presentation/view/sign_in.dart';
 import 'package:super_market_app/features/Auth/presentation/view/sign_up.dart';
 
 class TypeOfRegisteration extends StatelessWidget {
@@ -56,7 +57,9 @@ class TypeOfRegisteration extends StatelessWidget {
                   backgroundColor: const Color.fromARGB(255, 228, 227, 227),
                   foregroundColor: Colors.black
                 ),
-                onPressed: (){}, 
+                onPressed: (){
+                  Navigator.of(context).pushNamed(SignInPage.signInId);
+                }, 
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 16),
                   child: Text("Sign in"),
