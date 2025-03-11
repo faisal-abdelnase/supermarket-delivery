@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:super_market_app/features/Auth/presentation/view/widgets/custom_arrow_back_button.dart';
+import 'package:super_market_app/features/Auth/presentation/view/widgets/custom_different_sign.dart';
 import 'package:super_market_app/features/Auth/presentation/view/widgets/custom_divider_or.dart';
 import 'package:super_market_app/features/Auth/presentation/view/widgets/custom_elvated_button.dart';
 import 'package:super_market_app/features/Auth/presentation/view/widgets/custom_text_form_filed.dart';
@@ -62,7 +63,9 @@ class _SignUpPageState extends State<SignUpPage> {
 
               CustomElvatedButton(screenWidth: screenWidth, screenHeight: screenHeight),
 
-              CustomDividerOR()
+              CustomDividerOR(),
+
+              CustomDifferentSign()
             ],
           ),
         ),
@@ -70,6 +73,8 @@ class _SignUpPageState extends State<SignUpPage> {
     );
   }
 }
+
+
 
 
 
