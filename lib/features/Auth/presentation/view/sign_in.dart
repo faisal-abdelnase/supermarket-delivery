@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'package:super_market_app/features/Auth/presentation/view/sign_up.dart';
 import 'package:super_market_app/features/Auth/presentation/view/widgets/custom_arrow_back_button.dart';
@@ -32,74 +33,101 @@ class _SignInPageState extends State<SignInPage> {
         child: Padding(
           padding: const EdgeInsets.all(16),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               CustomArrowBackButton(),
-              
-              Text("Sign In Your Account", 
-              style: TextStyle(
-                fontSize: 22,
-                fontWeight: FontWeight.w900
-              ),),
 
+              SizedBox(height: 30,),
               
-              CustomTextFormField(hintText: "Email", icon: Icons.email,),
-              CustomTextFromFiledPassword(),
+              Expanded(
+                
+                child: SingleChildScrollView(
+                  
+                  child: Column(
+                    // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text("Sign In Your Account", 
+                      style: TextStyle(
+                        fontSize: 22,
+                        fontWeight: FontWeight.w900
+                      ),),
+                              
+                      
+                      SizedBox(height: 30,),
 
-              // Remember me and forgot your password
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Expanded(
-                    child: ListTile(
-                      title: Text("Remember Me", style: TextStyle(fontSize: 14),),
-                      leading: Radio(
-                      materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                      value: "yes", 
-                      groupValue: groupValue, 
-                      onChanged: (value){
-                        groupValue = value!;
-                        setState(() {});
-                      },
-                      activeColor: Colors.blue,
+                      CustomTextFormField(hintText: "Email", icon: Icons.email,),
+                      SizedBox(height: 30,),
+                      CustomTextFromFiledPassword(),
+                              
+                      // Remember me and forgot your password
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Expanded(
+                            child: ListTile(
+                              title: Text("Remember Me", style: TextStyle(fontSize: 14),),
+                              leading: Radio(
+                              materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                              value: "yes", 
+                              groupValue: groupValue, 
+                              onChanged: (value){
+                                groupValue = value!;
+                                setState(() {});
+                              },
+                              activeColor: Colors.blue,
+                              ),
+                              horizontalTitleGap: -5,
+                            
+                            ),
+                          ),
+                              
+                              
+                          TextButton(
+                            onPressed: (){}, 
+                            child: Text("Forgot Password?", 
+                            style: TextStyle(color: Colors.blue),),
+                            ),
+                        ],
                       ),
-                      horizontalTitleGap: -5,
-                    
-                    ),
+
+
+                      SizedBox(height: 30,),
+                              
+                      CustomElvatedButton(screenWidth: screenWidth, screenHeight: screenHeight, text: "Sign In",),
+
+                      SizedBox(height: 30,),
+                              
+                      CustomDividerOR(),
+
+                      SizedBox(height: 30,),
+                              
+                      CustomDifferentSign(),
+
+                      SizedBox(height: 80,),
+                              
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text("Don't Have An Account?", style: TextStyle(color: Colors.black),),
+                          TextButton(
+                            onPressed: (){
+                              Navigator.pushNamed(context, SignUpPage.signUpId);
+                            }, 
+                            child: Text("Sign up", 
+                            style: TextStyle(
+                              color: Colors.blue,
+                              decoration: TextDecoration.underline,
+                              decorationColor: Colors.blue
+                              ),
+                            ),),
+                        ],
+                      ),
+                    ],
                   ),
-
-
-                  TextButton(
-                    onPressed: (){}, 
-                    child: Text("Forgot Password?", 
-                    style: TextStyle(color: Colors.blue),),
-                    ),
-                ],
-              ),
-
-              CustomElvatedButton(screenWidth: screenWidth, screenHeight: screenHeight, text: "Sign In",),
-
-              CustomDividerOR(),
-
-              CustomDifferentSign(),
-
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text("Don't Have An Account?", style: TextStyle(color: Colors.black),),
-                  TextButton(
-                    onPressed: (){
-                      Navigator.pushNamed(context, SignUpPage.signUpId);
-                    }, 
-                    child: Text("Sign up", 
-                    style: TextStyle(
-                      color: Colors.blue,
-                      decoration: TextDecoration.underline,
-                      decorationColor: Colors.blue
-                      ),
-                    ),),
-                ],
+                ),
               )
             ],
           ),

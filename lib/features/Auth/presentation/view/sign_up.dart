@@ -36,55 +36,72 @@ class _SignUpPageState extends State<SignUpPage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               CustomArrowBackButton(),
+
+              SizedBox(height: 30,),
               
-              Text("Sign Up Your Account", 
-              style: TextStyle(
-                fontSize: 22,
-                fontWeight: FontWeight.w900
-              ),),
+              Expanded(
+                child: SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text("Sign Up Your Account", 
+                      style: TextStyle(
+                        fontSize: 22,
+                        fontWeight: FontWeight.w900
+                      ),),
 
-              CustomTextFormField(hintText: "Full Name", icon: Icons.account_circle,),
-              CustomTextFormField(hintText: "Email", icon: Icons.email,),
-              CustomTextFromFiledPassword(),
-
-              Row(
-                children: [
-                  Radio(
-                    value: "agree", 
-                    groupValue: groupValue, 
-                    onChanged: (value){
-                      groupValue = value!;
-                      setState(() {});
-                    },
-                    activeColor: Colors.blue,
-                    ),
-
-                    RichTextToAgreeRadio()
-                ],
-              ),
-
-              CustomElvatedButton(screenWidth: screenWidth, screenHeight: screenHeight, text: "Sign Up",),
-
-              CustomDividerOR(),
-
-              CustomDifferentSign(),
-
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text("Already Have An Account?", style: TextStyle(color: Colors.black),),
-                  TextButton(
-                    onPressed: (){
-                      Navigator.pushNamed(context, SignInPage.signInId);
-                    }, 
-                    child: Text("Sign in", 
-                    style: TextStyle(
-                      color: Colors.blue,
-                      decoration: TextDecoration.underline,
-                      decorationColor: Colors.blue
+                      SizedBox(height: 30,),
+                      
+                      CustomTextFormField(hintText: "Full Name", icon: Icons.account_circle,),
+                      SizedBox(height: 20,),
+                      CustomTextFormField(hintText: "Email", icon: Icons.email,),
+                      SizedBox(height: 20,),
+                      CustomTextFromFiledPassword(),
+                      
+                      Row(
+                        children: [
+                          Radio(
+                            value: "agree", 
+                            groupValue: groupValue, 
+                            onChanged: (value){
+                              groupValue = value!;
+                              setState(() {});
+                            },
+                            activeColor: Colors.blue,
+                            ),
+                      
+                            RichTextToAgreeRadio()
+                        ],
                       ),
-                    ),),
-                ],
+
+                      SizedBox(height: 30,),
+                      
+                      CustomElvatedButton(screenWidth: screenWidth, screenHeight: screenHeight, text: "Sign Up",),
+                      SizedBox(height: 30,),
+                      CustomDividerOR(),
+                      SizedBox(height: 30,),
+                      CustomDifferentSign(),
+                      SizedBox(height: 80,),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text("Already Have An Account?", style: TextStyle(color: Colors.black),),
+                          TextButton(
+                            onPressed: (){
+                              Navigator.pushNamed(context, SignInPage.signInId);
+                            }, 
+                            child: Text("Sign in", 
+                            style: TextStyle(
+                              color: Colors.blue,
+                              decoration: TextDecoration.underline,
+                              decorationColor: Colors.blue
+                              ),
+                            ),),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
               )
             ],
           ),
