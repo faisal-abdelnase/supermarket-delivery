@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:super_market_app/features/Auth/presentation/view/forgot_password.dart';
 import 'package:super_market_app/features/Auth/presentation/view/sign_in.dart';
 import 'package:super_market_app/features/Auth/presentation/view/sign_up.dart';
 import 'package:super_market_app/features/Auth/presentation/view/type_of_registeration.dart';
@@ -24,7 +25,8 @@ class SuperMarketDelivery extends StatelessWidget {
         AboutApp.aboutAppId : (context) => AboutApp(),
         TypeOfRegisteration.registeration : (context) => TypeOfRegisteration(),
         SignUpPage.signUpId : (context) => SignUpPage(),
-        SignInPage.signInId : (context) => SignInPage()
+        SignInPage.signInId : (context) => SignInPage(),
+        ForgotPassword.forgetPasswordId : (context) => ForgotPassword(),
       },
     );
   }

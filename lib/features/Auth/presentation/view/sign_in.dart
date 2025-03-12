@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:super_market_app/features/Auth/presentation/view/forgot_password.dart';
 import 'package:super_market_app/features/Auth/presentation/view/sign_up.dart';
 import 'package:super_market_app/features/Auth/presentation/view/widgets/custom_arrow_back_button.dart';
 import 'package:super_market_app/features/Auth/presentation/view/widgets/custom_different_sign.dart';
@@ -86,7 +87,9 @@ class _SignInPageState extends State<SignInPage> {
                               
                               
                           TextButton(
-                            onPressed: (){}, 
+                            onPressed: (){
+                              Navigator.of(context).pushNamed(ForgotPassword.forgetPasswordId);
+                            }, 
                             child: Text("Forgot Password?", 
                             style: TextStyle(color: Colors.blue),),
                             ),
