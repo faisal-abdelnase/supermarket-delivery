@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:super_market_app/features/Auth/presentation/view/otp_page.dart';
 import 'package:super_market_app/features/Auth/presentation/view/sign_in.dart';
 import 'package:super_market_app/features/Auth/presentation/view/widgets/custom_arrow_back_button.dart';
 import 'package:super_market_app/features/Auth/presentation/view/widgets/custom_elvated_button.dart';
@@ -35,7 +36,13 @@ class ForgotPassword extends StatelessWidget {
 
               CustomTextFormField(hintText: "Enter Email", icon: Icons.email,),
               SizedBox(height: 30,),
-              CustomElvatedButton(screenWidth: screenWidth, screenHeight: screenHeight, text: "Send Code",),
+              CustomElvatedButton(
+                onPressed: () {
+                  Navigator.of(context).pushNamed(OtpPage.otpPageId);
+                },
+                screenWidth: screenWidth, 
+                screenHeight: screenHeight, 
+                text: "Send Code",),
               
               SizedBox(height: 30,),
 

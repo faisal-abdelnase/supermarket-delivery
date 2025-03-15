@@ -31,8 +31,10 @@ dependencies:
   cupertino_icons: ^1.0.8
   flutter:
     sdk: flutter
+  flutter_otp_text_field: ^1.5.1+1
   font_awesome_flutter: ^10.8.0
   percent_indicator: ^4.2.4
+  pin_code_fields: ^8.0.1
   shared_preferences: ^2.5.2
 
 dev_dependencies:

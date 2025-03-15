@@ -4,12 +4,13 @@ class CustomElvatedButton extends StatelessWidget {
   const CustomElvatedButton({
     super.key,
     required this.screenWidth,
-    required this.screenHeight, required this.text,
+    required this.screenHeight, required this.text, required this.onPressed,
   });
 
   final double screenWidth;
   final double screenHeight;
   final String text;
+  final void Function() onPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +20,7 @@ class CustomElvatedButton extends StatelessWidget {
         backgroundColor: Colors.blue,
         foregroundColor: Colors.white
       ),
-      onPressed: (){}, 
+      onPressed: onPressed, 
       child: Text(text, 
       style: TextStyle(
         fontWeight: FontWeight.bold,

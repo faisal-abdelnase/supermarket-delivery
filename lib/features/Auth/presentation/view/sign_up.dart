@@ -76,7 +76,11 @@ class _SignUpPageState extends State<SignUpPage> {
 
                       SizedBox(height: 30,),
                       
-                      CustomElvatedButton(screenWidth: screenWidth, screenHeight: screenHeight, text: "Sign Up",),
+                      CustomElvatedButton(
+                        onPressed: () {},
+                        screenWidth: screenWidth, 
+                        screenHeight: screenHeight, 
+                        text: "Sign Up",),
                       SizedBox(height: 30,),
                       CustomDividerOR(),
                       SizedBox(height: 30,),

@@ -99,7 +99,11 @@ class _SignInPageState extends State<SignInPage> {
 
                       SizedBox(height: 30,),
                               
-                      CustomElvatedButton(screenWidth: screenWidth, screenHeight: screenHeight, text: "Sign In",),
+                      CustomElvatedButton(
+                        onPressed: () {},
+                        screenWidth: screenWidth, 
+                        screenHeight: screenHeight, 
+                        text: "Sign In",),
 
                       SizedBox(height: 30,),
                               
