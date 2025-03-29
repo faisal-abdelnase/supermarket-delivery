@@ -25,6 +25,7 @@ class _SignUpPageState extends State<SignUpPage> {
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
+    TextEditingController passwordController = TextEditingController();
     return Scaffold(
       body: SafeArea(
         top: true,
@@ -56,7 +57,7 @@ class _SignUpPageState extends State<SignUpPage> {
                       SizedBox(height: 20,),
                       CustomTextFormField(hintText: "Email", icon: Icons.email,),
                       SizedBox(height: 20,),
-                      CustomTextFromFiledPassword(),
+                      CustomTextFromFiledPassword(hintText: "Password", controller: passwordController,),
                       
                       Row(
                         children: [

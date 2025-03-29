@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
+import 'package:super_market_app/features/Auth/presentation/view/reset_passowrd.dart';
 import 'package:super_market_app/features/Auth/presentation/view/widgets/custom_arrow_back_button.dart';
 import 'package:super_market_app/features/Auth/presentation/view/widgets/custom_elvated_button.dart';
 
@@ -54,7 +54,7 @@ class OtpPage extends StatelessWidget {
               SizedBox(height: 50,),
               CustomElvatedButton(
                 onPressed: () {
-                  
+                  Navigator.of(context).pushNamed(ResetPassowrd.resetPasswordId);
                 },
                 screenWidth: screenWidth, 
                 screenHeight: screenHeight, 
@@ -69,4 +69,6 @@ class OtpPage extends StatelessWidget {
       ),
     );
   }
+
+  
 }

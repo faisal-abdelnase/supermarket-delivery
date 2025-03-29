@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:super_market_app/features/Auth/presentation/view/forgot_password.dart';
 import 'package:super_market_app/features/Auth/presentation/view/otp_page.dart';
+import 'package:super_market_app/features/Auth/presentation/view/reset_passowrd.dart';
 import 'package:super_market_app/features/Auth/presentation/view/sign_in.dart';
 import 'package:super_market_app/features/Auth/presentation/view/sign_up.dart';
 import 'package:super_market_app/features/Auth/presentation/view/type_of_registeration.dart';
@@ -29,6 +30,7 @@ class SuperMarketDelivery extends StatelessWidget {
         SignInPage.signInId : (context) => SignInPage(),
         ForgotPassword.forgetPasswordId : (context) => ForgotPassword(),
         OtpPage.otpPageId : (context) => OtpPage(),
+        ResetPassowrd.resetPasswordId :(context) => ResetPassowrd(),
       },
     );
   }

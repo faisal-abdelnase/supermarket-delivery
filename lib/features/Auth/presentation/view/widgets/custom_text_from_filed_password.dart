@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class CustomTextFromFiledPassword extends StatefulWidget {
-  const CustomTextFromFiledPassword({super.key});
+  const CustomTextFromFiledPassword({super.key, required this.hintText, required this.controller});
+  final String hintText;
+  final TextEditingController controller;
 
   @override
   State<CustomTextFromFiledPassword> createState() => _CustomTextFromFiledPasswordState();
@@ -15,10 +17,11 @@ class _CustomTextFromFiledPasswordState extends State<CustomTextFromFiledPasswor
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      controller: widget.controller,
       obscureText: obscureText,
       cursorColor: Colors.blue,
       decoration: InputDecoration(
-        hintText: "Password",
+        hintText: widget.hintText,
         hintStyle: TextStyle(
           color: Colors.grey,
           fontSize: 16,

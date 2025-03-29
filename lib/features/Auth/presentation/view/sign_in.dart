@@ -27,6 +27,7 @@ class _SignInPageState extends State<SignInPage> {
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
+    TextEditingController passwordController = TextEditingController();
     return Scaffold(
       body: SafeArea(
         top: true,
@@ -60,7 +61,7 @@ class _SignInPageState extends State<SignInPage> {
 
                       CustomTextFormField(hintText: "Email", icon: Icons.email,),
                       SizedBox(height: 30,),
-                      CustomTextFromFiledPassword(),
+                      CustomTextFromFiledPassword(hintText: "Password", controller: passwordController,),
                               
                       // Remember me and forgot your password
                       Row(
