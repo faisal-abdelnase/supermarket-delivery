@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:super_market_app/features/home/presentation/view/widgets/header_home_page.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
@@ -7,6 +8,24 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+      body: SafeArea(
+        top: true,
+        child: CustomScrollView(
+          slivers: [
+
+            
+            SliverToBoxAdapter(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
+                child: HeaderHomePage(),
+              ),
+            ),
+            
+          ],
+        ),
+      ),
+    );
   }
 }
+

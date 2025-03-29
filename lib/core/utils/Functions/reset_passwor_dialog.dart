@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-showAlertDialog(BuildContext context){
+showAlertDialog(BuildContext context, void Function() onPressed) {
     showDialog(
       context: context, 
       builder: (BuildContext context){
@@ -14,7 +14,7 @@ showAlertDialog(BuildContext context){
                 backgroundColor: Colors.blue,
                 foregroundColor: Colors.white
               ),
-              onPressed: (){}, 
+              onPressed: onPressed, 
               child: Text("Go To Home")
               ),
           ],

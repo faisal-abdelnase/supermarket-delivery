@@ -51,7 +51,13 @@ class ResetPassowrd extends StatelessWidget {
                   }
 
                   else if(passwordController.text == confirmPasswordController.text){
-                    showAlertDialog(context);
+                    showAlertDialog(
+                      context,
+                      (){
+                        Navigator.pop(context);
+                        Navigator.pushNamed(context, "/homeView");
+                      }
+                      );
                   }
                 },
                 screenWidth: screenWidth, 

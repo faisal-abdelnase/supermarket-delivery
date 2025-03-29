@@ -101,7 +101,9 @@ class _SignInPageState extends State<SignInPage> {
                       SizedBox(height: 30,),
                               
                       CustomElvatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.pushNamed(context, "/homeView");
+                        },
                         screenWidth: screenWidth, 
                         screenHeight: screenHeight, 
                         text: "Sign In",),
