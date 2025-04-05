@@ -12,9 +12,12 @@ class HeaderHomePage extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             
-            CircleAvatar(
+            Row(
+              children: [
+                CircleAvatar(
               radius: 30,
               backgroundImage: AssetImage("assets/images/faisal.jpg"),
             ),
@@ -22,6 +25,8 @@ class HeaderHomePage extends StatelessWidget {
             SizedBox(width: 16,),
             
             Text("Faisal", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),),
+              ],
+            ),
 
             IconButton(
               onPressed: (){
