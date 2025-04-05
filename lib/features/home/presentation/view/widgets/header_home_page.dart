@@ -13,16 +13,25 @@ class HeaderHomePage extends StatelessWidget {
       children: [
         Row(
           children: [
+            
             CircleAvatar(
               radius: 30,
-              backgroundImage: AssetImage(""),
+              backgroundImage: AssetImage("assets/images/faisal.jpg"),
             ),
     
             SizedBox(width: 16,),
             
             Text("Faisal", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),),
+
+            IconButton(
+              onPressed: (){
+                Navigator.pop(context);
+              }, 
+              icon: Icon(Icons.exit_to_app, size: 30,)),
           ],
         ),
+
+        SizedBox(height: 16,),
     
         Text("Ready To Order Your", 
         style: TextStyle(
@@ -47,7 +56,7 @@ class HeaderHomePage extends StatelessWidget {
                 onPressed: (){}, 
                 child: Image.asset("assets/images/settings.png", width: 20, height: 20, color: Colors.white,),),
             ],
-          )
+          ),
       ],
     );
   }
