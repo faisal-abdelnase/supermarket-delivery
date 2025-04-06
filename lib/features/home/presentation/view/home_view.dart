@@ -1,52 +1,49 @@
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:super_market_app/features/home/presentation/view/widgets/categories_grid_view.dart';
-import 'package:super_market_app/features/home/presentation/view/widgets/header_home_page.dart';
-import 'package:super_market_app/features/home/presentation/view/widgets/recommended_list_view.dart';
-import 'package:super_market_app/features/home/presentation/view/widgets/sliver_to_box_adapter_text_type.dart';
+import 'package:super_market_app/features/home/presentation/view/home_details_view.dart';
 
-class HomeView extends StatelessWidget {
+
+class HomeView extends StatefulWidget {
   const HomeView({super.key});
 
   static const homeId = "/homeView";
 
   @override
+  State<HomeView> createState() => _HomeViewState();
+}
+
+class _HomeViewState extends State<HomeView> {
+
+  int currentIndex = 0;
+  List<Widget> pages =  [
+    const HomeDetailsView(),
+    const Center(child: Text("Favorite")),
+    const Center(child: Text("Cart")),
+    const Center(child: Text("Profile")),
+  ];
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        top: true,
-        child: CustomScrollView(
-          slivers: [
-
-            
-            SliverToBoxAdapter(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
-                child: HeaderHomePage(),
-              ),
-            ),
-
-            SliverToBoxAdapterTextType(text: "Categories",),
-
-            CategoriesGridView(),
-
-            SliverToBoxAdapter(
-              child: SizedBox(height: 64,),
-            ),
-
-            SliverToBoxAdapterTextType(text: "Recommended",),
-
-            RecommendedListView(),
-
-            SliverToBoxAdapter(
-              child: SizedBox(height: 64,),
-            ),
-
-            SliverToBoxAdapterTextType(text: "Recommended",),
+      body: pages[currentIndex],
 
 
-            
-          ],
-        ),
+      bottomNavigationBar: CurvedNavigationBar(
+        items: const [
+          Icon(Icons.home_outlined),
+          Icon(Icons.favorite_border),
+          Icon(Icons.shopping_cart_outlined),
+          Icon(Icons.person_outline_outlined)
+        ],
+
+        animationDuration: Duration(milliseconds: 400),
+
+        index: currentIndex,
+        height: 60,
+        onTap: (index) {
+          currentIndex = index;
+          setState(() {});
+        },
       ),
     );
   }
