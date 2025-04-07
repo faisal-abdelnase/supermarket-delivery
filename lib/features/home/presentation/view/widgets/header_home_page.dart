@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:super_market_app/features/home/presentation/view/search_by_filter.dart';
 import 'package:super_market_app/features/home/presentation/view/widgets/search_text_field.dart';
 
 class HeaderHomePage extends StatelessWidget {
@@ -48,6 +49,7 @@ class HeaderHomePage extends StatelessWidget {
           Row(
             children: [
               Expanded(child: SearchTextField()),
+
               SizedBox(width: 16,),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
@@ -58,7 +60,9 @@ class HeaderHomePage extends StatelessWidget {
                   padding: EdgeInsets.symmetric(vertical: 8),
                   
                 ),
-                onPressed: (){}, 
+                onPressed: (){
+                  Navigator.pushNamed(context, SearchByFilter.searchByFilterId);
+                }, 
                 child: Image.asset("assets/images/settings.png", width: 20, height: 20, color: Colors.white,),),
             ],
           ),

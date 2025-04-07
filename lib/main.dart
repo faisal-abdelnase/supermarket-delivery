@@ -7,6 +7,7 @@ import 'package:super_market_app/features/Auth/presentation/view/sign_up.dart';
 import 'package:super_market_app/features/Auth/presentation/view/type_of_registeration.dart';
 import 'package:super_market_app/features/about/presentation/view/about_app.dart';
 import 'package:super_market_app/features/home/presentation/view/home_view.dart';
+import 'package:super_market_app/features/home/presentation/view/search_by_filter.dart';
 import 'package:super_market_app/features/splash/presentation/view/splash_view.dart';
 
 void main() {
@@ -31,6 +32,7 @@ class SuperMarketDelivery extends StatelessWidget {
         ForgotPassword.forgetPasswordId : (context) => ForgotPassword(),
         OtpPage.otpPageId : (context) => OtpPage(),
         ResetPassowrd.resetPasswordId :(context) => ResetPassowrd(),
+        SearchByFilter.searchByFilterId : (context) => SearchByFilter(),
       },
     );
   }
