@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:super_market_app/features/home/presentation/view/widgets/recommended_item.dart';
+import 'package:super_market_app/features/home/presentation/view/widgets/custom_product_item.dart';
 
 class RecommendedListView extends StatefulWidget {
   const RecommendedListView({
@@ -23,7 +23,7 @@ class _RecommendedListViewState extends State<RecommendedListView> {
           shrinkWrap: true,
           itemCount: 10,
           itemBuilder: (context, index){
-            return RecommendedItem();
+            return CustomProductItem();
           }),
       ),
     );

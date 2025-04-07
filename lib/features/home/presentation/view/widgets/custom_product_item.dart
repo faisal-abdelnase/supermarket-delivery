@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 
-class RecommendedItem extends StatefulWidget {
-  const RecommendedItem({
+class CustomProductItem extends StatefulWidget {
+  const CustomProductItem({
     super.key,
   });
 
   @override
-  State<RecommendedItem> createState() => _RecommendedItemState();
+  State<CustomProductItem> createState() => _CustomProductItemState();
 }
 
-class _RecommendedItemState extends State<RecommendedItem> {
+class _CustomProductItemState extends State<CustomProductItem> {
 
   bool isFavorite = false;
   @override

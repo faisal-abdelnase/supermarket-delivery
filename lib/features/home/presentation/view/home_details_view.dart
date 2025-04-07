@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:super_market_app/features/home/presentation/view/widgets/all_product_grid_view.dart';
 import 'package:super_market_app/features/home/presentation/view/widgets/categories_grid_view.dart';
 import 'package:super_market_app/features/home/presentation/view/widgets/header_home_page.dart';
 import 'package:super_market_app/features/home/presentation/view/widgets/offers_list_view.dart';
@@ -43,11 +44,17 @@ class HomeDetailsView extends StatelessWidget {
 
             OffersListView(),
 
+            SliverToBoxAdapter(
+              child: SizedBox(height: 16,),
+            ),
 
-            
+            SliverToBoxAdapterTextType(text: "All product",),
+
+            AllProductGridView()
           ],
         ),
       );
 
   }
 }
+
