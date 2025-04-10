@@ -1,26 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:super_market_app/features/home/presentation/manager/filter_provider.dart';
 
-class CustomElevatedButtonFilter extends StatefulWidget {
+class CustomElevatedButtonFilter extends StatelessWidget {
   const CustomElevatedButtonFilter({
-    super.key, required this.text,
+    super.key, required this.text, 
   });
 
   final String text;
 
-  @override
-  State<CustomElevatedButtonFilter> createState() => _CustomElevatedButtonFilterState();
-}
 
-class _CustomElevatedButtonFilterState extends State<CustomElevatedButtonFilter> {
-
-  bool isSelected = false;
   @override
   Widget build(BuildContext context) {
+    final filterProvider = Provider.of<FilterProvider>(context);
     return ElevatedButton(
       
       style: ElevatedButton.styleFrom(
         
-        backgroundColor: isSelected ? Colors.blue : Colors.grey[300],
+        backgroundColor: filterProvider.isFilterSelected(text) ? Colors.blue : Colors.grey[300],
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(8),
         ),
@@ -28,13 +25,12 @@ class _CustomElevatedButtonFilterState extends State<CustomElevatedButtonFilter>
         
       ),
       onPressed: (){
-        isSelected = !isSelected;
-        setState(() {});
+        filterProvider.toggleFilter(text);
       }, 
-      child: Text(widget.text, 
+      child: Text(text, 
       style: 
       TextStyle(
-        color: isSelected ? Colors.white : Colors.black,
+        color: filterProvider.isFilterSelected(text) ? Colors.white : Colors.black,
         fontWeight: FontWeight.bold,
         
         ),),
