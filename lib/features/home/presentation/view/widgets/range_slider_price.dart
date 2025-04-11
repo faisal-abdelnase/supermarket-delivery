@@ -1,20 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:super_market_app/features/home/presentation/manager/filter_provider.dart';
 
-class RangeSliderPrice extends StatefulWidget {
+class RangeSliderPrice extends StatelessWidget {
   const RangeSliderPrice({
     super.key,
   });
 
   @override
-  State<RangeSliderPrice> createState() => _RangeSliderPriceState();
-}
-
-class _RangeSliderPriceState extends State<RangeSliderPrice> {
-
-  RangeValues _currentRangeValues =  RangeValues(10, 400);
-
-  @override
   Widget build(BuildContext context) {
+    final filterProvider = Provider.of<FilterProvider>(context);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -24,17 +19,17 @@ class _RangeSliderPriceState extends State<RangeSliderPrice> {
         ),),
         
         RangeSlider(
-          values: _currentRangeValues,
+          values: filterProvider.currentRangeValues,
           activeColor: Colors.blue,
           
           min: 10,
           max: 400,
           divisions: 40,
-          labels: RangeLabels("${_currentRangeValues.start.round()}\$", "${_currentRangeValues.end.round()}\$"),
+          labels: RangeLabels("${filterProvider.currentRangeValues.start.round()}\$", "${filterProvider.currentRangeValues.end.round()}\$"),
           onChanged: (value){
-            setState(() {
-              _currentRangeValues = value;
-            });
+          
+              filterProvider.setRangeValues(value);
+        
           }
           ),
         
@@ -43,8 +38,8 @@ class _RangeSliderPriceState extends State<RangeSliderPrice> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text("${_currentRangeValues.start.round()}\$", style: TextStyle(fontWeight: FontWeight.bold),),
-              Text("${_currentRangeValues.end.round()}\$", style: TextStyle(fontWeight: FontWeight.bold),),
+              Text("${filterProvider.currentRangeValues.start.round()}\$", style: TextStyle(fontWeight: FontWeight.bold),),
+              Text("${filterProvider.currentRangeValues.end.round()}\$", style: TextStyle(fontWeight: FontWeight.bold),),
             ],
           ),
         ),

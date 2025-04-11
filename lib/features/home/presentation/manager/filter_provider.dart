@@ -4,6 +4,7 @@ class FilterProvider extends ChangeNotifier {
 
 
   List<String> selectedFilters = [];
+  RangeValues currentRangeValues =  RangeValues(10, 400);
 
   void toggleFilter(String filter) {
     if (selectedFilters.contains(filter)) {
@@ -22,6 +23,13 @@ class FilterProvider extends ChangeNotifier {
 
   void clearFilters() {
     selectedFilters.clear();
+    currentRangeValues =  RangeValues(10, 400);
+    notifyListeners();
+  }
+
+
+  void setRangeValues(RangeValues values) {
+    currentRangeValues = values;
     notifyListeners();
   }
 }
