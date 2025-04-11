@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:super_market_app/core/utils/widgets/custom_elvated_button.dart';
 import 'package:super_market_app/features/home/presentation/manager/filter_provider.dart';
 import 'package:super_market_app/features/home/presentation/view/widgets/range_slider_price.dart';
 import 'package:super_market_app/features/home/presentation/view/widgets/search_by_filter_header.dart';
@@ -13,6 +14,8 @@ class SearchByFilter extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    final screenHeight = MediaQuery.of(context).size.height;
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(
@@ -28,16 +31,18 @@ class SearchByFilter extends StatelessWidget {
             
               children: [
                 SearchByFilterHeader(),
-                SizedBox(
-                  height: 16,
-                ),
+
+                SizedBox(height: 16,),
+                
                 GridViewButtonFilter(),
 
                 SizedBox(height: 16,),
 
                 RangeSliderPrice(),
-                
 
+                SizedBox(height: 32,),
+
+                CustomElvatedButton(screenWidth: screenWidth, screenHeight: screenHeight, text: "Apply Filter", onPressed: (){}),
                 
               ],
             ),
