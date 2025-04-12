@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:super_market_app/features/home/presentation/view/widgets/product_details_header.dart';
+import 'package:super_market_app/features/home/presentation/view/widgets/review_item.dart';
 import 'package:super_market_app/features/home/presentation/view/widgets/similar_products.dart';
 import 'package:super_market_app/features/home/presentation/view/widgets/stars_rating.dart';
 
@@ -76,6 +77,8 @@ class ProductsDetailsBody extends StatelessWidget {
                 ],
               ),
 
+              ReviewItem(),
+
 
               SizedBox(height: 50,),
           
@@ -85,4 +88,5 @@ class ProductsDetailsBody extends StatelessWidget {
     );
   }
 }
+
 
