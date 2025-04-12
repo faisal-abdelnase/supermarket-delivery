@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:super_market_app/features/Auth/presentation/view/reset_passowrd.dart';
-import 'package:super_market_app/features/Auth/presentation/view/widgets/custom_arrow_back_button.dart';
-import 'package:super_market_app/features/Auth/presentation/view/widgets/custom_elvated_button.dart';
+import 'package:super_market_app/core/utils/widgets/custom_arrow_back_button.dart';
+import 'package:super_market_app/core/utils/widgets/custom_elvated_button.dart';
 
 class OtpPage extends StatelessWidget {
   const OtpPage({super.key});

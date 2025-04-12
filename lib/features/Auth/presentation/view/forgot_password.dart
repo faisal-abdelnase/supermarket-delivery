@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:super_market_app/features/Auth/presentation/view/otp_page.dart';
 import 'package:super_market_app/features/Auth/presentation/view/sign_in.dart';
-import 'package:super_market_app/features/Auth/presentation/view/widgets/custom_arrow_back_button.dart';
-import 'package:super_market_app/features/Auth/presentation/view/widgets/custom_elvated_button.dart';
+import 'package:super_market_app/core/utils/widgets/custom_arrow_back_button.dart';
+import 'package:super_market_app/core/utils/widgets/custom_elvated_button.dart';
 import 'package:super_market_app/features/Auth/presentation/view/widgets/custom_text_form_filed.dart';
 
 class ForgotPassword extends StatelessWidget {

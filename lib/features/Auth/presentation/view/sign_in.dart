@@ -2,10 +2,10 @@
 import 'package:flutter/material.dart';
 import 'package:super_market_app/features/Auth/presentation/view/forgot_password.dart';
 import 'package:super_market_app/features/Auth/presentation/view/sign_up.dart';
-import 'package:super_market_app/features/Auth/presentation/view/widgets/custom_arrow_back_button.dart';
+import 'package:super_market_app/core/utils/widgets/custom_arrow_back_button.dart';
 import 'package:super_market_app/features/Auth/presentation/view/widgets/custom_different_sign.dart';
 import 'package:super_market_app/features/Auth/presentation/view/widgets/custom_divider_or.dart';
-import 'package:super_market_app/features/Auth/presentation/view/widgets/custom_elvated_button.dart';
+import 'package:super_market_app/core/utils/widgets/custom_elvated_button.dart';
 import 'package:super_market_app/features/Auth/presentation/view/widgets/custom_text_form_filed.dart';
 import 'package:super_market_app/features/Auth/presentation/view/widgets/custom_text_from_filed_password.dart';
 
