@@ -34,7 +34,7 @@ class _CustomProductItemState extends State<CustomProductItem> {
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                Icon(Icons.star, color: Colors.yellow,),
+                Icon(Icons.star, color: Colors.amber,),
           
                 Text("4.5", style: TextStyle(fontSize: 12, color: Colors.grey),),
               ],

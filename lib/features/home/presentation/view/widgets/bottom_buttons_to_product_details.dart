@@ -1,11 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:super_market_app/core/utils/widgets/custom_icon_button.dart';
 
-class BottomButtonsToProductDetails extends StatelessWidget {
+class BottomButtonsToProductDetails extends StatefulWidget {
   const BottomButtonsToProductDetails({
     super.key,
   });
 
+  @override
+  State<BottomButtonsToProductDetails> createState() => _BottomButtonsToProductDetailsState();
+}
+
+class _BottomButtonsToProductDetailsState extends State<BottomButtonsToProductDetails> {
+
+  int quantity = 1;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -30,15 +37,25 @@ class BottomButtonsToProductDetails extends StatelessWidget {
           CustomIconButton(
             backgroundColor: Colors.grey[200]!,
             icon: Icon(Icons.remove),
-            onPressed: () {},
+            onPressed: () {
+              if (quantity > 1) {
+                setState(() {
+                  quantity--;
+                });
+              }
+            },
           ),
     
-          Text("2", style: TextStyle(fontWeight: FontWeight.bold),),
+          Text(quantity.toString(), style: TextStyle(fontWeight: FontWeight.bold),),
     
           CustomIconButton(
             backgroundColor: Colors.blue,
             icon: Icon(Icons.add,color: Colors.white,),
-            onPressed: () {},
+            onPressed: () {
+              setState(() {
+                quantity++;
+              });
+            },
           ),
     
           ElevatedButton(
