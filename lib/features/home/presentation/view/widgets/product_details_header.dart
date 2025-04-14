@@ -9,20 +9,23 @@ class ProductDetailsHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      spacing: MediaQuery.of(context).size.width * 0.3,
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       
       children: [
         CustomArrowBackButton(),
     
-    Center(
-      child: Text(
-        'Details',
-        style: TextStyle(
-          fontSize: 20,
-          fontWeight: FontWeight.w600,
-        ),
+    Text(
+      'Details',
+      style: TextStyle(
+        fontSize: 20,
+        fontWeight: FontWeight.w600,
       ),
     ),
+
+
+    IconButton(
+      onPressed: (){}, 
+      icon: Icon(Icons.shopping_cart_checkout_sharp, color: Colors.blue, size: 28,))
       ],
     );
   }
