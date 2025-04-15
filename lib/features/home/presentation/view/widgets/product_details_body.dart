@@ -12,6 +12,8 @@ class ProductsDetailsBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    bool isOffer = ModalRoute.of(context)!.settings.arguments as bool;
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
       child: Column(
@@ -33,6 +35,33 @@ class ProductsDetailsBody extends StatelessWidget {
                 ),
               ),
           ),
+
+
+          Visibility(
+            visible: isOffer,
+            child: RichText(
+              text: TextSpan(
+                text: "discount %50   ", 
+                style: TextStyle(
+                  color: Colors.red, 
+                  fontSize: 16, 
+                  fontWeight: FontWeight.bold,
+                  ),
+                  children: [
+                    TextSpan(
+                      text: "\$40", 
+                      style: TextStyle(
+                        color: Colors.grey, 
+                        fontSize: 16, 
+                        fontWeight: FontWeight.bold,
+                        decoration: TextDecoration.lineThrough,
+                        decorationThickness: 3,
+                        decorationColor: Colors.grey,
+                        ),
+                    ),
+                  ]
+                  ),),
+          ),
       
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -41,6 +70,8 @@ class ProductsDetailsBody extends StatelessWidget {
               style: TextStyle(
                 fontSize: 24, fontWeight: FontWeight.bold,
                 ),),
+
+
               Text("\$20", 
               style: TextStyle(
                 fontSize: 20, 

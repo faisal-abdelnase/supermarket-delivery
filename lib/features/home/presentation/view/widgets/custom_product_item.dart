@@ -17,7 +17,7 @@ class _CustomProductItemState extends State<CustomProductItem> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.pushNamed(context, ProductDetailsView.productDetailsId);
+        Navigator.pushNamed(context, ProductDetailsView.productDetailsId, arguments: false);
       },
       child: Container(
         width: 120,
