@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:super_market_app/features/home/presentation/view/widgets/add_comment.dart';
 import 'package:super_market_app/features/home/presentation/view/widgets/list_view_of_review.dart';
 import 'package:super_market_app/features/home/presentation/view/widgets/product_details_header.dart';
 import 'package:super_market_app/features/home/presentation/view/widgets/similar_products.dart';
@@ -66,6 +67,11 @@ class ProductsDetailsBody extends StatelessWidget {
       
           Text("Similar products", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),),
           SimilarProducts(),
+
+
+          Text("Add Comment", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),),
+
+          AddComment(),
       
           Row(
             spacing: 10,
