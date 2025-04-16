@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:super_market_app/core/utils/widgets/custom_arrow_back_button.dart';
 import 'package:super_market_app/features/payment/presentation/view/widgets/cart_item.dart';
+import 'package:super_market_app/features/payment/presentation/view/widgets/coupon_code_text_field.dart';
 
 class MyCart extends StatelessWidget {
   const MyCart({super.key});
@@ -13,23 +14,39 @@ class MyCart extends StatelessWidget {
         top: true,
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-          child: Column(
-            children: [
-              Row(
-                spacing: MediaQuery.of(context).size.width * 0.3,
-                children: [
-                  CustomArrowBackButton(),
-                  Text("My Cart", style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),),
-                ],
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                Row(
+                  spacing: MediaQuery.of(context).size.width * 0.3,
+                  children: [
+                    CustomArrowBackButton(),
+                    Text("My Cart", style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),),
+                  ],
+            
+                ),
+            
+                ListView.builder(
+                  physics: NeverScrollableScrollPhysics(),
+                  padding: EdgeInsets.symmetric(vertical: 16),
+                  shrinkWrap: true,
+                  itemCount: 4,
+                  itemBuilder: (context, index) {
+                  return Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 8),
+                    child: CartItem(),
+                  );
+                },),
 
-              ),
-
-              CartItem(),
-            ],
+                CouponCodeTextField(),
+              ],
+            ),
           ),
         ),
       ),
     );
   }
 }
+
+
 
