@@ -35,6 +35,8 @@ class _BottomButtonsToProductDetailsState extends State<BottomButtonsToProductDe
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           CustomIconButton(
+            iconSize: 24,
+            minSize: Size(30, 30),
             backgroundColor: Colors.grey[200]!,
             icon: Icon(Icons.remove),
             onPressed: () {
@@ -49,6 +51,8 @@ class _BottomButtonsToProductDetailsState extends State<BottomButtonsToProductDe
           Text(quantity.toString(), style: TextStyle(fontWeight: FontWeight.bold),),
     
           CustomIconButton(
+            iconSize: 24,
+            minSize: Size(30, 30),
             backgroundColor: Colors.blue,
             icon: Icon(Icons.add,color: Colors.white,),
             onPressed: () {

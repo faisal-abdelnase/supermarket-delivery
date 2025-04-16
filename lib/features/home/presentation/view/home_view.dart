@@ -1,6 +1,7 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:super_market_app/features/home/presentation/view/home_details_view.dart';
+import 'package:super_market_app/features/payment/presentation/view/my_cart.dart';
 
 
 class HomeView extends StatefulWidget {
@@ -18,7 +19,7 @@ class _HomeViewState extends State<HomeView> {
   List<Widget> pages =  [
     const HomeDetailsView(),
     const Center(child: Text("Favorite")),
-    const Center(child: Text("Cart")),
+    const MyCart(),
     const Center(child: Text("Profile")),
   ];
 
