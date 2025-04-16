@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:super_market_app/core/utils/widgets/custom_arrow_back_button.dart';
 import 'package:super_market_app/features/payment/presentation/view/widgets/cart_item.dart';
 import 'package:super_market_app/features/payment/presentation/view/widgets/coupon_code_text_field.dart';
+import 'package:super_market_app/features/payment/presentation/view/widgets/reset_cart.dart';
+
 
 class MyCart extends StatelessWidget {
   const MyCart({super.key});
@@ -39,6 +41,8 @@ class MyCart extends StatelessWidget {
                 },),
 
                 CouponCodeTextField(),
+
+                ResetCart(),
               ],
             ),
           ),
@@ -47,6 +51,7 @@ class MyCart extends StatelessWidget {
     );
   }
 }
+
 
 
 
