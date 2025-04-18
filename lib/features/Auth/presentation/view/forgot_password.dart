@@ -22,7 +22,11 @@ class ForgotPassword extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              CustomArrowBackButton(),
+              CustomArrowBackButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+              ),
           
               SizedBox(height: 30,),
 

@@ -12,7 +12,11 @@ class ProductDetailsHeader extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       
       children: [
-        CustomArrowBackButton(),
+        CustomArrowBackButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
     
     Text(
       'Details',

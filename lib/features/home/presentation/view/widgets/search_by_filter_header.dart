@@ -16,7 +16,11 @@ class SearchByFilterHeader extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        CustomArrowBackButton(),
+        CustomArrowBackButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
         Text(
           'Search By Filter',
           style: TextStyle(

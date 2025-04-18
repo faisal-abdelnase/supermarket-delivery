@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:super_market_app/core/utils/widgets/custom_arrow_back_button.dart';
 import 'package:super_market_app/core/utils/widgets/custom_elvated_button.dart';
+import 'package:super_market_app/features/home/presentation/view/home_view.dart';
+import 'package:super_market_app/features/payment/presentation/view/checkout_view.dart';
 import 'package:super_market_app/features/payment/presentation/view/widgets/cart_item.dart';
 import 'package:super_market_app/features/payment/presentation/view/widgets/coupon_code_text_field.dart';
 import 'package:super_market_app/features/payment/presentation/view/widgets/reset_cart.dart';
@@ -8,6 +10,8 @@ import 'package:super_market_app/features/payment/presentation/view/widgets/rese
 
 class MyCart extends StatelessWidget {
   const MyCart({super.key});
+
+  static const String myCartId = "/my cart id";
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +28,11 @@ class MyCart extends StatelessWidget {
                 Row(
                   spacing: MediaQuery.of(context).size.width * 0.3,
                   children: [
-                    CustomArrowBackButton(),
+                    CustomArrowBackButton(
+                      onPressed: (){
+                        Navigator.pushReplacementNamed(context, HomeView.homeId);
+                      },
+                    ),
                     Text("My Cart", style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),),
                   ],
             
@@ -45,12 +53,14 @@ class MyCart extends StatelessWidget {
                 CouponCodeTextField(),
 
                 ResetCart(),
-                
+
                 CustomElvatedButton(
                   screenWidth: screenWidth, 
                   screenHeight: screenHeight, 
                   text: "Check Out", 
-                  onPressed: (){}),
+                  onPressed: (){
+                    Navigator.pushNamed(context, CheckoutView.checkoutId);
+                  }),
               ],
             ),
           ),

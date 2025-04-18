@@ -36,7 +36,11 @@ class _SignUpPageState extends State<SignUpPage> {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              CustomArrowBackButton(),
+              CustomArrowBackButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+              ),
 
               SizedBox(height: 30,),
               

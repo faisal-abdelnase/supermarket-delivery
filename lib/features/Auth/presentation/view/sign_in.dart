@@ -8,6 +8,7 @@ import 'package:super_market_app/features/Auth/presentation/view/widgets/custom_
 import 'package:super_market_app/core/utils/widgets/custom_elvated_button.dart';
 import 'package:super_market_app/features/Auth/presentation/view/widgets/custom_text_form_filed.dart';
 import 'package:super_market_app/features/Auth/presentation/view/widgets/custom_text_from_filed_password.dart';
+import 'package:super_market_app/features/home/presentation/view/home_view.dart';
 
 
 class SignInPage extends StatefulWidget {
@@ -38,7 +39,11 @@ class _SignInPageState extends State<SignInPage> {
             
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              CustomArrowBackButton(),
+              CustomArrowBackButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+              ),
 
               SizedBox(height: 30,),
               
@@ -102,7 +107,7 @@ class _SignInPageState extends State<SignInPage> {
                               
                       CustomElvatedButton(
                         onPressed: () {
-                          Navigator.pushNamed(context, "/homeView");
+                          Navigator.pushNamed(context, HomeView.homeId);
                         },
                         screenWidth: screenWidth, 
                         screenHeight: screenHeight, 
