@@ -10,6 +10,7 @@ import 'package:super_market_app/features/home/presentation/view/home_view.dart'
 import 'package:super_market_app/features/home/presentation/view/product_details_view.dart';
 import 'package:super_market_app/features/home/presentation/view/search_by_filter.dart';
 import 'package:super_market_app/features/payment/presentation/view/checkout_view.dart';
+import 'package:super_market_app/features/payment/presentation/view/delivery_address_view.dart';
 import 'package:super_market_app/features/payment/presentation/view/my_cart.dart';
 import 'package:super_market_app/features/splash/presentation/view/splash_view.dart';
 
@@ -39,6 +40,7 @@ class SuperMarketDelivery extends StatelessWidget {
         ProductDetailsView.productDetailsId : (context) => ProductDetailsView(),
         MyCart.myCartId: (context) => MyCart(),
         CheckoutView.checkoutId : (context) => CheckoutView(),
+        DeliveryAddressView.addressViewID : (context) => DeliveryAddressView(),
       },
     );
   }

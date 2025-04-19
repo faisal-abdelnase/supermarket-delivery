@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:super_market_app/core/utils/widgets/custom_arrow_back_button.dart';
 import 'package:super_market_app/core/utils/widgets/custom_elvated_button.dart';
+import 'package:super_market_app/features/payment/presentation/view/delivery_address_view.dart';
 import 'package:super_market_app/features/payment/presentation/view/widgets/cart_item.dart';
 import 'package:super_market_app/features/payment/presentation/view/widgets/checkout_info.dart';
 import 'package:super_market_app/features/payment/presentation/view/widgets/reset_cart.dart';
@@ -42,6 +43,9 @@ class CheckoutView extends StatelessWidget {
                 Text("Delivery Address", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
             
                 ChekoutInfo(
+                  onPressed: () {
+                    Navigator.pushNamed(context, DeliveryAddressView.addressViewID);
+                  },
                   prefixIcon: Icons.location_on_outlined, 
                   suffixIcon: Icons.arrow_forward_ios, 
                   text: '80 Banastre Road, Southport,SouthportSouthportSouthportSouthportSouthport',
@@ -50,6 +54,9 @@ class CheckoutView extends StatelessWidget {
                   Text("Payment Method", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
             
                   ChekoutInfo(
+                    onPressed: () {
+                      
+                    },
                   prefixIcon: Icons.payment, 
                   suffixIcon: Icons.arrow_forward_ios, 
                   text: '**** **** **** 1234',
@@ -77,7 +84,7 @@ class CheckoutView extends StatelessWidget {
                   screenHeight: screenHeight, 
                   text: "Place Order", 
                   onPressed: (){
-                    Navigator.pushNamed(context, CheckoutView.checkoutId);
+                    
                   }),
               ],
             ),

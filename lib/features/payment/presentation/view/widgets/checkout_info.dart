@@ -2,12 +2,13 @@ import 'package:flutter/material.dart';
 
 class ChekoutInfo extends StatelessWidget {
   const ChekoutInfo({
-    super.key, required this.prefixIcon, required this.suffixIcon, required this.text,
+    super.key, required this.prefixIcon, required this.suffixIcon, required this.text, required this.onPressed,
   });
 
   final IconData prefixIcon;
   final IconData suffixIcon;
   final String text;
+  final void Function() onPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +36,7 @@ class ChekoutInfo extends StatelessWidget {
     
     
           IconButton(
-            onPressed: (){}, 
+            onPressed: onPressed, 
             icon: Icon(suffixIcon, size: 16, color: Colors.black38),)
         ],
       ),
