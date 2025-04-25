@@ -11,8 +11,6 @@ class OtpPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final screenWidth = MediaQuery.of(context).size.width;
-    final screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
       body: SafeArea(
         top: true,
@@ -60,8 +58,6 @@ class OtpPage extends StatelessWidget {
                 onPressed: () {
                   Navigator.of(context).pushNamed(ResetPassowrd.resetPasswordId);
                 },
-                screenWidth: screenWidth, 
-                screenHeight: screenHeight, 
                 text: "verify",),
               
               SizedBox(height: 30,),

@@ -26,8 +26,7 @@ class _SignInPageState extends State<SignInPage> {
 
   @override
   Widget build(BuildContext context) {
-    final screenWidth = MediaQuery.of(context).size.width;
-    final screenHeight = MediaQuery.of(context).size.height;
+    
     TextEditingController passwordController = TextEditingController();
     return Scaffold(
       body: SafeArea(
@@ -109,8 +108,6 @@ class _SignInPageState extends State<SignInPage> {
                         onPressed: () {
                           Navigator.pushNamed(context, HomeView.homeId);
                         },
-                        screenWidth: screenWidth, 
-                        screenHeight: screenHeight, 
                         text: "Sign In",),
 
                       SizedBox(height: 30,),

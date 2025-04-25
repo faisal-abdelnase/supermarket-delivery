@@ -15,8 +15,6 @@ class MyCart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final screenWidth = MediaQuery.of(context).size.width;
-    final screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
       body: SafeArea(
         top: true,
@@ -55,8 +53,6 @@ class MyCart extends StatelessWidget {
                 ResetCart(),
 
                 CustomElvatedButton(
-                  screenWidth: screenWidth, 
-                  screenHeight: screenHeight, 
                   text: "Check Out", 
                   onPressed: (){
                     Navigator.pushNamed(context, CheckoutView.checkoutId);

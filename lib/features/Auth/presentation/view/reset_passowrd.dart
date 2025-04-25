@@ -12,8 +12,6 @@ class ResetPassowrd extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final screenWidth = MediaQuery.of(context).size.width;
-    final screenHeight = MediaQuery.of(context).size.height;
     TextEditingController passwordController = TextEditingController();
     TextEditingController confirmPasswordController = TextEditingController();
     return Scaffold(
@@ -64,8 +62,6 @@ class ResetPassowrd extends StatelessWidget {
                       );
                   }
                 },
-                screenWidth: screenWidth, 
-                screenHeight: screenHeight, 
                 text: "Reset Password",),
               
               SizedBox(height: 30,),

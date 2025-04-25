@@ -2,18 +2,17 @@ import 'package:flutter/material.dart';
 
 class CustomElvatedButton extends StatelessWidget {
   const CustomElvatedButton({
-    super.key,
-    required this.screenWidth,
-    required this.screenHeight, required this.text, required this.onPressed,
+    super.key, required this.text, required this.onPressed,
   });
 
-  final double screenWidth;
-  final double screenHeight;
+  
   final String text;
   final void Function() onPressed;
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    final screenHeight = MediaQuery.of(context).size.height;
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
         fixedSize: Size(screenWidth * 0.9, screenHeight * 0.07),

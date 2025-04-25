@@ -23,8 +23,6 @@ class _SignUpPageState extends State<SignUpPage> {
 
   @override
   Widget build(BuildContext context) {
-    final screenWidth = MediaQuery.of(context).size.width;
-    final screenHeight = MediaQuery.of(context).size.height;
     TextEditingController passwordController = TextEditingController();
     return Scaffold(
       body: SafeArea(
@@ -83,8 +81,6 @@ class _SignUpPageState extends State<SignUpPage> {
                       
                       CustomElvatedButton(
                         onPressed: () {},
-                        screenWidth: screenWidth, 
-                        screenHeight: screenHeight, 
                         text: "Sign Up",),
                       SizedBox(height: 30,),
                       CustomDividerOR(),

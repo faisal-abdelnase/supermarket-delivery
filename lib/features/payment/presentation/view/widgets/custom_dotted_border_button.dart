@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 
 class CustomDottedBorderButton extends StatelessWidget {
   const CustomDottedBorderButton({
-    super.key,
+    super.key, required this.onPressed,
   });
+
+  final void Function() onPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +27,7 @@ class CustomDottedBorderButton extends StatelessWidget {
           foregroundColor: Colors.blue,
           
         ),
-        onPressed: (){}, 
+        onPressed: onPressed, 
         child: Text("Add New Address", 
         style: TextStyle(
           fontWeight: FontWeight.bold,

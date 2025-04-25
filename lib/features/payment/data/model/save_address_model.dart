@@ -9,7 +9,7 @@ class AddressModel {
   AddressModel({required this.title, required this.address, required this.icon});
 
 
-  static List<AddressModel> saveAddress = [
+  static List<AddressModel> addressList = [
   AddressModel(
     title: "Home",
     address: "80 Banastre Road, Southport,SouthportSouthportSouthportSouthportSouthport",

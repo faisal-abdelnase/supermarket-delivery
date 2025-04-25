@@ -19,8 +19,9 @@ class _SaveAddressState extends State<SaveAddress> {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
+      physics: NeverScrollableScrollPhysics(),
       shrinkWrap: true,
-      itemCount: 3,
+      itemCount: AddressModel.addressList.length,
       itemBuilder: (context, index) {
         return  Container(
         padding: EdgeInsets.all(8),
@@ -31,10 +32,10 @@ class _SaveAddressState extends State<SaveAddress> {
         ),
         child: ListTile(
           isThreeLine: true,
-          leading: Icon(AddressModel.saveAddress[index].icon),
-          title: Text(AddressModel.saveAddress[index].title, 
+          leading: Icon(AddressModel.addressList[index].icon),
+          title: Text(AddressModel.addressList[index].title, 
           style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),),
-          subtitle: Text(AddressModel.saveAddress[index].address, 
+          subtitle: Text(AddressModel.addressList[index].address, 
           style: TextStyle(fontSize: 13, color: Colors.grey),),
           trailing: Radio(
             activeColor: Colors.blue,

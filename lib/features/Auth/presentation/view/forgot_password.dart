@@ -12,8 +12,7 @@ class ForgotPassword extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final screenWidth = MediaQuery.of(context).size.width;
-    final screenHeight = MediaQuery.of(context).size.height;
+    
     return Scaffold(
       body: SafeArea(
         top: true,
@@ -44,8 +43,6 @@ class ForgotPassword extends StatelessWidget {
                 onPressed: () {
                   Navigator.of(context).pushNamed(OtpPage.otpPageId);
                 },
-                screenWidth: screenWidth, 
-                screenHeight: screenHeight, 
                 text: "Send Code",),
               
               SizedBox(height: 30,),

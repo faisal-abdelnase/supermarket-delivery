@@ -1,13 +1,18 @@
 import 'package:flutter/material.dart';
 
-class SearchLocation extends StatelessWidget {
-  const SearchLocation({super.key});
+class LocationTextField extends StatelessWidget {
+  const LocationTextField({super.key, required this.hintText, required this.icon, required this.controller});
+
+  final String hintText;
+  final IconData icon;
+  final TextEditingController controller;
 
   @override
   Widget build(BuildContext context) {
     return TextField(
+      controller: controller,
       decoration: InputDecoration(
-        hintText: "Search For Location",
+        hintText: hintText,
         hintStyle: TextStyle(
           color: Colors.grey,
           fontSize: 16,
@@ -25,7 +30,7 @@ class SearchLocation extends StatelessWidget {
         ),
         
     
-        prefixIcon: Icon(Icons.search, color: Colors.grey,),
+        prefixIcon: Icon(icon, color: Colors.grey,),
       ),
     );
   }

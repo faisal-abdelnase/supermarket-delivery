@@ -14,8 +14,6 @@ class SearchByFilter extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final screenWidth = MediaQuery.of(context).size.width;
-    final screenHeight = MediaQuery.of(context).size.height;
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(
@@ -42,7 +40,7 @@ class SearchByFilter extends StatelessWidget {
 
                 SizedBox(height: 32,),
 
-                CustomElvatedButton(screenWidth: screenWidth, screenHeight: screenHeight, text: "Apply Filter", onPressed: (){}),
+                CustomElvatedButton(text: "Apply Filter", onPressed: (){}),
                 
               ],
             ),
