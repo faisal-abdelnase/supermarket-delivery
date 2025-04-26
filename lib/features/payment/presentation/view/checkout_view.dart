@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:super_market_app/core/utils/widgets/custom_arrow_back_button.dart';
 import 'package:super_market_app/core/utils/widgets/custom_elvated_button.dart';
+import 'package:super_market_app/features/payment/data/model/cart_info_model.dart';
 import 'package:super_market_app/features/payment/presentation/view/delivery_address_view.dart';
 import 'package:super_market_app/features/payment/presentation/view/widgets/cart_item.dart';
 import 'package:super_market_app/features/payment/presentation/view/widgets/checkout_info.dart';
@@ -67,11 +68,11 @@ class CheckoutView extends StatelessWidget {
                     physics: NeverScrollableScrollPhysics(),
                     padding: EdgeInsets.symmetric(vertical: 16),
                     shrinkWrap: true,
-                    itemCount: 4,
+                    itemCount: CartInfoModel.cartInfoList.length,
                     itemBuilder: (context, index) {
                     return Padding(
                       padding: const EdgeInsets.symmetric(vertical: 8),
-                      child: CartItem(),
+                      child: CartItem(cartInfoModel: CartInfoModel.cartInfoList[index],),
                     );
                   },),
 

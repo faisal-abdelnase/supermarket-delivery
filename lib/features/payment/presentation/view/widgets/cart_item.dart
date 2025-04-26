@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:super_market_app/features/payment/data/model/cart_info_model.dart';
 import 'package:super_market_app/features/payment/presentation/view/widgets/number_of_item.dart';
 
 class CartItem extends StatelessWidget {
   const CartItem({
-    super.key,
+    super.key, required this.cartInfoModel,
   });
+
+  final CartInfoModel cartInfoModel;
+
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +23,7 @@ class CartItem extends StatelessWidget {
         children: [
           CircleAvatar(
             radius: 40,
-            backgroundImage: AssetImage("assets/images/millk.jpg",),
+            backgroundImage: AssetImage(cartInfoModel.image,),
           ),
     
           Expanded(
@@ -29,7 +33,7 @@ class CartItem extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text("Milk", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
+                    Text(cartInfoModel.poductName, style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
@@ -41,15 +45,15 @@ class CartItem extends StatelessWidget {
             
                   ],
                 ),
-                Text("1.5 L", style: TextStyle(fontSize: 16, color: Colors.grey ,fontWeight: FontWeight.w500),),
+                Text(cartInfoModel.description, style: TextStyle(fontSize: 16, color: Colors.grey ,fontWeight: FontWeight.w500),),
     
     
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text("\$110", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),),
+                    Text(cartInfoModel.productPrice, style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),),
     
-                    NumberOfItem(),
+                    NumberOfItem(cartInfoModel: cartInfoModel,),
                   ],
                 )
               ],

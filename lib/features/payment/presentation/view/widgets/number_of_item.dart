@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:super_market_app/core/utils/widgets/custom_icon_button.dart';
+import 'package:super_market_app/features/payment/data/model/cart_info_model.dart';
 
 class NumberOfItem extends StatefulWidget {
   const NumberOfItem({
-    super.key,
+    super.key, required this.cartInfoModel,
   });
+
+  final CartInfoModel cartInfoModel;
 
   @override
   State<NumberOfItem> createState() => _NumberOfItemState();
@@ -24,15 +27,15 @@ class _NumberOfItemState extends State<NumberOfItem> {
             backgroundColor: Colors.grey[300]!,
             icon: Icon(Icons.remove),
             onPressed: () {
-              if (quantity > 1) {
+              if (widget.cartInfoModel.productQuantity > 1) {
                 setState(() {
-                  quantity--;
+                  widget.cartInfoModel.productQuantity--;
                 });
               }
             },
           ),
         
-        Text(quantity.toString(), style: TextStyle(fontWeight: FontWeight.bold),),
+        Text(widget.cartInfoModel.productQuantity.toString(), style: TextStyle(fontWeight: FontWeight.bold),),
         
         CustomIconButton(
           iconSize: 16,
@@ -41,7 +44,7 @@ class _NumberOfItemState extends State<NumberOfItem> {
           icon: Icon(Icons.add,color: Colors.white,),
           onPressed: () {
             setState(() {
-              quantity++;
+              widget.cartInfoModel.productQuantity++;
             });
           },
         ),
