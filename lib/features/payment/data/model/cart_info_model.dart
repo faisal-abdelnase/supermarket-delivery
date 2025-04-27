@@ -1,11 +1,14 @@
 class CartInfoModel{
+  final String id;
   final String image;
   final String poductName;
   final String description;
   final String productPrice;
   int productQuantity;
 
-  CartInfoModel({
+  CartInfoModel(
+    {
+    required this.id, 
     required this.image, 
     required this.poductName, 
     required this.description, 
@@ -15,6 +18,7 @@ class CartInfoModel{
 
   static List<CartInfoModel> cartInfoList = [
     CartInfoModel(
+      id: "1",
       image: "assets/images/millk.jpg",
       poductName: "Milk",
       description: "1.5 L",
@@ -22,6 +26,7 @@ class CartInfoModel{
       productQuantity: 1,
     ),
     CartInfoModel(
+      id: "2",
       image: "assets/images/millk.jpg",
       poductName: "Milk",
       description: "1.5 L",
@@ -29,6 +34,7 @@ class CartInfoModel{
       productQuantity: 2,
     ),
     CartInfoModel(
+      id: "3",
       image: "assets/images/millk.jpg",
       poductName: "Milk",
       description: "1.5 L",
@@ -37,6 +43,7 @@ class CartInfoModel{
     ),
 
     CartInfoModel(
+      id: "4",
       image: "assets/images/millk.jpg",
       poductName: "Milk",
       description: "1.5 L",

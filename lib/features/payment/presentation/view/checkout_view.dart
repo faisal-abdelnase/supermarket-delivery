@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:super_market_app/core/utils/widgets/custom_arrow_back_button.dart';
 import 'package:super_market_app/core/utils/widgets/custom_elvated_button.dart';
-import 'package:super_market_app/features/payment/data/model/cart_info_model.dart';
 import 'package:super_market_app/features/payment/presentation/view/delivery_address_view.dart';
-import 'package:super_market_app/features/payment/presentation/view/widgets/cart_item.dart';
 import 'package:super_market_app/features/payment/presentation/view/widgets/checkout_info.dart';
+import 'package:super_market_app/features/payment/presentation/view/widgets/custom_list_view_card_info.dart';
 import 'package:super_market_app/features/payment/presentation/view/widgets/reset_cart.dart';
 
 
@@ -64,17 +63,7 @@ class CheckoutView extends StatelessWidget {
             
                   Text("Item List", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
             
-                  ListView.builder(
-                    physics: NeverScrollableScrollPhysics(),
-                    padding: EdgeInsets.symmetric(vertical: 16),
-                    shrinkWrap: true,
-                    itemCount: CartInfoModel.cartInfoList.length,
-                    itemBuilder: (context, index) {
-                    return Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 8),
-                      child: CartItem(cartInfoModel: CartInfoModel.cartInfoList[index],),
-                    );
-                  },),
+                  CustomListViewCardInfo(),
 
                   ResetCart(),
 
