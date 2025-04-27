@@ -11,6 +11,8 @@ class MyProfileView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    final screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
       body: SafeArea(
         top: true,
@@ -34,13 +36,19 @@ class MyProfileView extends StatelessWidget {
                 
 
                 ProfileUserInfo(),
-
-                
-
                 ProfileInfo(),
 
-
-                
+                ElevatedButton.icon(
+                  style: ElevatedButton.styleFrom(
+                          fixedSize: Size(screenWidth * 0.9, screenHeight * 0.07),
+                          backgroundColor: Colors.grey[200],
+                          foregroundColor: Colors.blue
+                        ),
+                  onPressed: (){},
+                  label: Text("Logout", 
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, ),),
+                  icon: Icon(Icons.exit_to_app, size: 30, color: Colors.blue,),
+                  )
                 
               ],
             ),
