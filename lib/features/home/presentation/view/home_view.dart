@@ -2,6 +2,7 @@ import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:super_market_app/features/home/presentation/view/home_details_view.dart';
 import 'package:super_market_app/features/payment/presentation/view/my_cart.dart';
+import 'package:super_market_app/features/profile/presentation/view/my_profile_view.dart';
 
 
 class HomeView extends StatefulWidget {
@@ -20,7 +21,7 @@ class _HomeViewState extends State<HomeView> {
     const HomeDetailsView(),
     const Center(child: Text("Favorite")),
     const MyCart(),
-    const Center(child: Text("Profile")),
+    const MyProfileView(),
   ];
 
   @override

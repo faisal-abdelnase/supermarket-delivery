@@ -8,16 +8,11 @@ import 'package:super_market_app/features/payment/presentation/view/widgets/cust
 import 'package:super_market_app/features/payment/presentation/view/widgets/reset_cart.dart';
 
 
-class MyCart extends StatefulWidget {
+class MyCart extends StatelessWidget {
   const MyCart({super.key});
 
   static const String myCartId = "/my cart id";
 
-  @override
-  State<MyCart> createState() => _MyCartState();
-}
-
-class _MyCartState extends State<MyCart> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,18 +35,6 @@ class _MyCartState extends State<MyCart> {
                   ],
             
                 ),
-            
-                // ListView.builder(
-                //   physics: NeverScrollableScrollPhysics(),
-                //   padding: EdgeInsets.symmetric(vertical: 16),
-                //   shrinkWrap: true,
-                //   itemCount: CartInfoModel.cartInfoList.length,
-                //   itemBuilder: (context, index) {
-                //   return Padding(
-                //     padding: const EdgeInsets.symmetric(vertical: 8),
-                //     child: CartItem(cartInfoModel: CartInfoModel.cartInfoList[index],),
-                //   );
-                // },),
 
 
                 CustomListViewCardInfo(),  

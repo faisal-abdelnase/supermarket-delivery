@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class ChekoutInfo extends StatelessWidget {
-  const ChekoutInfo({
+class CardInfo extends StatelessWidget {
+  const CardInfo({
     super.key, required this.prefixIcon, required this.suffixIcon, required this.text, required this.onPressed,
   });
 
@@ -29,6 +29,7 @@ class ChekoutInfo extends StatelessWidget {
               style: TextStyle(
                 fontSize: 16,
                 color: Colors.black87,
+                fontWeight: FontWeight.w500,
               ),
               overflow: TextOverflow.ellipsis,
             ),
@@ -37,7 +38,7 @@ class ChekoutInfo extends StatelessWidget {
     
           IconButton(
             onPressed: onPressed, 
-            icon: Icon(suffixIcon, size: 16, color: Colors.black38),)
+            icon: Icon(suffixIcon, size: 16),)
         ],
       ),
     );

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:super_market_app/core/utils/widgets/custom_arrow_back_button.dart';
 import 'package:super_market_app/core/utils/widgets/custom_elvated_button.dart';
 import 'package:super_market_app/features/payment/presentation/view/delivery_address_view.dart';
-import 'package:super_market_app/features/payment/presentation/view/widgets/checkout_info.dart';
+import 'package:super_market_app/core/utils/widgets/card_info.dart';
 import 'package:super_market_app/features/payment/presentation/view/widgets/custom_list_view_card_info.dart';
 import 'package:super_market_app/features/payment/presentation/view/widgets/reset_cart.dart';
 
@@ -40,7 +40,7 @@ class CheckoutView extends StatelessWidget {
             
                 Text("Delivery Address", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
             
-                ChekoutInfo(
+                CardInfo(
                   onPressed: () {
                     Navigator.pushNamed(context, DeliveryAddressView.addressViewID);
                   },
@@ -51,7 +51,7 @@ class CheckoutView extends StatelessWidget {
             
                   Text("Payment Method", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
             
-                  ChekoutInfo(
+                  CardInfo(
                     onPressed: () {
                       
                     },
