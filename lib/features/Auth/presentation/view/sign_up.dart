@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:super_market_app/features/Auth/presentation/view/sign_in.dart';
-import 'package:super_market_app/core/utils/widgets/custom_arrow_back_button.dart';
-import 'package:super_market_app/features/Auth/presentation/view/widgets/custom_different_sign.dart';
-import 'package:super_market_app/features/Auth/presentation/view/widgets/custom_divider_or.dart';
-import 'package:super_market_app/core/utils/widgets/custom_elvated_button.dart';
-import 'package:super_market_app/features/Auth/presentation/view/widgets/custom_text_form_filed.dart';
-import 'package:super_market_app/features/Auth/presentation/view/widgets/custom_text_from_filed_password.dart';
-import 'package:super_market_app/features/Auth/presentation/view/widgets/rich_text_to_agree_radio.dart';
+import 'package:super_market/features/Auth/presentation/view/sign_in.dart';
+import 'package:super_market/core/utils/widgets/custom_arrow_back_button.dart';
+import 'package:super_market/features/Auth/presentation/view/widgets/custom_different_sign.dart';
+import 'package:super_market/features/Auth/presentation/view/widgets/custom_divider_or.dart';
+import 'package:super_market/core/utils/widgets/custom_elvated_button.dart';
+import 'package:super_market/features/Auth/presentation/view/widgets/custom_text_form_filed.dart';
+import 'package:super_market/features/Auth/presentation/view/widgets/custom_text_from_filed_password.dart';
+import 'package:super_market/features/Auth/presentation/view/widgets/rich_text_to_agree_radio.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});

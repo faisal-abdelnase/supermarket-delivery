@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:super_market_app/core/utils/widgets/custom_arrow_back_button.dart';
-import 'package:super_market_app/core/utils/widgets/custom_elvated_button.dart';
-import 'package:super_market_app/features/home/presentation/view/home_view.dart';
-import 'package:super_market_app/features/payment/presentation/view/checkout_view.dart';
-import 'package:super_market_app/features/payment/presentation/view/widgets/coupon_code_text_field.dart';
-import 'package:super_market_app/features/payment/presentation/view/widgets/custom_list_view_card_info.dart';
-import 'package:super_market_app/features/payment/presentation/view/widgets/reset_cart.dart';
+import 'package:super_market/core/utils/widgets/custom_arrow_back_button.dart';
+import 'package:super_market/core/utils/widgets/custom_elvated_button.dart';
+import 'package:super_market/features/home/presentation/view/home_view.dart';
+import 'package:super_market/features/payment/presentation/view/checkout_view.dart';
+import 'package:super_market/features/payment/presentation/view/widgets/coupon_code_text_field.dart';
+import 'package:super_market/features/payment/presentation/view/widgets/custom_list_view_card_info.dart';
+import 'package:super_market/features/payment/presentation/view/widgets/reset_cart.dart';
 
 
 class MyCart extends StatelessWidget {

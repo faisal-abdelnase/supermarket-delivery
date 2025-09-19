@@ -13,12 +13,12 @@ class CustomDottedBorderButton extends StatelessWidget {
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
     return DottedBorder(
-      color: Colors.blue,
-      strokeWidth: 2,
-      dashPattern: [4, 2],
-      padding: EdgeInsets.all(0),
-      borderType: BorderType.RRect,
-      radius: Radius.circular(32),
+      // color: Colors.blue,
+      // strokeWidth: 2,
+      // dashPattern: [4, 2],
+      // padding: EdgeInsets.all(0),
+      // borderType: BorderType.RRect,
+      // radius: Radius.circular(32),
       
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(

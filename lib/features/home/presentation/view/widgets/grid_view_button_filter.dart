@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:super_market_app/constant.dart';
-import 'package:super_market_app/features/home/presentation/view/widgets/custom_elevated_button_filter.dart';
+import 'package:super_market/constant.dart';
+import 'package:super_market/features/home/presentation/view/widgets/custom_elevated_button_filter.dart';
 
 class GridViewButtonFilter extends StatelessWidget {
   const GridViewButtonFilter({

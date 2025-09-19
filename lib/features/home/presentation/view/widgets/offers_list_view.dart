@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:super_market_app/features/home/presentation/view/widgets/offers_item.dart';
+import 'package:super_market/features/home/presentation/view/widgets/offers_item.dart';
 
 
 class OffersListView extends StatelessWidget {

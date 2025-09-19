@@ -1,11 +1,11 @@
 
 import 'package:flutter/material.dart';
-import 'package:super_market_app/core/utils/widgets/custom_arrow_back_button.dart';
-import 'package:super_market_app/core/utils/widgets/custom_elvated_button.dart';
-import 'package:super_market_app/features/payment/presentation/view/widgets/custom_dotted_border_button.dart';
-import 'package:super_market_app/features/payment/presentation/view/widgets/new_address_bottom_sheet.dart';
-import 'package:super_market_app/features/payment/presentation/view/widgets/save_address.dart';
-import 'package:super_market_app/features/payment/presentation/view/widgets/location_text_field.dart';
+import 'package:super_market/core/utils/widgets/custom_arrow_back_button.dart';
+import 'package:super_market/core/utils/widgets/custom_elvated_button.dart';
+import 'package:super_market/features/payment/presentation/view/widgets/custom_dotted_border_button.dart';
+import 'package:super_market/features/payment/presentation/view/widgets/new_address_bottom_sheet.dart';
+import 'package:super_market/features/payment/presentation/view/widgets/save_address.dart';
+import 'package:super_market/features/payment/presentation/view/widgets/location_text_field.dart';
 
 class DeliveryAddressView extends StatefulWidget {
   const DeliveryAddressView({super.key});

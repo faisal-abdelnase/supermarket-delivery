@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:super_market_app/core/utils/widgets/custom_arrow_back_button.dart';
-import 'package:super_market_app/features/home/presentation/manager/filter_provider.dart';
+import 'package:super_market/core/utils/widgets/custom_arrow_back_button.dart';
+import 'package:super_market/features/home/presentation/manager/filter_provider.dart';
 
 class SearchByFilterHeader extends StatelessWidget {
   const SearchByFilterHeader({

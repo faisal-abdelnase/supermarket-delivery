@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:super_market_app/core/utils/widgets/custom_icon_button.dart';
-import 'package:super_market_app/features/payment/data/model/cart_info_model.dart';
+import 'package:super_market/core/utils/widgets/custom_icon_button.dart';
+import 'package:super_market/features/payment/data/model/cart_info_model.dart';
 
 class NumberOfItem extends StatefulWidget {
   const NumberOfItem({

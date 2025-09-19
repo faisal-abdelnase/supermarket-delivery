@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:super_market_app/features/Auth/presentation/view/sign_in.dart';
-import 'package:super_market_app/features/Auth/presentation/view/sign_up.dart';
+import 'package:super_market/features/Auth/presentation/view/sign_in.dart';
+import 'package:super_market/features/Auth/presentation/view/sign_up.dart';
 
 class TypeOfRegisteration extends StatelessWidget {
   const TypeOfRegisteration({super.key});

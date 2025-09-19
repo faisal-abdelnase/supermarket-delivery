@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:super_market_app/features/Auth/presentation/view/otp_page.dart';
-import 'package:super_market_app/features/Auth/presentation/view/sign_in.dart';
-import 'package:super_market_app/core/utils/widgets/custom_arrow_back_button.dart';
-import 'package:super_market_app/core/utils/widgets/custom_elvated_button.dart';
-import 'package:super_market_app/features/Auth/presentation/view/widgets/custom_text_form_filed.dart';
+import 'package:super_market/features/Auth/presentation/view/otp_page.dart';
+import 'package:super_market/features/Auth/presentation/view/sign_in.dart';
+import 'package:super_market/core/utils/widgets/custom_arrow_back_button.dart';
+import 'package:super_market/core/utils/widgets/custom_elvated_button.dart';
+import 'package:super_market/features/Auth/presentation/view/widgets/custom_text_form_filed.dart';
 
 class ForgotPassword extends StatelessWidget {
   const ForgotPassword({super.key});

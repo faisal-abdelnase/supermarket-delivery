@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:super_market_app/core/utils/widgets/custom_elvated_button.dart';
-import 'package:super_market_app/features/payment/data/model/save_address_model.dart';
-import 'package:super_market_app/features/payment/presentation/view/widgets/location_text_field.dart';
+import 'package:super_market/core/utils/widgets/custom_elvated_button.dart';
+import 'package:super_market/features/payment/data/model/save_address_model.dart';
+import 'package:super_market/features/payment/presentation/view/widgets/location_text_field.dart';
 
 class NewAddressBottomSheet extends StatelessWidget {
   const NewAddressBottomSheet({

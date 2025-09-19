@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:super_market_app/core/utils/widgets/custom_arrow_back_button.dart';
-import 'package:super_market_app/features/home/presentation/view/home_view.dart';
-import 'package:super_market_app/features/profile/presentation/view/widgets/profile_info.dart';
-import 'package:super_market_app/features/profile/presentation/view/widgets/profile_user_info.dart';
+import 'package:super_market/core/utils/widgets/custom_arrow_back_button.dart';
+import 'package:super_market/features/home/presentation/view/home_view.dart';
+import 'package:super_market/features/profile/presentation/view/widgets/profile_info.dart';
+import 'package:super_market/features/profile/presentation/view/widgets/profile_user_info.dart';
 
 class MyProfileView extends StatelessWidget {
   const MyProfileView({super.key});

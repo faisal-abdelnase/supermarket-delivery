@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:super_market_app/features/home/presentation/view/product_details_view.dart';
+import 'package:super_market/features/home/presentation/view/product_details_view.dart';
 
 class CustomProductItem extends StatefulWidget {
   const CustomProductItem({

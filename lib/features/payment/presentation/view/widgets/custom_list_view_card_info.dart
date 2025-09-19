@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:super_market_app/features/payment/data/model/cart_info_model.dart';
-import 'package:super_market_app/features/payment/presentation/view/widgets/cart_item.dart';
+import 'package:super_market/features/payment/data/model/cart_info_model.dart';
+import 'package:super_market/features/payment/presentation/view/widgets/cart_item.dart';
 
 class CustomListViewCardInfo extends StatefulWidget {
   const CustomListViewCardInfo({

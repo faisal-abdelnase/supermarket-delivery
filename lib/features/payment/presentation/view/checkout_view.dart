@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:super_market_app/core/utils/widgets/custom_arrow_back_button.dart';
-import 'package:super_market_app/core/utils/widgets/custom_elvated_button.dart';
-import 'package:super_market_app/features/payment/presentation/view/delivery_address_view.dart';
-import 'package:super_market_app/core/utils/widgets/card_info.dart';
-import 'package:super_market_app/features/payment/presentation/view/widgets/custom_list_view_card_info.dart';
-import 'package:super_market_app/features/payment/presentation/view/widgets/reset_cart.dart';
+import 'package:super_market/core/utils/widgets/custom_arrow_back_button.dart';
+import 'package:super_market/core/utils/widgets/custom_elvated_button.dart';
+import 'package:super_market/features/payment/presentation/view/delivery_address_view.dart';
+import 'package:super_market/core/utils/widgets/card_info.dart';
+import 'package:super_market/features/payment/presentation/view/widgets/custom_list_view_card_info.dart';
+import 'package:super_market/features/payment/presentation/view/widgets/reset_cart.dart';
 
 
 class CheckoutView extends StatelessWidget {

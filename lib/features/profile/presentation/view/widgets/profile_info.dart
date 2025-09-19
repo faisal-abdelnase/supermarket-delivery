@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:super_market_app/core/utils/widgets/card_info.dart';
+import 'package:super_market/core/utils/widgets/card_info.dart';
 
 class ProfileInfo extends StatelessWidget {
   const ProfileInfo({

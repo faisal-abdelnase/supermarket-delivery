@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:super_market_app/features/home/presentation/view/widgets/bottom_buttons_to_product_details.dart';
-import 'package:super_market_app/features/home/presentation/view/widgets/product_details_body.dart';
+import 'package:super_market/features/home/presentation/view/widgets/bottom_buttons_to_product_details.dart';
+import 'package:super_market/features/home/presentation/view/widgets/product_details_body.dart';
 
 
 class ProductDetailsView extends StatefulWidget {

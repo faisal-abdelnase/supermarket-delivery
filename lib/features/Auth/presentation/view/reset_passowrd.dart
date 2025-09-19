@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:super_market_app/core/utils/Functions/reset_passwor_dialog.dart';
-import 'package:super_market_app/core/utils/Functions/show_snack_bar_message.dart';
-import 'package:super_market_app/core/utils/widgets/custom_arrow_back_button.dart';
-import 'package:super_market_app/core/utils/widgets/custom_elvated_button.dart';
-import 'package:super_market_app/features/Auth/presentation/view/widgets/custom_text_from_filed_password.dart';
+import 'package:super_market/core/utils/Functions/reset_passwor_dialog.dart';
+import 'package:super_market/core/utils/Functions/show_snack_bar_message.dart';
+import 'package:super_market/core/utils/widgets/custom_arrow_back_button.dart';
+import 'package:super_market/core/utils/widgets/custom_elvated_button.dart';
+import 'package:super_market/features/Auth/presentation/view/widgets/custom_text_from_filed_password.dart';
 
 class ResetPassowrd extends StatelessWidget {
   const ResetPassowrd({super.key});

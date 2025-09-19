@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:super_market_app/features/home/presentation/manager/filter_provider.dart';
+import 'package:super_market/features/home/presentation/manager/filter_provider.dart';
 
 class CustomElevatedButtonFilter extends StatelessWidget {
   const CustomElevatedButtonFilter({

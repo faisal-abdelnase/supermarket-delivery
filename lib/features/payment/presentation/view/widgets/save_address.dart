@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:super_market_app/features/payment/data/model/save_address_model.dart';
+import 'package:super_market/features/payment/data/model/save_address_model.dart';
 
 class SaveAddress extends StatefulWidget {
   const SaveAddress({

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:super_market_app/constant.dart';
-import 'package:super_market_app/core/utils/first_display_shared_preference.dart';
-import 'package:super_market_app/features/Auth/presentation/view/type_of_registeration.dart';
-import 'package:super_market_app/features/about/presentation/view/about_app.dart';
+import 'package:super_market/constant.dart';
+import 'package:super_market/core/utils/first_display_shared_preference.dart';
+import 'package:super_market/features/Auth/presentation/view/type_of_registeration.dart';
+import 'package:super_market/features/about/presentation/view/about_app.dart';
 
 
 class SplashView extends StatefulWidget {

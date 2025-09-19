@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:super_market_app/features/home/data/model/categories_model.dart';
+import 'package:super_market/features/home/data/model/categories_model.dart';
 
 class CategoriesGridView extends StatelessWidget {
   const CategoriesGridView({

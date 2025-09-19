@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:super_market_app/features/home/presentation/view/widgets/add_comment.dart';
-import 'package:super_market_app/features/home/presentation/view/widgets/list_view_of_review.dart';
-import 'package:super_market_app/features/home/presentation/view/widgets/product_details_header.dart';
-import 'package:super_market_app/features/home/presentation/view/widgets/similar_products.dart';
-import 'package:super_market_app/features/home/presentation/view/widgets/stars_rating.dart';
+import 'package:super_market/features/home/presentation/view/widgets/add_comment.dart';
+import 'package:super_market/features/home/presentation/view/widgets/list_view_of_review.dart';
+import 'package:super_market/features/home/presentation/view/widgets/product_details_header.dart';
+import 'package:super_market/features/home/presentation/view/widgets/similar_products.dart';
+import 'package:super_market/features/home/presentation/view/widgets/stars_rating.dart';
 
 class ProductsDetailsBody extends StatelessWidget {
   const ProductsDetailsBody({

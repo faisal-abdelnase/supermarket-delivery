@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:super_market_app/features/home/presentation/view/widgets/all_product_grid_view.dart';
-import 'package:super_market_app/features/home/presentation/view/widgets/categories_grid_view.dart';
-import 'package:super_market_app/features/home/presentation/view/widgets/header_home_page.dart';
-import 'package:super_market_app/features/home/presentation/view/widgets/offers_list_view.dart';
-import 'package:super_market_app/features/home/presentation/view/widgets/recommended_list_view.dart';
-import 'package:super_market_app/features/home/presentation/view/widgets/sliver_to_box_adapter_text_type.dart';
+import 'package:super_market/features/home/presentation/view/widgets/all_product_grid_view.dart';
+import 'package:super_market/features/home/presentation/view/widgets/categories_grid_view.dart';
+import 'package:super_market/features/home/presentation/view/widgets/header_home_page.dart';
+import 'package:super_market/features/home/presentation/view/widgets/offers_list_view.dart';
+import 'package:super_market/features/home/presentation/view/widgets/recommended_list_view.dart';
+import 'package:super_market/features/home/presentation/view/widgets/sliver_to_box_adapter_text_type.dart';
 
 class HomeDetailsView extends StatelessWidget {
   const HomeDetailsView({super.key});

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:super_market_app/core/utils/widgets/custom_elvated_button.dart';
-import 'package:super_market_app/features/home/presentation/manager/filter_provider.dart';
-import 'package:super_market_app/features/home/presentation/view/widgets/range_slider_price.dart';
-import 'package:super_market_app/features/home/presentation/view/widgets/search_by_filter_header.dart';
+import 'package:super_market/core/utils/widgets/custom_elvated_button.dart';
+import 'package:super_market/features/home/presentation/manager/filter_provider.dart';
+import 'package:super_market/features/home/presentation/view/widgets/range_slider_price.dart';
+import 'package:super_market/features/home/presentation/view/widgets/search_by_filter_header.dart';
 
 import 'widgets/grid_view_button_filter.dart';
 

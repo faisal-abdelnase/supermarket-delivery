@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:super_market_app/features/home/presentation/view/search_by_filter.dart';
-import 'package:super_market_app/features/home/presentation/view/widgets/search_text_field.dart';
+import 'package:super_market/features/home/presentation/view/search_by_filter.dart';
+import 'package:super_market/features/home/presentation/view/widgets/search_text_field.dart';
 
 class HeaderHomePage extends StatelessWidget {
   const HeaderHomePage({

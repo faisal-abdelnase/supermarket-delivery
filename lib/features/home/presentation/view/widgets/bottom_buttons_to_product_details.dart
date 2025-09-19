@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:super_market_app/core/utils/widgets/custom_icon_button.dart';
+import 'package:super_market/core/utils/widgets/custom_icon_button.dart';
 
 class BottomButtonsToProductDetails extends StatefulWidget {
   const BottomButtonsToProductDetails({

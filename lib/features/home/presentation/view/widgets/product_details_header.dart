@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:super_market_app/core/utils/widgets/custom_arrow_back_button.dart';
+import 'package:super_market/core/utils/widgets/custom_arrow_back_button.dart';
 
 class ProductDetailsHeader extends StatelessWidget {
   const ProductDetailsHeader({
