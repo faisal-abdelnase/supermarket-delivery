@@ -1,3 +1,5 @@
+
+
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 
@@ -19,6 +21,15 @@ class CustomDottedBorderButton extends StatelessWidget {
       // padding: EdgeInsets.all(0),
       // borderType: BorderType.RRect,
       // radius: Radius.circular(32),
+
+      options: RoundedRectDottedBorderOptions(
+          color: Colors.blue,
+          strokeWidth: 2,
+          dashPattern: [4, 2],
+          padding: EdgeInsets.all(0),
+          radius: Radius.circular(32),
+        
+      ),
       
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
