@@ -11,9 +11,26 @@ class ProfileUserInfo extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            CircleAvatar(
-              radius: 50,
-              backgroundImage: AssetImage("assets/images/faisal.jpg"),
+            Stack(
+              children: [
+                CircleAvatar(
+                  radius: 50,
+                  backgroundImage: AssetImage("assets/images/faisal.jpg"),
+                ),
+
+                Positioned(
+                  bottom: -10,
+                  right: -10,
+                
+                  child: IconButton(
+                    onPressed: (){}, 
+                    icon: Icon(
+                      Icons.camera_alt,
+                      color: const Color.fromARGB(255, 169, 165, 165),
+                      ),
+                    ),
+                )
+              ],
             ),
     
             const SizedBox(height: 16,),
