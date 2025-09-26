@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:super_market/core/utils/Functions/payment_method_dialog.dart';
 import 'package:super_market/core/utils/widgets/custom_arrow_back_button.dart';
 import 'package:super_market/core/utils/widgets/custom_elvated_button.dart';
 import 'package:super_market/features/payment/presentation/view/widgets/custom_dotted_border_button.dart';
@@ -57,9 +58,16 @@ class PaymentMethodView extends StatelessWidget {
 
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: CustomElvatedButton(text: "Apply", onPressed: (){}),
+        child: CustomElvatedButton(
+          text: "Apply", onPressed: (){
+            showAlertDialogPayment(context);
+          }),
       ),
+
+      
     );
   }
+
+  
 }
 
