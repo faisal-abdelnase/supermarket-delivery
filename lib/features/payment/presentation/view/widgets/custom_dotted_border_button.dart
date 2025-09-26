@@ -5,22 +5,17 @@ import 'package:flutter/material.dart';
 
 class CustomDottedBorderButton extends StatelessWidget {
   const CustomDottedBorderButton({
-    super.key, required this.onPressed,
+    super.key, required this.onPressed, required this.text,
   });
 
   final void Function() onPressed;
+  final String text;
 
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
     return DottedBorder(
-      // color: Colors.blue,
-      // strokeWidth: 2,
-      // dashPattern: [4, 2],
-      // padding: EdgeInsets.all(0),
-      // borderType: BorderType.RRect,
-      // radius: Radius.circular(32),
 
       options: RoundedRectDottedBorderOptions(
           color: Colors.blue,
@@ -39,7 +34,7 @@ class CustomDottedBorderButton extends StatelessWidget {
           
         ),
         onPressed: onPressed, 
-        child: Text("Add New Address", 
+        child: Text(text, 
         style: TextStyle(
           fontWeight: FontWeight.bold,
           fontSize: 16

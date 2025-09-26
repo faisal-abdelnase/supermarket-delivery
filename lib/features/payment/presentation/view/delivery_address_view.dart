@@ -56,14 +56,13 @@ class _DeliveryAddressViewState extends State<DeliveryAddressView> {
                 SaveAddress(),
 
                 CustomDottedBorderButton(
+                  text: "Add New Address",
                   onPressed: () {
                     addAddressBottomSheet(context);
                   },
                 ),
 
-                SizedBox(height: 64,),
-
-                CustomElvatedButton(text: "Apply", onPressed: (){}),
+                
 
                 
               ],
@@ -72,7 +71,10 @@ class _DeliveryAddressViewState extends State<DeliveryAddressView> {
         ),
       ),
 
-      
+      bottomNavigationBar: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: CustomElvatedButton(text: "Apply", onPressed: (){}),
+      ),
     
     );
   }

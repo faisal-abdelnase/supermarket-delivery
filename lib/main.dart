@@ -12,6 +12,7 @@ import 'package:super_market/features/home/presentation/view/search_by_filter.da
 import 'package:super_market/features/payment/presentation/view/checkout_view.dart';
 import 'package:super_market/features/payment/presentation/view/delivery_address_view.dart';
 import 'package:super_market/features/payment/presentation/view/my_cart.dart';
+import 'package:super_market/features/payment/presentation/view/payment_method_view.dart';
 import 'package:super_market/features/profile/presentation/view/my_order_view.dart';
 import 'package:super_market/features/profile/presentation/view/my_profile_view.dart';
 import 'package:super_market/features/splash/presentation/view/splash_view.dart';
@@ -19,6 +20,7 @@ import 'package:super_market/features/splash/presentation/view/splash_view.dart'
 void main() {
   runApp(const SuperMarketDelivery());
 }
+
 
 class SuperMarketDelivery extends StatelessWidget {
   const SuperMarketDelivery({super.key});
@@ -28,7 +30,7 @@ class SuperMarketDelivery extends StatelessWidget {
     return MaterialApp(
       title: "Super Market Delivery",
       debugShowCheckedModeBanner: false,
-      routes: <String,WidgetBuilder>{
+      routes: <String,WidgetBuilder> {
         "/":(context) => const SplashView(),
         HomeView.homeId: (context) => HomeView(),
         AboutApp.aboutAppId : (context) => AboutApp(),
@@ -45,6 +47,7 @@ class SuperMarketDelivery extends StatelessWidget {
         DeliveryAddressView.addressViewID : (context) => DeliveryAddressView(),
         MyProfileView.myProfileId :(context) => MyProfileView(),
         MyOrderView.myOrderId :(context) => MyOrderView(),
+        PaymentMethodView.paymentMethodId :(context) => PaymentMethodView(),
       },
     );
   }
