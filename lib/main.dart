@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:super_market/features/Auth/presentation/view/forgot_password.dart';
 import 'package:super_market/features/Auth/presentation/view/otp_page.dart';
@@ -16,8 +17,15 @@ import 'package:super_market/features/payment/presentation/view/payment_method_v
 import 'package:super_market/features/profile/presentation/view/my_order_view.dart';
 import 'package:super_market/features/profile/presentation/view/my_profile_view.dart';
 import 'package:super_market/features/splash/presentation/view/splash_view.dart';
+import 'package:super_market/firebase_options.dart';
 
-void main() {
+void main() async {
+
+  WidgetsFlutterBinding.ensureInitialized();
+  
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,);
+
   runApp(const SuperMarketDelivery());
 }
 
