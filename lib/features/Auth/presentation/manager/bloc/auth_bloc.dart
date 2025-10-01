@@ -8,6 +8,9 @@ part 'auth_state.dart';
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
   AuthBloc() : super(AuthInitial()) {
+
+    // Sign Up Event
+
     on<SignUpEvent>((event, emit) async {
 
       emit(AuthLoading());
@@ -34,5 +37,32 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
     
     });
+
+
+    // Sign In Event
+
+    on<SignInEvent>((event, emit) async {
+      emit(AuthLoading());
+      try {
+        await FirebaseAuth.instance.signInWithEmailAndPassword(
+          email: event.email,
+          password: event.password,
+        );
+        emit(AuthAuthenticated(message: "User signed in successfully"));
+
+      } on FirebaseAuthException catch (error) {
+        if (error.code == 'user-not-found') {
+          emit(AuthUnauthenticated(errorMessage: 'No user found for that email.'));
+        } else if (error.code == 'wrong-password') {
+          emit(AuthUnauthenticated(errorMessage: 'Wrong password provided for that user.'));
+        } else {
+          emit(AuthUnauthenticated(errorMessage: error.message ?? 'An unknown error occurred.'));
+        }
+      } catch (error) {
+        emit(AuthUnauthenticated(errorMessage: 'An unknown error occurred.'));
+      }
+    });
+
+
   }
 }
