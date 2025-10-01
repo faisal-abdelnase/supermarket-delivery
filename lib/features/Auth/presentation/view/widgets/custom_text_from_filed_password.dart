@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class CustomTextFromFiledPassword extends StatefulWidget {
-  const CustomTextFromFiledPassword({super.key, required this.hintText, required this.controller});
+  const CustomTextFromFiledPassword({super.key, required this.hintText, required this.controller, required this.validator});
   final String hintText;
   final TextEditingController controller;
+  final FormFieldValidator<String> validator;
 
   @override
   State<CustomTextFromFiledPassword> createState() => _CustomTextFromFiledPasswordState();
@@ -17,6 +18,7 @@ class _CustomTextFromFiledPasswordState extends State<CustomTextFromFiledPasswor
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      validator: widget.validator,
       controller: widget.controller,
       obscureText: obscureText,
       cursorColor: Colors.blue,
@@ -46,9 +48,30 @@ class _CustomTextFromFiledPasswordState extends State<CustomTextFromFiledPasswor
           borderSide: BorderSide(
             color: Colors.blue,
             width: 2,
-            )
-        )
+            ),
+        ),
+
+        errorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(16),
+          borderSide: BorderSide(
+            color: Colors.red,
+            width: 2,
+            ),
+        ),
+
+        focusedErrorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(16),
+          borderSide: BorderSide(
+            color: Colors.red,
+            width: 2,
+            ),
+        ),
       ),
+
+      onChanged: (value) {
+        Form.of(context).validate();
+      },
+
     );
   }
 }

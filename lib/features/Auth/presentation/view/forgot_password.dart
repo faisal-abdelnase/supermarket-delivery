@@ -5,11 +5,18 @@ import 'package:super_market/core/utils/widgets/custom_arrow_back_button.dart';
 import 'package:super_market/core/utils/widgets/custom_elvated_button.dart';
 import 'package:super_market/features/Auth/presentation/view/widgets/custom_text_form_filed.dart';
 
-class ForgotPassword extends StatelessWidget {
+class ForgotPassword extends StatefulWidget {
   const ForgotPassword({super.key});
 
   static final forgetPasswordId = "/forgetPassword";
 
+  @override
+  State<ForgotPassword> createState() => _ForgotPasswordState();
+}
+
+class _ForgotPasswordState extends State<ForgotPassword> {
+
+  TextEditingController emailController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     
@@ -37,7 +44,12 @@ class ForgotPassword extends StatelessWidget {
 
               SizedBox(height: 30,),
 
-              CustomTextFormField(hintText: "Enter Email", icon: Icons.email,),
+              CustomTextFormField(
+                hintText: "Enter Email", 
+                icon: Icons.email, 
+                controller: emailController,
+                validator: (value) => value!.isEmpty ? "Enter your email" : null,
+                ),
               SizedBox(height: 30,),
               CustomElvatedButton(
                 onPressed: () {

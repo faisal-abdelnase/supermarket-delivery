@@ -23,11 +23,11 @@ class SignInPage extends StatefulWidget {
 class _SignInPageState extends State<SignInPage> {
 
     String groupValue = "";
+    TextEditingController passwordController = TextEditingController();
+    TextEditingController emailController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    
-    TextEditingController passwordController = TextEditingController();
     return Scaffold(
       body: SafeArea(
         top: true,
@@ -63,9 +63,18 @@ class _SignInPageState extends State<SignInPage> {
                       
                       SizedBox(height: 30,),
 
-                      CustomTextFormField(hintText: "Email", icon: Icons.email,),
+                      CustomTextFormField(
+                        hintText: "Email", 
+                        icon: Icons.email, 
+                        controller: emailController,
+                        validator: (value) => value!.isEmpty ? "Enter your email" : null,
+                        ),
                       SizedBox(height: 30,),
-                      CustomTextFromFiledPassword(hintText: "Password", controller: passwordController,),
+                      CustomTextFromFiledPassword(
+                        hintText: "Password", 
+                        controller: passwordController,
+                        validator: (value) => value!.isEmpty ? "Enter your password" : null,
+                        ),
                               
                       // Remember me and forgot your password
                       Row(

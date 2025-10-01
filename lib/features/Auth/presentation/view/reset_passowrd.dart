@@ -38,18 +38,26 @@ class ResetPassowrd extends StatelessWidget {
 
               SizedBox(height: 30,),
 
-              CustomTextFromFiledPassword(hintText: " New Password", controller: passwordController,),
+              CustomTextFromFiledPassword(
+                hintText: " New Password", 
+                controller: passwordController,
+                validator: (value) => value!.isEmpty ? "Enter your password" : null,
+                ),
               SizedBox(height: 30,),
-              CustomTextFromFiledPassword(hintText: "confirm Password", controller: confirmPasswordController,),
+              CustomTextFromFiledPassword(
+                hintText: "confirm Password", 
+                controller: confirmPasswordController,
+                validator: (value) => value!.isEmpty ? "Enter your confirm password" : null,
+                ),
               SizedBox(height: 30,),
               CustomElvatedButton(
                 onPressed: () {
                   if(passwordController.text.isEmpty || passwordController.text.isEmpty){
-                    showSnackBarMessage(context, "Please fill all fields");
+                    showSnackBarMessage(context, "Please fill all fields", Colors.red);
                   }
 
                   else if(passwordController.text != confirmPasswordController.text){
-                    showSnackBarMessage(context, "Password does not match");
+                    showSnackBarMessage(context, "Password does not match", Colors.red);
                   }
 
                   else if(passwordController.text == confirmPasswordController.text){

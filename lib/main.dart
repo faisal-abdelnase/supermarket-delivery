@@ -1,5 +1,8 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:provider/provider.dart';
+import 'package:super_market/features/Auth/presentation/manager/bloc/auth_bloc.dart';
 import 'package:super_market/features/Auth/presentation/view/forgot_password.dart';
 import 'package:super_market/features/Auth/presentation/view/otp_page.dart';
 import 'package:super_market/features/Auth/presentation/view/reset_passowrd.dart';
@@ -22,7 +25,7 @@ import 'package:super_market/firebase_options.dart';
 void main() async {
 
   WidgetsFlutterBinding.ensureInitialized();
-  
+
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,);
 
@@ -35,28 +38,33 @@ class SuperMarketDelivery extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: "Super Market Delivery",
-      debugShowCheckedModeBanner: false,
-      routes: <String,WidgetBuilder> {
-        "/":(context) => const SplashView(),
-        HomeView.homeId: (context) => HomeView(),
-        AboutApp.aboutAppId : (context) => AboutApp(),
-        TypeOfRegisteration.registeration : (context) => TypeOfRegisteration(),
-        SignUpPage.signUpId : (context) => SignUpPage(),
-        SignInPage.signInId : (context) => SignInPage(),
-        ForgotPassword.forgetPasswordId : (context) => ForgotPassword(),
-        OtpPage.otpPageId : (context) => OtpPage(),
-        ResetPassowrd.resetPasswordId :(context) => ResetPassowrd(),
-        SearchByFilter.searchByFilterId : (context) => SearchByFilter(),
-        ProductDetailsView.productDetailsId : (context) => ProductDetailsView(),
-        MyCart.myCartId: (context) => MyCart(),
-        CheckoutView.checkoutId : (context) => CheckoutView(),
-        DeliveryAddressView.addressViewID : (context) => DeliveryAddressView(),
-        MyProfileView.myProfileId :(context) => MyProfileView(),
-        MyOrderView.myOrderId :(context) => MyOrderView(),
-        PaymentMethodView.paymentMethodId :(context) => PaymentMethodView(),
-      },
+    return MultiProvider(
+      providers: [
+        BlocProvider(create: (context) => AuthBloc(),),
+      ],
+      child: MaterialApp(
+        title: "Super Market Delivery",
+        debugShowCheckedModeBanner: false,
+        routes: <String,WidgetBuilder> {
+          "/":(context) => const SplashView(),
+          HomeView.homeId: (context) => HomeView(),
+          AboutApp.aboutAppId : (context) => AboutApp(),
+          TypeOfRegisteration.registeration : (context) => TypeOfRegisteration(),
+          SignUpPage.signUpId : (context) => SignUpPage(),
+          SignInPage.signInId : (context) => SignInPage(),
+          ForgotPassword.forgetPasswordId : (context) => ForgotPassword(),
+          OtpPage.otpPageId : (context) => OtpPage(),
+          ResetPassowrd.resetPasswordId :(context) => ResetPassowrd(),
+          SearchByFilter.searchByFilterId : (context) => SearchByFilter(),
+          ProductDetailsView.productDetailsId : (context) => ProductDetailsView(),
+          MyCart.myCartId: (context) => MyCart(),
+          CheckoutView.checkoutId : (context) => CheckoutView(),
+          DeliveryAddressView.addressViewID : (context) => DeliveryAddressView(),
+          MyProfileView.myProfileId :(context) => MyProfileView(),
+          MyOrderView.myOrderId :(context) => MyOrderView(),
+          PaymentMethodView.paymentMethodId :(context) => PaymentMethodView(),
+        },
+      ),
     );
   }
 }
