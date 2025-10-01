@@ -1,4 +1,6 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:super_market/features/Auth/presentation/view/type_of_registeration.dart';
 import 'package:super_market/features/home/presentation/view/search_by_filter.dart';
 import 'package:super_market/features/home/presentation/view/widgets/search_text_field.dart';
 
@@ -30,8 +32,9 @@ class HeaderHomePage extends StatelessWidget {
             ),
 
             IconButton(
-              onPressed: (){
-                Navigator.pop(context);
+              onPressed: () async{
+                await FirebaseAuth.instance.signOut();
+                Navigator.of(context).pushNamedAndRemoveUntil(TypeOfRegisteration.registeration, (route) => false);
               }, 
               icon: Icon(Icons.exit_to_app, size: 30,)),
           ],
