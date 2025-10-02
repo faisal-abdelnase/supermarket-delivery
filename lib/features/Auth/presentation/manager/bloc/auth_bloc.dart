@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:meta/meta.dart';
 
 
@@ -60,6 +61,39 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         }
       } catch (error) {
         emit(AuthUnauthenticated(errorMessage: 'An unknown error occurred.'));
+      }
+    });
+
+
+    // Sign with Google Event
+
+    on<GoogleSignUpEvent>((event, emit) async {
+
+      try {
+
+        final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+        if (googleUser == null) {
+          emit(AuthUnauthenticated(errorMessage: 'Google sign-in was cancelled.'));
+          return;
+        }
+
+        emit(AuthLoading());
+
+        final GoogleSignInAuthentication googleAuth = await googleUser.authentication;
+
+        final credential = GoogleAuthProvider.credential(
+          accessToken: googleAuth.accessToken,
+          idToken: googleAuth.idToken,
+        );
+
+        await FirebaseAuth.instance.signInWithCredential(credential);
+
+        emit(AuthAuthenticated(message: "User signed in with Google successfully"));
+
+      } on FirebaseAuthException catch (error) {
+        emit(AuthUnauthenticated(errorMessage: error.message ?? 'An unknown error occurred during Google sign-in.'));
+      } catch (error) {
+        emit(AuthUnauthenticated(errorMessage: 'An unknown error occurred during Google sign-in.'));
       }
     });
 
