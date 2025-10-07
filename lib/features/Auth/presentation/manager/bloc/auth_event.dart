@@ -23,11 +23,7 @@ class ForgotPasswordEvent extends AuthEvent {}
 
 class GoogleSignInEvent extends AuthEvent {}
 
-class GoogleSignUpEvent extends AuthEvent {}
-
 class PhoneSignInEvent extends AuthEvent {}
-
-class PhoneSignUpEvent extends AuthEvent {}
 
 class SignOutEvent extends AuthEvent {}
 

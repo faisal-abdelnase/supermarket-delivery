@@ -67,7 +67,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
     // Sign with Google Event
 
-    on<GoogleSignUpEvent>((event, emit) async {
+    on<GoogleSignInEvent>((event, emit) async {
 
       try {
 

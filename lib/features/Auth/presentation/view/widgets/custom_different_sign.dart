@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:super_market/features/Auth/presentation/manager/bloc/auth_bloc.dart';
+import 'package:super_market/features/Auth/presentation/view/phone_auth.dart';
 
 class CustomDifferentSign extends StatelessWidget {
   const CustomDifferentSign({
     super.key,
   });
+
 
   @override
   Widget build(BuildContext context) {
@@ -19,8 +21,10 @@ class CustomDifferentSign extends StatelessWidget {
             shape: CircleBorder(),
             padding: EdgeInsets.all(10)
           ),
-          onPressed: (){}, 
-          child: Image.asset("assets/images/facebook.png", width: 30, height: 30,)
+          onPressed: (){
+            Navigator.pushNamed(context, PhoneAuth.phoneAuthId);
+          }, 
+          child: Icon(Icons.phone, color: Colors.black, size: 30,)
           ),
     
         // sign with Google
@@ -31,7 +35,7 @@ class CustomDifferentSign extends StatelessWidget {
             padding: EdgeInsets.all(10)
           ),
           onPressed: (){
-            authBloc.add(GoogleSignUpEvent());
+            authBloc.add(GoogleSignInEvent());
           }, 
           child: Image.asset("assets/images/google.png", width: 30, height: 30,)
           ),

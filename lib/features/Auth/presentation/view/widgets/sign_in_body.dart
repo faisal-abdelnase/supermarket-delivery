@@ -66,6 +66,7 @@ class _SignInBodyState extends State<SignInBody> {
                       SizedBox(height: 30,),
                       
                       CustomTextFormField(
+                        keyboardType: TextInputType.emailAddress,
                         hintText: "Email", 
                         icon: Icons.email, 
                         controller: emailController,

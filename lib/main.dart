@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:super_market/features/Auth/presentation/manager/bloc/auth_bloc.dart';
 import 'package:super_market/features/Auth/presentation/view/forgot_password.dart';
 import 'package:super_market/features/Auth/presentation/view/otp_page.dart';
+import 'package:super_market/features/Auth/presentation/view/phone_auth.dart';
 import 'package:super_market/features/Auth/presentation/view/reset_passowrd.dart';
 import 'package:super_market/features/Auth/presentation/view/sign_in.dart';
 import 'package:super_market/features/Auth/presentation/view/sign_up.dart';
@@ -63,6 +64,7 @@ class SuperMarketDelivery extends StatelessWidget {
           MyProfileView.myProfileId :(context) => MyProfileView(),
           MyOrderView.myOrderId :(context) => MyOrderView(),
           PaymentMethodView.paymentMethodId :(context) => PaymentMethodView(),
+          PhoneAuth.phoneAuthId :(context) => PhoneAuth(),
         },
       ),
     );

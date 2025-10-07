@@ -66,6 +66,7 @@ class _SignUpBodyState extends State<SignUpBody> {
                       SizedBox(height: 30,),
                       
                       CustomTextFormField(
+                        keyboardType: TextInputType.name,
                         hintText: "Full Name", 
                         icon: Icons.account_circle, 
                         controller: userNameController,
@@ -75,6 +76,7 @@ class _SignUpBodyState extends State<SignUpBody> {
                       SizedBox(height: 20,),
     
                       CustomTextFormField(
+                        keyboardType: TextInputType.emailAddress,
                         hintText: "Email", 
                         icon: Icons.email, 
                         controller: emailController,
