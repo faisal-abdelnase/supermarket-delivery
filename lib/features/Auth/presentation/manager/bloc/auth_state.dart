@@ -6,6 +6,8 @@ sealed class AuthState {}
 final class AuthInitial extends AuthState {}
 
 final class AuthLoading extends AuthState {}
+final class AuthPhoneLoading extends AuthState {}
+final class AuthOtpLoading extends AuthState {}
 
 final class AuthAuthenticated extends AuthState {
   final String message;
@@ -15,4 +17,9 @@ final class AuthAuthenticated extends AuthState {
 final class AuthUnauthenticated extends AuthState {
   final String errorMessage;
   AuthUnauthenticated({required this.errorMessage});
+}
+
+final class AuthOtpSent extends AuthState {
+  final String message;
+  AuthOtpSent({required this.message});
 }

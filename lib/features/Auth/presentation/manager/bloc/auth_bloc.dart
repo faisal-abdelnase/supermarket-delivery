@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/widgets.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:meta/meta.dart';
 
@@ -94,6 +95,88 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         emit(AuthUnauthenticated(errorMessage: error.message ?? 'An unknown error occurred during Google sign-in.'));
       } catch (error) {
         emit(AuthUnauthenticated(errorMessage: 'An unknown error occurred during Google sign-in.'));
+      }
+    });
+
+
+
+    // Sign in with Phone Event
+
+    String? _verificationId;
+
+    on<PhoneSignInEvent>((event, emit) async {
+
+      final emitCallback = emit;
+
+      if(!emitCallback.isDone){
+        emitCallback(AuthPhoneLoading());
+      }
+
+      
+
+      try {
+        await FirebaseAuth.instance.verifyPhoneNumber(
+          phoneNumber: event.phoneNumber,
+          timeout: const Duration(seconds: 60),
+          verificationCompleted: (PhoneAuthCredential credential) async {
+            await FirebaseAuth.instance.signInWithCredential(credential);
+            if(!emitCallback.isDone){
+              emitCallback(AuthAuthenticated(message: "Phone number automatically verified and user signed in"));
+            }
+          },
+          verificationFailed: (FirebaseAuthException e) {
+            if(!emitCallback.isDone){
+              if (e.code == 'invalid-phone-number') {
+                emitCallback(AuthUnauthenticated(errorMessage: 'The provided phone number is not valid.'));
+            }else {
+                emitCallback(AuthUnauthenticated(errorMessage: e.message ?? 'Phone verification failed.'));
+              }
+            }
+          },
+          codeSent: (String verId, int? resendToken) {
+              _verificationId = verId;
+              if (!emitCallback.isDone) {
+                emitCallback(AuthOtpSent(message: "Verification code sent to phone number"));
+              }
+          },
+          codeAutoRetrievalTimeout: (String verificationId) {
+            _verificationId = verificationId;
+          },
+        );
+      } catch (error) {
+        if (!emitCallback.isDone) {
+          emitCallback(AuthUnauthenticated(errorMessage: 'An unknown error occurred during phone number verification.'));
+        }
+      }
+    });
+
+
+    
+    // OTP Sent Event
+
+    on<AuthOtpSentEvent>((event, emit) async {
+
+      final emitCallback = emit;
+
+      if(!emitCallback.isDone){
+        emitCallback(AuthOtpLoading());
+      }
+
+      try{
+
+        PhoneAuthCredential credential = PhoneAuthProvider.credential(
+        verificationId: _verificationId!,
+        smsCode: event.otpCode,
+      );
+
+      await FirebaseAuth.instance.signInWithCredential(credential);
+      if(!emitCallback.isDone){
+          emitCallback(AuthAuthenticated(message: "User signed in with phone number successfully"));
+      }
+      }catch(e){
+        if(!emitCallback.isDone){
+            emitCallback(AuthUnauthenticated(errorMessage: "Invalid OTP"));
+        }
       }
     });
 
