@@ -23,3 +23,14 @@ final class AuthOtpSent extends AuthState {
   final String message;
   AuthOtpSent({required this.message});
 }
+
+final class  AuthResetPasswordSucess extends AuthState{
+  final String message;
+
+  AuthResetPasswordSucess({required this.message});
+}
+final class AuthResetPasswordError extends AuthState{
+  final String errorMessage;
+
+  AuthResetPasswordError({required this.errorMessage});
+}

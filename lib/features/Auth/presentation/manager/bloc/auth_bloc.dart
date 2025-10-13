@@ -181,5 +181,23 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     });
 
 
+
+    // Forgot password event
+
+
+    on<ForgotPasswordEvent>((event, emit) async {
+
+      try{
+
+        await FirebaseAuth.instance.sendPasswordResetEmail(email: event.email);
+        emit(AuthResetPasswordSucess(message: "Password reset email sent"));
+      }
+      catch(e){
+        emit(AuthResetPasswordError(errorMessage: "Error sending password reset email"));
+      }
+
+    });
+
+
   }
 }
