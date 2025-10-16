@@ -141,8 +141,26 @@ class _SignUpBodyState extends State<SignUpBody> {
                       SizedBox(height: 30,),
                       CustomDividerOR(),
                       SizedBox(height: 30,),
+
+                      Center(
+                        child: TextButton(
+                          onPressed: (){
+                            authBloc.add(AuthAnonymousEvent());
+                          },
+                          child: Text("Create a guest account?", 
+                          style: TextStyle(
+                            color: Colors.blue,
+                            decoration: TextDecoration.underline,
+                            decorationColor: Colors.blue
+                            ),
+                          ),
+                          ),
+                      ),
+
+                      SizedBox(height: 30,),
+
                       CustomDifferentSign(),
-                      SizedBox(height: 80,),
+                      SizedBox(height: 50,),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [

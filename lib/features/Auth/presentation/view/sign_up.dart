@@ -24,11 +24,6 @@ class SignUpPage extends StatelessWidget {
           } else if (state is AuthUnauthenticated) {
             showSnackBarMessage(context, state.errorMessage, Colors.red);
           }
-
-          // else if(state is AuthOtpSent){
-          //   Navigator.of(context).pushNamed(OtpPage.otpPageId);
-          //   showSnackBarMessage(context, "Verification code sent to phone number", Colors.green);
-          // }
         },
         builder: (context, state) {
           if(state is AuthLoading){

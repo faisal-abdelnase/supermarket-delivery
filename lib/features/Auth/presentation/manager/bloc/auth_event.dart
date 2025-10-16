@@ -41,6 +41,9 @@ class AuthOtpSentEvent extends AuthEvent {
 }
 
 
+class AuthAnonymousEvent extends AuthEvent {}
+
+
 
 
 

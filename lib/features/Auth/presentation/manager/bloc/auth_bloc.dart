@@ -182,6 +182,21 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
 
 
+    on<AuthAnonymousEvent>((event, emit) async {
+
+      emit(AuthLoading());
+
+      try{
+        await FirebaseAuth.instance.signInAnonymously();
+        emit(AuthAuthenticated(message: "User signed in anonymously"));
+      }catch(e){
+        emit(AuthUnauthenticated(errorMessage: "Error signing in anonymously"));
+      }
+
+    });
+
+
+
     // Forgot password event
 
 
