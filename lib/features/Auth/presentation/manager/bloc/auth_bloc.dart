@@ -1,8 +1,11 @@
+
+
 import 'package:bloc/bloc.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/widgets.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:meta/meta.dart';
+import 'package:super_market/core/utils/Functions/upload_image.dart';
 
 
 part 'auth_event.dart';
@@ -21,7 +24,16 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
           email: event.email,
           password: event.password,
         );
-        await userCredential.user?.updateDisplayName(event.userName);
+
+        final user = userCredential.user;
+
+        if(user != null){
+            final photoUrl = await uploadDefaultProfileImage(user.uid);
+            await user.updatePhotoURL(photoUrl);
+            await user.updateDisplayName(event.userName);
+
+            await user.reload();
+        }
 
         emit(AuthAuthenticated(message: "User authenticated successfully"));
 
@@ -39,6 +51,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
     
     });
+
+
 
 
     // Sign In Event
@@ -87,7 +101,19 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
           idToken: googleAuth.idToken,
         );
 
-        await FirebaseAuth.instance.signInWithCredential(credential);
+        final userCredential = await FirebaseAuth.instance.signInWithCredential(credential);
+
+        final user = userCredential.user;
+        
+
+        if(user != null){
+            // final photoUrl = await uploadDefaultProfileImage(user.uid);
+            await user.updatePhotoURL(googleUser.photoUrl);
+            await user.updateDisplayName(googleUser.displayName ?? "Google User");
+
+            await user.reload();
+        }
+
 
         emit(AuthAuthenticated(message: "User signed in with Google successfully"));
 
@@ -103,6 +129,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     // Sign in with Phone Event
 
     String? _verificationId;
+    String? _userName;
 
     on<PhoneSignInEvent>((event, emit) async {
 
@@ -112,7 +139,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         emitCallback(AuthPhoneLoading());
       }
 
-      
+      _userName = event.userName;
 
       try {
         await FirebaseAuth.instance.verifyPhoneNumber(
@@ -169,7 +196,19 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         smsCode: event.otpCode,
       );
 
-      await FirebaseAuth.instance.signInWithCredential(credential);
+      final userCredential = await FirebaseAuth.instance.signInWithCredential(credential);
+
+        final user = userCredential.user;
+
+        if(user != null){
+            final photoUrl = await uploadDefaultProfileImage(user.uid);
+            await user.updatePhotoURL(photoUrl);
+            await user.updateDisplayName(_userName);
+
+            await user.reload();
+        }
+
+
       if(!emitCallback.isDone){
           emitCallback(AuthAuthenticated(message: "User signed in with phone number successfully"));
       }
@@ -187,7 +226,18 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       emit(AuthLoading());
 
       try{
-        await FirebaseAuth.instance.signInAnonymously();
+          final userCredential = await FirebaseAuth.instance.signInAnonymously();
+
+          final user = userCredential.user;
+
+          if(user != null){
+              final photoUrl = await uploadDefaultProfileImage(user.uid);
+              await user.updatePhotoURL(photoUrl);
+              await user.updateDisplayName("Anonymous User");
+
+              await user.reload();
+          }
+
         emit(AuthAuthenticated(message: "User signed in anonymously"));
       }catch(e){
         emit(AuthUnauthenticated(errorMessage: "Error signing in anonymously"));

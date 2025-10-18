@@ -30,8 +30,9 @@ class GoogleSignInEvent extends AuthEvent {}
 class PhoneSignInEvent extends AuthEvent {
   final String phoneNumber;
   final BuildContext context;
+  final String userName;
 
-  PhoneSignInEvent({required this.phoneNumber, required this.context});
+  PhoneSignInEvent({required this.userName, required this.phoneNumber, required this.context});
 }
 
 class AuthOtpSentEvent extends AuthEvent {

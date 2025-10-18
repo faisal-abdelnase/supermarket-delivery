@@ -107,8 +107,11 @@ class _PhoneAuthState extends State<PhoneAuth> {
                       onPressed: () {
                         if (formKey.currentState!.validate() && phoneCodeController.text.isNotEmpty) {
                           log("Phone Number: ${phoneCodeController.text.trim() + phoneController.text.trim()}",);
-                          authBloc.add(PhoneSignInEvent(phoneNumber: phoneCodeController.text.trim() + phoneController.text.trim(), context: context,),
-                          );
+                          authBloc.add(PhoneSignInEvent(
+                            phoneNumber: phoneCodeController.text.trim() + phoneController.text.trim(),
+                            context: context,
+                            userName: userNameController.text.trim(),
+                          ));
                           // Navigator.of(context).pushNamed(OtpPage.otpPageId);
                         }
                       },
