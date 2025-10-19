@@ -220,7 +220,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     });
 
 
-
+    // Anonymous Sign In Event
+    
     on<AuthAnonymousEvent>((event, emit) async {
 
       emit(AuthLoading());

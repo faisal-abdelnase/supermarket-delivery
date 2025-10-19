@@ -18,6 +18,7 @@ import 'package:super_market/features/payment/presentation/view/checkout_view.da
 import 'package:super_market/features/payment/presentation/view/delivery_address_view.dart';
 import 'package:super_market/features/payment/presentation/view/my_cart.dart';
 import 'package:super_market/features/payment/presentation/view/payment_method_view.dart';
+import 'package:super_market/features/profile/presentation/manager/cubit/profile_info_cubit.dart';
 import 'package:super_market/features/profile/presentation/view/my_order_view.dart';
 import 'package:super_market/features/profile/presentation/view/my_profile_view.dart';
 import 'package:super_market/features/splash/presentation/view/splash_view.dart';
@@ -42,6 +43,7 @@ class SuperMarketDelivery extends StatelessWidget {
     return MultiProvider(
       providers: [
         BlocProvider(create: (context) => AuthBloc(),),
+        BlocProvider(create: (context) => ProfileInfoCubit(),),
       ],
       child: MaterialApp(
         title: "Super Market Delivery",

@@ -1,46 +1,55 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:super_market/features/profile/presentation/manager/cubit/profile_info_cubit.dart';
 
 class ProfileUserInfo extends StatelessWidget {
-  const ProfileUserInfo({
-    super.key,
-  });
+  const ProfileUserInfo({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Stack(
+    return BlocBuilder<ProfileInfoCubit, ProfileInfoState>(
+      builder: (context, state) {
+      if (state is ProfileInfoSuccess) {
+          return Center(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                CircleAvatar(
-                  radius: 50,
-                  backgroundImage: AssetImage("assets/images/faisal.jpg"),
-                ),
-
-                Positioned(
-                  bottom: -10,
-                  right: -10,
-                
-                  child: IconButton(
-                    onPressed: (){}, 
-                    icon: Icon(
-                      Icons.camera_alt,
-                      color: const Color.fromARGB(255, 169, 165, 165),
-                      ),
-                    ),
-                )
+                if (state.photoURL != null)
+                  CircleAvatar(
+                    radius: 50,
+                    backgroundImage: NetworkImage(state.photoURL!),
+                  )
+                else
+                  CircleAvatar(
+                    radius: 50,
+                    child: Icon(Icons.person, size: 50),
+                  ),
+                SizedBox(height: 16),
+                if (state.displayName != null)
+                  Text(
+                    state.displayName!,
+                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                  ),
+                if (state.email != null)
+                  Text(
+                    state.email!,
+                    style: TextStyle(fontSize: 16, color: Colors.grey),
+                  ),
               ],
             ),
-    
-            const SizedBox(height: 16,),
-    
-            Text("Faisl Abdelnasser", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
-            Text("faisal12abelnasser@gmail.com", style: TextStyle(color: Colors.grey),)
-        
-          ],
-        ),
-      
+          );
+        } else if (state is ProfileInfoError) {
+          return Text(
+            'Error: ${state.errorMessage}',
+            style: TextStyle(color: Colors.red),
+          );
+        } else {
+          return Center(child: Icon(
+            Icons.warning_amber, 
+            size: 50, 
+            color: Colors.red,),);
+        }
+      },
     );
   }
 }
