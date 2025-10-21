@@ -17,7 +17,7 @@ class SignUpPage extends StatelessWidget {
       body: BlocConsumer<AuthBloc, AuthState>(
         listener: (context, state) async {
           if (state is AuthAuthenticated) {
-              await BlocProvider.of<ProfileInfoCubit>(context).fetchProfileInfo();
+            await BlocProvider.of<ProfileInfoCubit>(context).storeProfileInfoLocally();
             Navigator.of(context).pushNamedAndRemoveUntil(
               HomeView.homeId,
               (route) => false,

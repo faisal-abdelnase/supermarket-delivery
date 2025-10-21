@@ -14,25 +14,19 @@ class ProfileUserInfo extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                if (state.photoURL != null)
+                
                   CircleAvatar(
                     radius: 50,
-                    backgroundImage: NetworkImage(state.photoURL!),
-                  )
-                else
-                  CircleAvatar(
-                    radius: 50,
-                    child: Icon(Icons.person, size: 50),
+                    backgroundImage: NetworkImage(state.userInfoModel.imagePath),
                   ),
                 SizedBox(height: 16),
-                if (state.displayName != null)
                   Text(
-                    state.displayName!,
+                    state.userInfoModel.name,
                     style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                   ),
-                if (state.email != null)
+                if (state.userInfoModel.email != null)
                   Text(
-                    state.email!,
+                    state.userInfoModel.email!,
                     style: TextStyle(fontSize: 16, color: Colors.grey),
                   ),
               ],

@@ -10,11 +10,9 @@ final class ProfileInfoLoading extends ProfileInfoState {}
 
 final class ProfileInfoSuccess extends ProfileInfoState {
 
-  final String? email;
-  final String? displayName;
-  final String? photoURL;
+  final UserInfoModel userInfoModel;
 
-  ProfileInfoSuccess({this.email, this.displayName, this.photoURL});
+  ProfileInfoSuccess({required this.userInfoModel});
 }
 
 final class ProfileInfoError extends ProfileInfoState {
