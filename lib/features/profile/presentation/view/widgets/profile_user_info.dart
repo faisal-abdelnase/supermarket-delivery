@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:super_market/features/profile/presentation/manager/cubit/profile_info_cubit.dart';
@@ -17,7 +19,9 @@ class ProfileUserInfo extends StatelessWidget {
                 
                   CircleAvatar(
                     radius: 50,
-                    backgroundImage: NetworkImage(state.userInfoModel.imagePath),
+                    backgroundImage: FileImage(
+                      File(state.userInfoModel.imagePath),
+                    ),
                   ),
                 SizedBox(height: 16),
                   Text(

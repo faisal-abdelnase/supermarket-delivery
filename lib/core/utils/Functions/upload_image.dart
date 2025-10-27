@@ -2,9 +2,11 @@
 
 import 'dart:io';
 
+import 'package:dio/dio.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:path_provider/path_provider.dart';
 
 Future<File> pickImage() async {
 
@@ -39,4 +41,21 @@ Future<String> uploadDefaultProfileImage(String uid) async {
   final downloadUrl = await storageRef.getDownloadURL();
 
   return downloadUrl;
+}
+
+
+
+
+Future<String> storeImageLocally(String imageUrl ,String fileName) async {
+  
+  try{
+    final dir = await getApplicationDocumentsDirectory();
+    final filePath = '${dir.path}/$fileName';
+
+    await Dio().download(imageUrl, filePath);
+    return filePath;
+  }catch(e){
+    print(e.toString());
+    throw Exception("Failed to download image");
+  }
 }

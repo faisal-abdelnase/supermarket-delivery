@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:hive_flutter/adapters.dart';
 
 import 'package:super_market/constant.dart';
+import 'package:super_market/core/utils/Functions/upload_image.dart';
 import 'package:super_market/features/profile/data/model/user_info.dart';
 
 
@@ -29,7 +30,7 @@ class ProfileInfoCubit extends Cubit<ProfileInfoState> {
   }
 
 
-  storeProfileInfoLocally() {
+  storeProfileInfoLocally() async {
     try {
         
         if(!isUserInfoStoredLocally()){
@@ -40,7 +41,7 @@ class ProfileInfoCubit extends Cubit<ProfileInfoState> {
             
             String name = user.displayName!;
             String? email = user.email;
-            String imagePath = user.photoURL!;
+            String imagePath = await storeImageLocally(user.photoURL!, 'profile_image.png');
 
             var userInfo = UserInfoModel(
               name: name,

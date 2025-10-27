@@ -31,6 +31,7 @@ dependencies:
   country_picker: ^2.0.27
   cupertino_icons: ^1.0.8
   curved_navigation_bar: ^1.0.6
+  dio: ^5.9.0
   dotted_border: ^3.1.0
   equatable: ^2.0.7
   firebase_auth: ^6.1.0
@@ -45,6 +46,7 @@ dependencies:
   google_sign_in: ^6.3.0
   hive_flutter: ^1.1.0
   image_picker: ^1.2.0
+  path_provider: ^2.1.5
   percent_indicator: ^4.2.5
   pin_code_fields: ^8.0.1
   provider: ^6.1.5+1
