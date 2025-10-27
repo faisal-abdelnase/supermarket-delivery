@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
-import 'package:super_market/core/utils/first_display_shared_preference.dart';
+import 'package:super_market/core/utils/shared_preference_function.dart';
 import 'package:super_market/features/Auth/presentation/view/type_of_registeration.dart';
 import 'package:super_market/features/about/data/model/about_data_model.dart';
 
@@ -28,7 +28,7 @@ class _AboutAppState extends State<AboutApp> {
         actions: [
           TextButton(
                 onPressed: (){
-                  FirstDisplaySharedPreference.saveData(isDisplay: true);
+                  SharedPreferenceFunction.saveFirstDisplayData(isDisplay: true);
                   Navigator.pushReplacementNamed(context, TypeOfRegisteration.registeration);
                 }, 
                 child: Text("Skip", 
@@ -85,7 +85,7 @@ class _AboutAppState extends State<AboutApp> {
                         index++;
                       }
                       else{
-                        FirstDisplaySharedPreference.saveData(isDisplay: true);
+                        SharedPreferenceFunction.saveFirstDisplayData(isDisplay: true);
                         Navigator.pushReplacementNamed(context, TypeOfRegisteration.registeration);
                         
                       }

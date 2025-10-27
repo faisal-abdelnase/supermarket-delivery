@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:super_market/core/utils/Functions/show_snack_bar_message.dart';
+import 'package:super_market/core/utils/shared_preference_function.dart';
 import 'package:super_market/features/Auth/presentation/manager/bloc/auth_bloc.dart';
 import 'package:super_market/features/Auth/presentation/view/widgets/sign_in_body.dart';
 import 'package:super_market/features/home/presentation/view/home_view.dart';
@@ -18,6 +19,7 @@ class SignInPage extends StatelessWidget {
         listener: (context, state) async {
           if (state is AuthAuthenticated) {
             await BlocProvider.of<ProfileInfoCubit>(context).fetchProfileInfo();
+            SharedPreferenceFunction.saveLoggedInState(isLoggedIn: true);
             Navigator.of(context).pushNamedAndRemoveUntil(
               HomeView.homeId,
               (route) => false,

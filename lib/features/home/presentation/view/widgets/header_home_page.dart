@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:super_market/core/utils/shared_preference_function.dart';
 import 'package:super_market/features/Auth/presentation/view/type_of_registeration.dart';
 import 'package:super_market/features/home/presentation/view/search_by_filter.dart';
 import 'package:super_market/features/home/presentation/view/widgets/search_text_field.dart';
@@ -49,6 +50,7 @@ class HeaderHomePage extends StatelessWidget {
                     final GoogleSignIn googleSignIn = GoogleSignIn();
                     await googleSignIn.signOut();
                     await FirebaseAuth.instance.signOut();
+                    SharedPreferenceFunction.saveLoggedInState(isLoggedIn: false);
                     Navigator.of(context).pushNamedAndRemoveUntil(
                       TypeOfRegisteration.registeration,
                       (route) => false,

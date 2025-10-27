@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:super_market/constant.dart';
-import 'package:super_market/core/utils/first_display_shared_preference.dart';
+import 'package:super_market/core/utils/shared_preference_function.dart';
 import 'package:super_market/features/Auth/presentation/view/type_of_registeration.dart';
 import 'package:super_market/features/about/presentation/view/about_app.dart';
+import 'package:super_market/features/home/presentation/view/home_view.dart';
+import 'package:super_market/features/profile/presentation/manager/cubit/profile_info_cubit.dart';
 
 
 class SplashView extends StatefulWidget {
@@ -74,9 +77,23 @@ class _SplashViewState extends State<SplashView>  with SingleTickerProviderState
 
   void navigateToHome() {
     Future.delayed(Duration(seconds: 3),() async{
-        bool isDisplay = await FirstDisplaySharedPreference.getData() ?? false;
-        isDisplay ? Navigator.pushReplacementNamed(context, TypeOfRegisteration.registeration) 
-        : Navigator.pushReplacementNamed(context, AboutApp.aboutAppId);
+        bool isDisplay = await SharedPreferenceFunction.getFirstDisplayData() ?? false;
+        bool isLoggedIn = await SharedPreferenceFunction.getLoggedInState() ?? false;
+
+        if(isLoggedIn){
+          await BlocProvider.of<ProfileInfoCubit>(context).fetchProfileInfo();
+          Navigator.pushReplacementNamed(context, HomeView.homeId);
+        }
+
+        else{
+          if(isDisplay){
+            
+              Navigator.pushReplacementNamed(context, TypeOfRegisteration.registeration);
+          }
+          else{
+            Navigator.pushReplacementNamed(context, AboutApp.aboutAppId);
+          }
+        }
       });
   }
 

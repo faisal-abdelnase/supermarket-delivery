@@ -5,3 +5,6 @@ const List filter = ["Drinks", "meat and poultry",
 "frozen foods", "Baby supplies"];
 
 const String kProfileBox = "profile_box";
+
+const String isDisplayKey = "isDisplay";
+const String isLoggedInKey = "isLoggedIn";
