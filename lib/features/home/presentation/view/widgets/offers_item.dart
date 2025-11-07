@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:super_market/features/home/data/model/products_model.dart';
 import 'package:super_market/features/home/presentation/view/product_details_view.dart';
-import 'package:super_market/features/home/presentation/view/widgets/offer_data.dart';
+import 'package:super_market/features/home/presentation/view/widgets/custom_product_item.dart';
 import 'package:super_market/features/home/presentation/view/widgets/offer_value.dart';
 
 class OffersItem extends StatefulWidget {
-  const OffersItem({super.key});
+  const OffersItem({super.key, required this.productsModel});
+
+  final ProductsModel productsModel;
 
   @override
   State<OffersItem> createState() => _OffersItemState();
@@ -20,7 +23,9 @@ class _OffersItemState extends State<OffersItem> {
       child: Stack(
         children: [
           
-        OfferData(),
+        AspectRatio(
+          aspectRatio: 0.7,
+          child: CustomProductItem(productModel: widget.productsModel)),
         
         Positioned(
             top: 0,

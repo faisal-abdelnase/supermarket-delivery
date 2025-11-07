@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:super_market/features/home/data/model/products_model.dart';
 import 'package:super_market/features/home/presentation/view/product_details_view.dart';
 
 class CustomProductItem extends StatefulWidget {
   const CustomProductItem({
-    super.key,
+    super.key, required this.productModel,
   });
+
+  final ProductsModel productModel;
 
   @override
   State<CustomProductItem> createState() => _CustomProductItemState();
@@ -20,7 +23,7 @@ class _CustomProductItemState extends State<CustomProductItem> {
         Navigator.pushNamed(context, ProductDetailsView.productDetailsId, arguments: false);
       },
       child: Container(
-        width: 120,
+        // width: 120,
         margin: EdgeInsets.symmetric(horizontal: 8,),
         padding: EdgeInsets.symmetric(horizontal: 8, vertical: 8),
         decoration: BoxDecoration(
@@ -36,7 +39,7 @@ class _CustomProductItemState extends State<CustomProductItem> {
               children: [
                 Icon(Icons.star, color: Colors.amber,),
           
-                Text("4.5", style: TextStyle(fontSize: 12, color: Colors.grey),),
+                Text(widget.productModel.rating.toString(), style: TextStyle(fontSize: 12, color: Colors.grey),),
               ],
             ),
           
@@ -47,20 +50,32 @@ class _CustomProductItemState extends State<CustomProductItem> {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
                   image: DecorationImage(
-                    image: AssetImage("assets/images/millk.jpg",),
+                    image: NetworkImage(widget.productModel.image),
                     fit: BoxFit.fill,
                   ),
                 ),
               ),
             ),
           
-            Text("Milk", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),),
-            Text("1.5 L", style: TextStyle(fontSize: 14, color: Colors.grey),),
+            Text(widget.productModel.name, style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),),
+            Text(widget.productModel.description, style: TextStyle(fontSize: 14, color: Colors.grey),),
           
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text("\$1.5", style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),),
+                Text("\$${widget.productModel.price}", style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),),
+
+                  widget.productModel.isOffers ? Text("\$5", 
+                  style: TextStyle(
+                    fontSize: 14, 
+                    fontWeight: FontWeight.bold,
+                    color: Colors.grey,
+                    decoration: TextDecoration.lineThrough,
+                    decorationThickness: 3,
+                    decorationColor: Colors.grey,
+                    ),) : SizedBox.shrink(),
+                
+
                 IconButton(
                   onPressed: (){
                     setState(() {

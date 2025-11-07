@@ -4,6 +4,7 @@ import 'package:super_market/constant.dart';
 import 'package:super_market/core/utils/shared_preference_function.dart';
 import 'package:super_market/features/Auth/presentation/view/type_of_registeration.dart';
 import 'package:super_market/features/about/presentation/view/about_app.dart';
+import 'package:super_market/features/home/presentation/manager/cubit/products_cubit.dart';
 import 'package:super_market/features/home/presentation/view/home_view.dart';
 import 'package:super_market/features/profile/presentation/manager/cubit/profile_info_cubit.dart';
 
@@ -23,6 +24,7 @@ class _SplashViewState extends State<SplashView>  with SingleTickerProviderState
   @override
   void initState() {
     initSplashAnimation();
+    BlocProvider.of<ProductsCubit>(context).getAllProducts();
     navigateToHome();
     super.initState();
   }
