@@ -22,7 +22,7 @@ class _CustomProductItemState extends State<CustomProductItem> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.pushNamed(context, ProductDetailsView.productDetailsId, arguments: false);
+        Navigator.pushNamed(context, ProductDetailsView.productDetailsId, arguments: widget.productModel);
       },
       child: Container(
         // width: 120,

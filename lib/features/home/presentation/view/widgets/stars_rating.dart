@@ -3,8 +3,10 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 class StarsRating extends StatelessWidget {
   const StarsRating({
-    super.key,
+    super.key, required this.rating,
   });
+
+  final double rating;
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +19,7 @@ class StarsRating extends StatelessWidget {
         children: [
           Text("Rating :", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),),
           Icon(Icons.star, color: Colors.amber, size: 32,),
-          Text("4.5", style: TextStyle(fontSize: 18, color: Colors.grey),),
+          Text("$rating", style: TextStyle(fontSize: 18, color: Colors.grey),),
         ],
         ),
     
@@ -25,7 +27,7 @@ class StarsRating extends StatelessWidget {
           glow: true,
           glowColor: Colors.blue,
           unratedColor: Colors.blue,
-          initialRating: 2,
+          initialRating: 0,
           itemSize: 30,
           minRating: 0,
           direction: Axis.horizontal,

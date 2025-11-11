@@ -13,14 +13,19 @@ class SimilarProducts extends StatelessWidget {
       child: BlocBuilder<ProductsCubit, ProductsState>(
         builder: (context, state) {
           if(state is ProductsSuccess){
-            return ListView.builder(
-            scrollDirection: Axis.horizontal,
-            shrinkWrap: true,
-            itemCount: 10,
-            itemBuilder: (context, index) {
-              return CustomProductItem(productModel: state.products[index]);
-            },
-          );
+            return AspectRatio(
+              aspectRatio: 1.4,
+              child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              shrinkWrap: true,
+              itemCount: 10,
+              itemBuilder: (context, index) {
+                return AspectRatio(
+                  aspectRatio: 0.8,
+                  child: CustomProductItem(productModel: state.products[index]));
+              },
+                        ),
+            );
           }
           else if(state is ProductsError){
             return Center(

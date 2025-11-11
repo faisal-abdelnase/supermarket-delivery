@@ -1,19 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:super_market/features/home/data/model/products_model.dart';
 import 'package:super_market/features/home/presentation/view/widgets/add_comment.dart';
 import 'package:super_market/features/home/presentation/view/widgets/list_view_of_review.dart';
 import 'package:super_market/features/home/presentation/view/widgets/product_details_header.dart';
 import 'package:super_market/features/home/presentation/view/widgets/similar_products.dart';
 import 'package:super_market/features/home/presentation/view/widgets/stars_rating.dart';
 
-class ProductsDetailsBody extends StatelessWidget {
+class ProductsDetailsBody extends StatefulWidget {
   const ProductsDetailsBody({
     super.key,
   });
 
   @override
+  State<ProductsDetailsBody> createState() => _ProductsDetailsBodyState();
+}
+
+class _ProductsDetailsBodyState extends State<ProductsDetailsBody> {
+
+  bool isFavorite = false;
+  @override
   Widget build(BuildContext context) {
 
-    bool isOffer = ModalRoute.of(context)!.settings.arguments as bool;
+    final product = ModalRoute.of(context)!.settings.arguments as ProductsModel;
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
       child: Column(
@@ -25,11 +33,10 @@ class ProductsDetailsBody extends StatelessWidget {
           AspectRatio(
             aspectRatio: 2/1,
             child: Container(
-                
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
                   image: DecorationImage(
-                    image: AssetImage("assets/images/millk.jpg",),
+                    image: NetworkImage(product.image),
                     fit: BoxFit.fill,
                   ),
                 ),
@@ -38,63 +45,78 @@ class ProductsDetailsBody extends StatelessWidget {
 
 
           Visibility(
-            visible: isOffer,
-            child: RichText(
-              text: TextSpan(
-                text: "discount %50   ", 
+            visible: product.isOffers,
+            child: Row(
+              spacing: 20,
+              children: [
+                Text("discount %50", 
                 style: TextStyle(
                   color: Colors.red, 
                   fontSize: 16, 
                   fontWeight: FontWeight.bold,
-                  ),
-                  children: [
-                    TextSpan(
-                      text: "\$40", 
-                      style: TextStyle(
-                        color: Colors.grey, 
-                        fontSize: 16, 
-                        fontWeight: FontWeight.bold,
-                        decoration: TextDecoration.lineThrough,
-                        decorationThickness: 3,
-                        decorationColor: Colors.grey,
-                        ),
-                    ),
-                  ]
-                  ),),
-          ),
+                ),
+                ),
+
+                Text("\$${product.price}",
+
+                style: TextStyle(
+                  color: Colors.grey, 
+                  fontSize: 16, 
+                  fontWeight: FontWeight.bold,
+                  decoration: TextDecoration.lineThrough,
+                  decorationThickness: 3,
+                  decorationColor: Colors.grey,
+                ),
+                ),
+              ],
+            )
+            ),
       
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text("Milk", 
+              Text(product.name, 
               style: TextStyle(
                 fontSize: 24, fontWeight: FontWeight.bold,
                 ),),
 
 
-              Text("\$20", 
+              Text("\$${product.price}", 
               style: TextStyle(
                 fontSize: 20, 
                 fontWeight: FontWeight.bold,
                 color: Colors.blue,
                 ),),
+
+                IconButton(
+                  onPressed: (){
+                    setState(() {
+                      isFavorite = !isFavorite;
+                    });
+                  }, 
+                  icon: Icon(
+                    isFavorite ? Icons.favorite : Icons.favorite_border,
+                    color: isFavorite ? Colors.red : Colors.grey, 
+                    size: 30,),),
                 
             ],
           ),
-      
-      
-          StarsRating(),
-      
+
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             spacing: 16,
             children: [
               Text("Description", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),),
       
-              Text("This range values are in intervals of 20 because the Range Slider has 5 divisions, from 0 to 100. This means are values are split between 0, 20, 40, 60, 80, and 100. The range values are initialized with 40 and 80 in this demo.", 
+              Text(product.description, 
               style: TextStyle(color: Colors.grey),),
             ],
           ),
+      
+      
+          StarsRating(rating: product.rating,),
+      
+          
       
           Text("Similar products", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),),
           SimilarProducts(),
