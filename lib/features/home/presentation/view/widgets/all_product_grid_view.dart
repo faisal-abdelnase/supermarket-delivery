@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:skeletonizer/skeletonizer.dart';
+import 'package:super_market/features/home/data/model/products_model.dart';
 import 'package:super_market/features/home/presentation/manager/cubit/products_cubit.dart';
 import 'package:super_market/features/home/presentation/view/widgets/custom_product_item.dart';
 import 'package:super_market/features/home/presentation/view/widgets/offers_item.dart';
@@ -12,6 +14,7 @@ class AllProductGridView extends StatelessWidget {
     return SliverToBoxAdapter(
       child: BlocBuilder<ProductsCubit, ProductsState>(
         builder: (context, state) {
+          
           if(state is ProductsSuccess){
             return GridView.builder(
             padding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
@@ -25,11 +28,33 @@ class AllProductGridView extends StatelessWidget {
             physics: NeverScrollableScrollPhysics(),
             shrinkWrap: true,
             itemBuilder: (context, index) {
-              return state.products[index].isOffers 
-              ? OffersItem(productsModel: state.products[index]) 
-              : CustomProductItem(productModel: state.products[index]);
+                return state.products[index].isOffers 
+                ? OffersItem(productsModel: state.products[index]) 
+                : CustomProductItem(productModel: state.products[index]);
             },
           );
+          }
+
+
+          if(state is ProductsLodaing){
+            return Skeletonizer(
+              enabled: true,
+              child: GridView.builder(
+              padding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+              itemCount: 10,
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                mainAxisSpacing: 16,
+                crossAxisSpacing: 8,
+                childAspectRatio: 0.7,
+              ),
+              physics: NeverScrollableScrollPhysics(),
+              shrinkWrap: true,
+              itemBuilder: (context, index) {
+                  return  CustomProductItem(productModel: ProductsModel.empty());
+              },
+                        ),
+            );
           }
 
           else if(state is ProductsError){

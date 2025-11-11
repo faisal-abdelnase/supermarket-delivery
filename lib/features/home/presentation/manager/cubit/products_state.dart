@@ -11,8 +11,9 @@ final class ProductsInitial extends ProductsState {}
 final class ProductsLodaing extends ProductsState {}
 final class ProductsSuccess extends ProductsState {
   final List<ProductsModel> products;
+  final List<ProductsModel> offerProducts;
 
-  const ProductsSuccess({required this.products});
+  const ProductsSuccess({required this.offerProducts, required this.products});
 }
 final class ProductsError extends ProductsState {
   final String errorMessage;

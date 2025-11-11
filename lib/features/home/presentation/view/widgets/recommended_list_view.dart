@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:super_market/features/home/data/model/products_model.dart';
 import 'package:super_market/features/home/presentation/manager/cubit/products_cubit.dart';
 import 'package:super_market/features/home/presentation/view/widgets/custom_product_item.dart';
 
@@ -18,7 +19,26 @@ class _RecommendedListViewState extends State<RecommendedListView> {
         builder: (context, state) {
           if(state is ProductsSuccess){
             return AspectRatio(
-              aspectRatio: 1.5,
+              aspectRatio: 1.4,
+              child: ListView.builder(
+              padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+              scrollDirection: Axis.horizontal,
+              
+              shrinkWrap: true,
+              itemCount: state.products.length,
+              itemBuilder: (context, index) {
+                return AspectRatio(
+                  aspectRatio: 0.7,
+                  child: CustomProductItem(productModel: state.products[index]));
+              },
+                          ),
+            );
+          }
+
+
+          else if(state is ProductsLodaing){
+            return AspectRatio(
+              aspectRatio: 1.4,
               child: ListView.builder(
               padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
               scrollDirection: Axis.horizontal,
@@ -28,11 +48,12 @@ class _RecommendedListViewState extends State<RecommendedListView> {
               itemBuilder: (context, index) {
                 return AspectRatio(
                   aspectRatio: 0.7,
-                  child: CustomProductItem(productModel: state.products[index]));
+                  child: CustomProductItem(productModel: ProductsModel.empty()));
               },
                           ),
             );
           }
+
           else if(state is ProductsError){
             return Center(
               child: Text(state.errorMessage),

@@ -8,6 +8,7 @@ class OffersItem extends StatefulWidget {
   const OffersItem({super.key, required this.productsModel});
 
   final ProductsModel productsModel;
+  
 
   @override
   State<OffersItem> createState() => _OffersItemState();
@@ -25,7 +26,7 @@ class _OffersItemState extends State<OffersItem> {
           
         AspectRatio(
           aspectRatio: 0.7,
-          child: CustomProductItem(productModel: widget.productsModel)),
+          child: CustomProductItem(productModel: widget.productsModel,)),
         
         Positioned(
             top: 0,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 import 'package:super_market/features/home/data/model/products_model.dart';
 import 'package:super_market/features/home/presentation/view/product_details_view.dart';
 
@@ -8,6 +9,7 @@ class CustomProductItem extends StatefulWidget {
   });
 
   final ProductsModel productModel;
+  
 
   @override
   State<CustomProductItem> createState() => _CustomProductItemState();
@@ -64,7 +66,7 @@ class _CustomProductItemState extends State<CustomProductItem> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text("\$${widget.productModel.price}", style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),),
-
+        
                   widget.productModel.isOffers ? Text("\$5", 
                   style: TextStyle(
                     fontSize: 14, 
@@ -75,7 +77,7 @@ class _CustomProductItemState extends State<CustomProductItem> {
                     decorationColor: Colors.grey,
                     ),) : SizedBox.shrink(),
                 
-
+        
                 IconButton(
                   onPressed: (){
                     setState(() {

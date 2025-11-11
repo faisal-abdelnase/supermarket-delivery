@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:super_market/features/home/data/model/products_model.dart';
 import 'package:super_market/features/home/presentation/manager/cubit/products_cubit.dart';
 import 'package:super_market/features/home/presentation/view/widgets/offers_item.dart';
 
@@ -13,18 +14,37 @@ class OffersListView extends StatelessWidget {
         builder: (context, state) {
           if(state is ProductsSuccess){
             return AspectRatio(
-              aspectRatio: 1.5,
+              aspectRatio: 1.4,
+              child: ListView.builder(
+              padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+              scrollDirection: Axis.horizontal,
+              shrinkWrap: true,
+              itemCount: state.offerProducts.length,
+              itemBuilder: (context, index) {
+                return OffersItem(productsModel: state.offerProducts[index],);
+              },
+                          ),
+            );
+          }
+
+
+          else if(state is ProductsLodaing){
+            return AspectRatio(
+              aspectRatio: 1.4,
               child: ListView.builder(
               padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
               scrollDirection: Axis.horizontal,
               shrinkWrap: true,
               itemCount: 10,
               itemBuilder: (context, index) {
-                return OffersItem(productsModel: state.products[index],);
+                return OffersItem(productsModel: ProductsModel.empty(),);
               },
                           ),
             );
           }
+
+
+          
           else if(state is ProductsError){
             return Center(
               child: Text(state.errorMessage),

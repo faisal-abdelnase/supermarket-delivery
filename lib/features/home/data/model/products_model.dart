@@ -37,4 +37,20 @@ class ProductsModel {
     );
   }
 
+
+
+  factory ProductsModel.empty() {
+    return ProductsModel(
+      id: '',
+      categories: '',
+      name: '',
+      price: 0.0,
+      image: '',
+      description: '',
+      rating: 0.0,
+      isOffers: false,
+      offersValue: 0.0,
+    );
+  }
+
 }

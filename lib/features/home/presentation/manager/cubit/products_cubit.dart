@@ -14,16 +14,23 @@ class ProductsCubit extends Cubit<ProductsState> {
 
     emit(ProductsLodaing());
 
-    List<ProductsModel> products = [];
+    List<ProductsModel> allProducts = [];
+    List<ProductsModel> offerProducts = [];
 
     try {
       final response = await dio.get('https://vercel-api-five-liard.vercel.app/product');
       if (response.statusCode == 200) {
 
         List data = response.data;
-        products = data.map((product) => ProductsModel.fromJson(product)).toList();
+        allProducts = data.map((product) => ProductsModel.fromJson(product)).toList();
 
-        emit(ProductsSuccess(products: products));
+        allProducts.forEach((product) {
+          if (product.isOffers) {
+            offerProducts.add(product);
+          }
+        });
+
+        emit(ProductsSuccess(products: allProducts, offerProducts: offerProducts));
       }
     } catch (e) {
       emit(ProductsError(errorMessage: "Failed to fetch products}"));
