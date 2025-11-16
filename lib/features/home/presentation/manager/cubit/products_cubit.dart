@@ -38,4 +38,26 @@ class ProductsCubit extends Cubit<ProductsState> {
   }
 
 
+
+  getProductsByParameter({required String parameter, required String quary}) async {
+
+    emit(ProductsLodaing());
+
+    List<ProductsModel> categoryProducts = [];
+
+    try {
+      final response = await dio.get('https://vercel-api-five-liard.vercel.app/product/$parameter/$quary');
+      if (response.statusCode == 200) {
+
+        List data = response.data;
+        categoryProducts = data.map((product) => ProductsModel.fromJson(product)).toList();
+
+        emit(ProductsByCategorySuccess(categoryProducts: categoryProducts));
+      }
+    } catch (e) {
+      emit(ProductsError(errorMessage: "Failed to fetch products}"));
+    }
+  }
+
+
 }

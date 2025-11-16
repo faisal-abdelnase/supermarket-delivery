@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:skeletonizer/skeletonizer.dart';
@@ -14,7 +15,6 @@ class AllProductGridView extends StatelessWidget {
     return SliverToBoxAdapter(
       child: BlocBuilder<ProductsCubit, ProductsState>(
         builder: (context, state) {
-          
           if(state is ProductsSuccess){
             return GridView.builder(
             padding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
@@ -34,6 +34,28 @@ class AllProductGridView extends StatelessWidget {
             },
           );
           }
+
+
+          if(state is ProductsByCategorySuccess){
+            return GridView.builder(
+            padding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+            itemCount: state.categoryProducts.length,
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              mainAxisSpacing: 16,
+              crossAxisSpacing: 8,
+              childAspectRatio: 0.7,
+            ),
+            physics: NeverScrollableScrollPhysics(),
+            shrinkWrap: true,
+            itemBuilder: (context, index) {
+                return state.categoryProducts[index].isOffers 
+                ? OffersItem(productsModel: state.categoryProducts[index]) 
+                : CustomProductItem(productModel: state.categoryProducts[index]);
+            },
+          );
+          }
+
 
 
           if(state is ProductsLodaing){

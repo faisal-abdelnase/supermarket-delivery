@@ -15,6 +15,12 @@ final class ProductsSuccess extends ProductsState {
 
   const ProductsSuccess({required this.offerProducts, required this.products});
 }
+
+final class ProductsByCategorySuccess extends ProductsState {
+  final List<ProductsModel> categoryProducts;
+
+  const ProductsByCategorySuccess({required this.categoryProducts});
+}
 final class ProductsError extends ProductsState {
   final String errorMessage;
 

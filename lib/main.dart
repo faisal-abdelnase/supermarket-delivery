@@ -17,6 +17,7 @@ import 'package:super_market/features/about/presentation/view/about_app.dart';
 import 'package:super_market/features/home/presentation/manager/cubit/products_cubit.dart';
 import 'package:super_market/features/home/presentation/view/home_view.dart';
 import 'package:super_market/features/home/presentation/view/product_details_view.dart';
+import 'package:super_market/features/home/presentation/view/products_to_category.dart';
 import 'package:super_market/features/home/presentation/view/search_by_filter.dart';
 import 'package:super_market/features/payment/presentation/view/checkout_view.dart';
 import 'package:super_market/features/payment/presentation/view/delivery_address_view.dart';
@@ -78,6 +79,7 @@ class SuperMarketDelivery extends StatelessWidget {
           MyOrderView.myOrderId :(context) => MyOrderView(),
           PaymentMethodView.paymentMethodId :(context) => PaymentMethodView(),
           PhoneAuth.phoneAuthId :(context) => PhoneAuth(),
+          ProductsToCategory.productsToCategoryId :(context) => ProductsToCategory(),
         },
       ),
     );

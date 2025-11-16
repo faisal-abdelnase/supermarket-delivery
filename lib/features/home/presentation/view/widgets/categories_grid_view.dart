@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:super_market/features/home/data/model/categories_model.dart';
+import 'package:super_market/features/home/presentation/manager/cubit/products_cubit.dart';
+import 'package:super_market/features/home/presentation/view/products_to_category.dart';
 
 class CategoriesGridView extends StatelessWidget {
   const CategoriesGridView({
@@ -22,27 +25,33 @@ class CategoriesGridView extends StatelessWidget {
         
         itemCount: 8,
         itemBuilder: (context, index){
-          return Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              CircleAvatar(
-                radius: 35,
-                backgroundColor: Colors.grey[300],
-                child: CircleAvatar(
-                  radius: 25,
-                  backgroundImage: AssetImage(categories[index].image,),
-                  
+          return GestureDetector(
+            onTap: () {
+              BlocProvider.of<ProductsCubit>(context).getProductsByParameter(parameter: 'categories', quary: categories[index].name);
+              Navigator.pushNamed(context, ProductsToCategory.productsToCategoryId, arguments: categories[index].name);
+            },
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                CircleAvatar(
+                  radius: 35,
+                  backgroundColor: Colors.grey[300],
+                  child: CircleAvatar(
+                    radius: 25,
+                    backgroundImage: AssetImage(categories[index].image,),
+                    
+                  ),
                 ),
-              ),
-              SizedBox(height: 8,),
-              Expanded(
-                child: Text(
-                  textAlign: TextAlign.center,
-                  softWrap: true,
-                  overflow: TextOverflow.visible,
-                  categories[index].name, 
-                  style: TextStyle(fontSize: 16, ),)),
-            ],
+                SizedBox(height: 8,),
+                Expanded(
+                  child: Text(
+                    textAlign: TextAlign.center,
+                    softWrap: true,
+                    overflow: TextOverflow.visible,
+                    categories[index].name, 
+                    style: TextStyle(fontSize: 16, ),)),
+              ],
+            ),
           );
         }),
     );
