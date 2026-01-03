@@ -27,26 +27,7 @@ class ForgotPasswordEvent extends AuthEvent {
 
 class GoogleSignInEvent extends AuthEvent {}
 
-class PhoneSignInEvent extends AuthEvent {
-  final String phoneNumber;
-  final BuildContext context;
-  final String userName;
-
-  PhoneSignInEvent({required this.userName, required this.phoneNumber, required this.context});
-}
-
-class AuthOtpSentEvent extends AuthEvent {
-  final String otpCode;
-
-  AuthOtpSentEvent({required this.otpCode});
-}
-
-
 class AuthAnonymousEvent extends AuthEvent {}
-
-
-
-
 
 
 class SignOutEvent extends AuthEvent {}

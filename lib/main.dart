@@ -6,6 +6,7 @@ import 'package:hive_flutter/adapters.dart';
 import 'package:provider/provider.dart';
 import 'package:super_market/constant.dart';
 import 'package:super_market/features/Auth/presentation/manager/bloc/auth_bloc.dart';
+import 'package:super_market/features/Auth/presentation/manager/cubit/phone_auth_cubit.dart';
 import 'package:super_market/features/Auth/presentation/view/forgot_password.dart';
 import 'package:super_market/features/Auth/presentation/view/otp_page.dart';
 import 'package:super_market/features/Auth/presentation/view/phone_auth.dart';
@@ -54,6 +55,7 @@ class SuperMarketDelivery extends StatelessWidget {
     return MultiProvider(
       providers: [
         BlocProvider(create: (context) => AuthBloc(),),
+        BlocProvider(create: (context) => PhoneAuthCubit(),),
         BlocProvider(create: (context) => ProfileInfoCubit(),),
         BlocProvider(create: (context) => ProductsCubit(),),
       ],

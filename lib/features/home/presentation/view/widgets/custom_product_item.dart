@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 import 'package:super_market/features/home/data/model/products_model.dart';
+import 'package:super_market/features/home/presentation/manager/cubit/products_cubit.dart';
 import 'package:super_market/features/home/presentation/view/product_details_view.dart';
 
 class CustomProductItem extends StatefulWidget {
@@ -83,6 +85,10 @@ class _CustomProductItemState extends State<CustomProductItem> {
                     setState(() {
                       isFavorite = !isFavorite;
                     });
+
+                    
+                      BlocProvider.of<ProductsCubit>(context).addFavoriteProduct(product: widget.productModel);
+                  
                   }, 
                   icon: Icon(
                     isFavorite ? Icons.favorite : Icons.favorite_border,

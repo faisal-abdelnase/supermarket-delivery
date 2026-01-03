@@ -23,6 +23,11 @@ class ProfileInfoCubit extends Cubit<ProfileInfoState> {
             var userInfo = usrBox.get(user.uid);
             emit(ProfileInfoSuccess(userInfoModel: userInfo!));
           }
+        }
+
+        else{
+          storeProfileInfoLocally();
+          
         } 
     } catch (e) {
       emit(ProfileInfoError(errorMessage: e.toString()));

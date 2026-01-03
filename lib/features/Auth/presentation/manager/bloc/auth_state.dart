@@ -19,10 +19,6 @@ final class AuthUnauthenticated extends AuthState {
   AuthUnauthenticated({required this.errorMessage});
 }
 
-final class AuthOtpSent extends AuthState {
-  final String message;
-  AuthOtpSent({required this.message});
-}
 
 final class  AuthResetPasswordSucess extends AuthState{
   final String message;

@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:super_market/core/utils/Functions/show_snack_bar_message.dart';
-import 'package:super_market/features/Auth/presentation/manager/bloc/auth_bloc.dart';
 import 'package:super_market/core/utils/widgets/custom_arrow_back_button.dart';
 import 'package:super_market/core/utils/widgets/custom_elvated_button.dart';
+import 'package:super_market/features/Auth/presentation/manager/cubit/phone_auth_cubit.dart';
 import 'package:super_market/features/home/presentation/view/home_view.dart';
 
 class OtpPage extends StatefulWidget {
@@ -22,23 +22,23 @@ class _OtpPageState extends State<OtpPage> {
   TextEditingController otpController = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    final authBloc = BlocProvider.of<AuthBloc>(context);
+    final authBloc = BlocProvider.of<PhoneAuthCubit>(context);
 
     return Scaffold(
-      body: BlocConsumer<AuthBloc, AuthState>(
+      body: BlocConsumer<PhoneAuthCubit, PhoneAuthState>(
         listener: (context, state) {
-          if (state is AuthAuthenticated) {
+          if (state is PhoneAuthVerified) {
             Navigator.of(context).pushNamedAndRemoveUntil(
               HomeView.homeId,
               (route) => false,
             );
-            showSnackBarMessage(context, state.message, Colors.green);
-          } else if (state is AuthUnauthenticated) {
+            showSnackBarMessage(context, "Login Successe", Colors.green);
+          } else if (state is PhoneAuthError) {
             showSnackBarMessage(context, state.errorMessage, Colors.red);
           }
         },
         builder: (context, state) {
-          if(state is AuthOtpLoading){
+          if(state is PhoneAuthLoading){
             return Center(child: CircularProgressIndicator(),);
           }
           return SafeArea(
@@ -80,10 +80,8 @@ class _OtpPageState extends State<OtpPage> {
                   SizedBox(height: 50),
                   CustomElvatedButton(
                     onPressed: () {
-                      // Navigator.of(context).pushNamed(ResetPassowrd.resetPasswordId);
+                      authBloc.verifyOtp(otpController.text.trim());
                       log("OTP Code: ${otpController.text}");
-                      authBloc.add(AuthOtpSentEvent(otpCode: otpController.text),);
-                      
                     },
                     text: "verify",
                   ),
