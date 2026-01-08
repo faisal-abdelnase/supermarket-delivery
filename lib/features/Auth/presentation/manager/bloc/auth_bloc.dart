@@ -1,5 +1,7 @@
 
 
+import 'dart:developer';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/widgets.dart';
@@ -27,15 +29,23 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
         final user = userCredential.user;
 
-        if(user != null){
-            final photoUrl = await uploadDefaultProfileImage(user.uid);
+        if(user == null){
+            throw Exception("User is null");
+        }
+
+        emit(AuthAuthenticated(message: "User authenticated successfully"));
+
+
+        try{
+          
+          final photoUrl = await uploadDefaultProfileImage(user.uid);
             await user.updatePhotoURL(photoUrl);
             await user.updateDisplayName(event.userName);
 
             await user.reload();
+        } catch(e){
+          log("PROFILE SETUP ERROR: $e");
         }
-
-        emit(AuthAuthenticated(message: "User authenticated successfully"));
 
       } on FirebaseAuthException catch (error) {
         if (error.code == 'weak-password') {
@@ -106,16 +116,24 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         final user = userCredential.user;
         
 
-        if(user != null){
-            // final photoUrl = await uploadDefaultProfileImage(user.uid);
+        if(user == null){
+            throw Exception("User is null");
+        }
+
+        emit(AuthAuthenticated(message: "User signed in with Google successfully"));
+
+        try{
+          // final photoUrl = await uploadDefaultProfileImage(user.uid);
             await user.updatePhotoURL(googleUser.photoUrl);
             await user.updateDisplayName(googleUser.displayName ?? "Google User");
 
             await user.reload();
+        } catch(e){
+          log("PROFILE SETUP ERROR: $e");
         }
 
 
-        emit(AuthAuthenticated(message: "User signed in with Google successfully"));
+        
 
       } on FirebaseAuthException catch (error) {
         emit(AuthUnauthenticated(errorMessage: error.message ?? 'An unknown error occurred during Google sign-in.'));
@@ -128,30 +146,36 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
 
     // Anonymous Sign In Event
-    
-    on<AuthAnonymousEvent>((event, emit) async {
 
+    on<AuthAnonymousEvent>((event, emit) async {
       emit(AuthLoading());
 
-      try{
-          final userCredential = await FirebaseAuth.instance.signInAnonymously();
+      try {
+        final userCredential =
+            await FirebaseAuth.instance.signInAnonymously();
 
-          final user = userCredential.user;
-
-          if(user != null){
-              final photoUrl = await uploadDefaultProfileImage(user.uid);
-              await user.updatePhotoURL(photoUrl);
-              await user.updateDisplayName("Anonymous User");
-
-              await user.reload();
-          }
+        final user = userCredential.user;
+        if (user == null) {
+          throw Exception("User is null");
+        }
 
         emit(AuthAuthenticated(message: "User signed in anonymously"));
-      }catch(e){
-        emit(AuthUnauthenticated(errorMessage: "Error signing in anonymously"));
-      }
+        
+        try {
+          final photoUrl = await uploadDefaultProfileImage(user.uid);
+          await user.updatePhotoURL(photoUrl);
+          await user.updateDisplayName("Anonymous User");
+          await user.reload();
+        } catch (e) {
+          log("PROFILE SETUP ERROR: $e");
+        }
 
-    });
+      } catch (e) {
+        emit(AuthUnauthenticated(errorMessage: e.toString()));
+      }
+});
+
+    
 
 
 

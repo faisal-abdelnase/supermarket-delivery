@@ -14,12 +14,15 @@ class ProductsCubit extends Cubit<ProductsState> {
 
   final Dio dio = Dio();
 
+  List<ProductsModel> allProducts = [];
+  List<ProductsModel> offerProducts = [];
+  List<String> favoriteIds = [];
+
   getAllProducts() async {
 
     emit(ProductsLodaing());
 
-    List<ProductsModel> allProducts = [];
-    List<ProductsModel> offerProducts = [];
+    
 
     try {
       final response = await dio.get('https://vercel-api-five-liard.vercel.app/product');
@@ -64,15 +67,20 @@ class ProductsCubit extends Cubit<ProductsState> {
   }
 
 
-  addFavoriteProduct({required ProductsModel product}) {
+  Future<void> addFavoriteProduct({required String productId}) async {
 
     final uid = FirebaseAuth.instance.currentUser!.uid;
 
     try {
-      FirebaseFirestore.instance.collection("users")
+      await FirebaseFirestore.instance.collection("users")
       .doc(uid).update({
-        "favorites_product": FieldValue.arrayUnion([product.id]),
+        "favorites_product": FieldValue.arrayUnion([productId]),
       });
+
+      favoriteIds.add(productId);
+
+      emit(ProductsSuccess(products: allProducts, offerProducts: offerProducts));
+      
 
       log("Added to favorite");
     } catch(e){
@@ -81,6 +89,63 @@ class ProductsCubit extends Cubit<ProductsState> {
 
     
   }
+
+
+  Future<void> removeFavorite(String productId) async {
+  final uid = FirebaseAuth.instance.currentUser!.uid;
+
+  try{
+    await FirebaseFirestore.instance
+      .collection("users")
+      .doc(uid)
+      .update({
+    "favorites_product": FieldValue.arrayRemove([productId])
+  });
+
+  favoriteIds.remove(productId);
+  emit(ProductsSuccess(products: allProducts, offerProducts: offerProducts));
+  log("Removed to favorite");
+  } 
+  catch(e){
+    log("Failed to remove to favorite: $e");
+  }
+  
+  
+}
+
+Future<List<ProductsModel>> getFavoriteProducts() async {
+
+  try{
+    log("Start");
+
+  final uid = FirebaseAuth.instance.currentUser!.uid;
+
+  final doc = await FirebaseFirestore.instance
+      .collection("users")
+      .doc(uid)
+      .get();
+
+    
+
+  if (!doc.exists || !doc.data()!.containsKey("favorites_product")) {
+    
+    return [];
+  }
+
+  favoriteIds =
+      List<String>.from(doc.data()!["favorites_product"]);
+    
+    log(favoriteIds[0]);
+
+  return allProducts
+      .where((product) => favoriteIds.contains(product.id))
+      .toList();
+  } 
+  catch(e){
+    throw Exception("Faild to get Favorites");
+  }
+}
+
 
 
 }

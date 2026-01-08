@@ -79,17 +79,17 @@ class AllProductGridView extends StatelessWidget {
             );
           }
 
-          else if(state is ProductsError){
+          if(state is ProductsError){
             return Center(
               child: Text(state.errorMessage),
             );
           }
 
-          else {
+          
             return Center(
               child: Icon(Icons.warning, color: Colors.red, size: 50,),
             );
-          }
+          
         },
         
       ),

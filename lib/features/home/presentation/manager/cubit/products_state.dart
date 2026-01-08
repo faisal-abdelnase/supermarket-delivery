@@ -14,6 +14,9 @@ final class ProductsSuccess extends ProductsState {
   final List<ProductsModel> offerProducts;
 
   const ProductsSuccess({required this.offerProducts, required this.products});
+
+  @override
+  List<Object> get props => [products, offerProducts, DateTime.now()];
 }
 
 final class ProductsByCategorySuccess extends ProductsState {
@@ -26,3 +29,8 @@ final class ProductsError extends ProductsState {
 
   const ProductsError({required this.errorMessage});
 }
+
+
+
+
+

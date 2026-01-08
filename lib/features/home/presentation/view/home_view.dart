@@ -1,5 +1,6 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:super_market/features/favorites/presentation/view/favorite_view.dart';
 import 'package:super_market/features/home/presentation/view/home_details_view.dart';
 import 'package:super_market/features/payment/presentation/view/my_cart.dart';
 import 'package:super_market/features/profile/presentation/view/my_profile_view.dart';
@@ -19,7 +20,7 @@ class _HomeViewState extends State<HomeView> {
   int currentIndex = 0;
   List<Widget> pages =  [
     const HomeDetailsView(),
-    const Center(child: Text("Favorite")),
+    const FavoriteView(),
     const MyCart(),
     const MyProfileView(),
   ];
