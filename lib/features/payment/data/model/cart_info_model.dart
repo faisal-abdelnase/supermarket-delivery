@@ -16,6 +16,20 @@ class CartInfoModel{
     required this.productQuantity});
 
 
+  CartInfoModel copyWith({
+  int? productQuantity,
+}) {
+  return CartInfoModel(
+    id: id,
+    image: image,
+    poductName: poductName,
+    description: description,
+    productPrice: productPrice,
+    productQuantity: productQuantity ?? this.productQuantity,
+  );
+}
+
+
   static List<CartInfoModel> cartInfoList = [
     CartInfoModel(
       id: "1",

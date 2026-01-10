@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:super_market/core/manager/cubit/my_cart_cubit.dart';
 import 'package:super_market/core/utils/widgets/custom_icon_button.dart';
+import 'package:super_market/features/home/data/model/products_model.dart';
+
 
 class BottomButtonsToProductDetails extends StatefulWidget {
   const BottomButtonsToProductDetails({
@@ -13,8 +17,11 @@ class BottomButtonsToProductDetails extends StatefulWidget {
 class _BottomButtonsToProductDetailsState extends State<BottomButtonsToProductDetails> {
 
   int quantity = 1;
+  
   @override
   Widget build(BuildContext context) {
+    final product = ModalRoute.of(context)!.settings.arguments as ProductsModel;
+    final cubit = context.read<MyCartCubit>();
     return Container(
       height: 70,
       
@@ -68,7 +75,10 @@ class _BottomButtonsToProductDetailsState extends State<BottomButtonsToProductDe
               foregroundColor: Colors.white,
               fixedSize: Size(150, 50),
             ),
-            onPressed: (){}, 
+            onPressed: (){
+              cubit.addProductToCart(product, quantity);
+              cubit.getProductFromCart();
+            }, 
             child: Text("Add To Cart")),
         ],
       ),

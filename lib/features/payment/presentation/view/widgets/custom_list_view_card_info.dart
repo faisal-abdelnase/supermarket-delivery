@@ -1,61 +1,47 @@
 import 'package:flutter/material.dart';
-import 'package:super_market/features/payment/data/model/cart_info_model.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:super_market/core/manager/cubit/my_cart_cubit.dart';
 import 'package:super_market/features/payment/presentation/view/widgets/cart_item.dart';
 
-class CustomListViewCardInfo extends StatefulWidget {
-  const CustomListViewCardInfo({
-    super.key,
-  });
+class CustomListViewCardInfo extends StatelessWidget {
+  const CustomListViewCardInfo({super.key});
 
-  @override
-  State<CustomListViewCardInfo> createState() => _CustomListViewCardInfoState();
-}
-
-class _CustomListViewCardInfoState extends State<CustomListViewCardInfo> {
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-        physics: NeverScrollableScrollPhysics(),
-        padding: EdgeInsets.symmetric(vertical: 16),
-        shrinkWrap: true,
-        itemCount: CartInfoModel.cartInfoList.length,
-        itemBuilder: (context, index) {
-          final item = CartInfoModel.cartInfoList[index];
-          return Padding(
-            padding: const EdgeInsets.symmetric(vertical: 8),
-            child: Dismissible(
-              key: Key(item.id), // make sure 'id' is unique
-              direction: DismissDirection.horizontal, // swipe to the right
-              onDismissed: (direction) {
-                setState(() {
-                  CartInfoModel.cartInfoList.removeAt(index);
-                });
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content: Text('${item.poductName} deleted')),
-                );
-              },
-              background: Container(
-                alignment: Alignment.centerRight,
-                padding: EdgeInsets.symmetric(horizontal: 20),
-                
-                decoration: BoxDecoration(
-                  color: Colors.red,
-                  borderRadius: BorderRadius.circular(8),
+    final cubit = context.read<MyCartCubit>();
+        return ListView.builder(
+          physics: const NeverScrollableScrollPhysics(),
+          padding: const EdgeInsets.symmetric(vertical: 16),
+          shrinkWrap: true,
+          itemCount: cubit.productsCart.length,
+          itemBuilder: (context, index) {
+            
+            final item = cubit.productsCart[index];
+
+            return Padding(
+              padding: const EdgeInsets.symmetric(vertical: 8),
+              child: Dismissible(
+                key: ValueKey(item.id),
+                direction: DismissDirection.horizontal,
+                onDismissed: (_) {
+                  context
+                      .read<MyCartCubit>()
+                      .removeFromCart(item.id);
+                },
+                background: Container(
+                  alignment: Alignment.centerRight,
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  decoration: BoxDecoration(
+                    color: Colors.red,
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: const Icon(Icons.delete, color: Colors.white),
                 ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Icon(Icons.delete, color: Colors.white),
-                    Icon(Icons.delete, color: Colors.white),
-                  ],
-                )
+                child: CartItem(cartInfoModel: item),
               ),
-              child: CartItem(cartInfoModel: item),
-            ),
-          );
-        },
-      );
+            );
+          },
+        );
+     
   }
 }
-
-

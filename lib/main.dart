@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:provider/provider.dart';
 import 'package:super_market/constant.dart';
+import 'package:super_market/core/manager/cubit/my_cart_cubit.dart';
 import 'package:super_market/features/Auth/presentation/manager/bloc/auth_bloc.dart';
 import 'package:super_market/features/Auth/presentation/manager/cubit/phone_auth_cubit.dart';
 import 'package:super_market/features/Auth/presentation/view/forgot_password.dart';
@@ -58,6 +59,7 @@ class SuperMarketDelivery extends StatelessWidget {
         BlocProvider(create: (context) => PhoneAuthCubit(),),
         BlocProvider(create: (context) => ProfileInfoCubit(),),
         BlocProvider(create: (context) => ProductsCubit(),),
+        BlocProvider(create: (context) => MyCartCubit(),),
       ],
       child: MaterialApp(
         title: "Super Market Delivery",
