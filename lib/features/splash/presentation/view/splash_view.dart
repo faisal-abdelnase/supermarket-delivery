@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:super_market/constant.dart';
+import 'package:super_market/core/constant.dart';
 import 'package:super_market/core/utils/shared_preference_function.dart';
 import 'package:super_market/features/Auth/presentation/view/type_of_registeration.dart';
 import 'package:super_market/features/about/presentation/view/about_app.dart';

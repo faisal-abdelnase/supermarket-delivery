@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:provider/provider.dart';
-import 'package:super_market/constant.dart';
+import 'package:super_market/core/constant.dart';
 import 'package:super_market/core/manager/cubit/my_cart_cubit.dart';
 import 'package:super_market/features/Auth/presentation/manager/bloc/auth_bloc.dart';
 import 'package:super_market/features/Auth/presentation/manager/cubit/phone_auth_cubit.dart';
@@ -21,6 +21,7 @@ import 'package:super_market/features/home/presentation/view/home_view.dart';
 import 'package:super_market/features/home/presentation/view/product_details_view.dart';
 import 'package:super_market/features/home/presentation/view/products_to_category.dart';
 import 'package:super_market/features/home/presentation/view/search_by_filter.dart';
+import 'package:super_market/features/payment/presentation/manager/cubit/payment_cubit.dart';
 import 'package:super_market/features/payment/presentation/view/checkout_view.dart';
 import 'package:super_market/features/payment/presentation/view/delivery_address_view.dart';
 import 'package:super_market/features/payment/presentation/view/my_cart.dart';
@@ -60,6 +61,7 @@ class SuperMarketDelivery extends StatelessWidget {
         BlocProvider(create: (context) => ProfileInfoCubit(),),
         BlocProvider(create: (context) => ProductsCubit(),),
         BlocProvider(create: (context) => MyCartCubit(),),
+        BlocProvider(create: (context) => PaymentCubit(),),
       ],
       child: MaterialApp(
         title: "Super Market Delivery",

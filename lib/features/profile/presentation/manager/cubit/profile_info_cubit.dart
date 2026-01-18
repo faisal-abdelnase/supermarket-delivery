@@ -2,7 +2,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:hive_flutter/adapters.dart';
 
-import 'package:super_market/constant.dart';
+import 'package:super_market/core/constant.dart';
 import 'package:super_market/core/utils/Functions/upload_image.dart';
 import 'package:super_market/features/profile/data/model/user_info.dart';
 

@@ -2,12 +2,13 @@ import 'package:flutter/material.dart';
 
 class CustomElvatedButton extends StatelessWidget {
   const CustomElvatedButton({
-    super.key, required this.text, required this.onPressed,
+    super.key, required this.text, required this.onPressed, this.isloading = false,
   });
 
   
   final String text;
   final void Function() onPressed;
+  final bool isloading;
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +21,7 @@ class CustomElvatedButton extends StatelessWidget {
         foregroundColor: Colors.white
       ),
       onPressed: onPressed, 
-      child: Text(text, 
+      child: isloading ? CircularProgressIndicator(color: Colors.white,) : Text(text, 
       style: TextStyle(
         fontWeight: FontWeight.bold,
         fontSize: 16
