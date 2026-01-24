@@ -1,9 +1,13 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:super_market/core/manager/cubit/my_cart_cubit.dart';
+import 'package:super_market/core/utils/Functions/payment_method_dialog.dart';
 import 'package:super_market/core/utils/Functions/show_snack_bar_message.dart';
 import 'package:super_market/core/utils/widgets/custom_arrow_back_button.dart';
 import 'package:super_market/core/utils/widgets/custom_elvated_button.dart';
+import 'package:super_market/features/payment/data/model/payment_method_model.dart';
 import 'package:super_market/features/payment/presentation/manager/cubit/payment_cubit.dart';
 import 'package:super_market/features/payment/presentation/view/delivery_address_view.dart';
 import 'package:super_market/core/utils/widgets/card_info.dart';
@@ -104,7 +108,15 @@ class CheckoutView extends StatelessWidget {
                     BlocConsumer<PaymentCubit, PaymentState>(
                       listener: (context, state) {
                         if(state is PaymentError){
-                          showSnackBarMessage(context, "invilde Pay", Colors.red);
+                          showSnackBarMessage(context, "Payment Failed", Colors.red);
+                        } else if(state is PaymentSuccese){
+                          showSnackBarMessage(context, "Payment Successful", Colors.green);
+                          // Add delay before navigation to show success message
+                          Future.delayed(Duration(seconds: 2), () {
+                            Navigator.pop(context);
+                          });
+                        } else if(state is PaymentCancel){
+                          showSnackBarMessage(context, "Payment Cancelled", Colors.orange);
                         }
                       },
                       builder: (context, state) {
@@ -113,8 +125,19 @@ class CheckoutView extends StatelessWidget {
                         return CustomElvatedButton(
                           isloading: state is PaymentLoading ? true : false,
                           text: "Place Order",
-                          onPressed: () {
-                            cubit.pay();
+                          onPressed: () async {
+
+                            final confirm = await confirmOrderDialog(context);
+                            if(confirm == true){
+                              if(PaymentMethod.card == cubit.paymentMethod){
+                                cubit.processPayment(amount: 20, currency: "EGP");
+                              }
+
+                              else{
+                                log("Cach");
+                              }
+                              }
+                            
                           },
                         );
                       },

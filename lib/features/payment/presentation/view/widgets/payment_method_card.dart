@@ -1,5 +1,9 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:super_market/features/payment/data/model/payment_method_model.dart';
+import 'package:super_market/features/payment/presentation/manager/cubit/payment_cubit.dart';
 
 class PaymentMethodCard extends StatefulWidget {
   const PaymentMethodCard({
@@ -20,6 +24,7 @@ class _PaymentMethodCardState extends State<PaymentMethodCard> {
     physics: NeverScrollableScrollPhysics(),
     itemCount: paymentMethodList.length,
     itemBuilder: (context, index) {
+      final cubit = context.read<PaymentCubit>();
       return Container(
         margin: EdgeInsets.symmetric(vertical: 8),
         padding: EdgeInsets.all(8),
@@ -41,6 +46,9 @@ class _PaymentMethodCardState extends State<PaymentMethodCard> {
               onChanged: (value) {
                 setState(() {
                   selectindex = value!;
+                  cubit.paymentMethod = paymentMethodList[index].paymentMethodeType;
+
+                  log(cubit.paymentMethod.toString());
                 });
               },
             ),
