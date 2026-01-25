@@ -108,10 +108,10 @@ class CheckoutView extends StatelessWidget {
                     BlocConsumer<PaymentCubit, PaymentState>(
                       listener: (context, state) {
                         if(state is PaymentError){
-                          showSnackBarMessage(context, "Payment Failed", Colors.red);
+                          showSnackBarMessage(context, state.errorMessage, Colors.red);
                         } else if(state is PaymentSuccese){
                           showSnackBarMessage(context, "Payment Successful", Colors.green);
-                          // Add delay before navigation to show success message
+                          
                           Future.delayed(Duration(seconds: 2), () {
                             Navigator.pop(context);
                           });
@@ -121,6 +121,7 @@ class CheckoutView extends StatelessWidget {
                       },
                       builder: (context, state) {
                         final cubit = context.read<PaymentCubit>();
+                        final cartCubit = context.read<MyCartCubit>();
                         
                         return CustomElvatedButton(
                           isloading: state is PaymentLoading ? true : false,
@@ -130,7 +131,11 @@ class CheckoutView extends StatelessWidget {
                             final confirm = await confirmOrderDialog(context);
                             if(confirm == true){
                               if(PaymentMethod.card == cubit.paymentMethod){
-                                cubit.processPayment(amount: 20, currency: "EGP");
+                                cubit.processPayment(
+                                  amount: cartCubit.resetCart.totalPayable, 
+                                  currency: "EGP",
+                                  items: cartCubit.productsCart
+                                  );
                               }
 
                               else{

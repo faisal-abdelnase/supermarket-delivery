@@ -10,6 +10,10 @@ sealed class PaymentState extends Equatable {
 final class PaymentInitial extends PaymentState {}
 final class PaymentLoading extends PaymentState {}
 final class PaymentSuccese extends PaymentState {}
-final class PaymentError extends PaymentState {}
+final class PaymentError extends PaymentState {
+  final String errorMessage;
+
+  const PaymentError({required this.errorMessage});
+}
 final class PaymentCancel extends PaymentState {}
 final class PaymentPending extends PaymentState {}

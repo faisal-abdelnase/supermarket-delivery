@@ -29,40 +29,62 @@ class CartInfoModel{
   );
 }
 
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'image': image,
+      'poductName': poductName,
+      'description': description,
+      'productPrice': productPrice,
+      'productQuantity': productQuantity,
+    };
+  }
 
-  static List<CartInfoModel> cartInfoList = [
-    CartInfoModel(
-      id: "1",
-      image: "assets/images/millk.jpg",
-      poductName: "Milk",
-      description: "1.5 L",
-      productPrice: "\$110",
-      productQuantity: 1,
-    ),
-    CartInfoModel(
-      id: "2",
-      image: "assets/images/millk.jpg",
-      poductName: "Milk",
-      description: "1.5 L",
-      productPrice: "\$110",
-      productQuantity: 2,
-    ),
-    CartInfoModel(
-      id: "3",
-      image: "assets/images/millk.jpg",
-      poductName: "Milk",
-      description: "1.5 L",
-      productPrice: "\$110",
-      productQuantity: 3,
-    ),
+  factory CartInfoModel.fromJson(Map<String, dynamic> json) {
+    return CartInfoModel(
+      id: json['id'] ?? '',
+      image: json['image'] ?? '',
+      poductName: json['poductName'] ?? '',
+      description: json['description'] ?? '',
+      productPrice: json['productPrice'] ?? '',
+      productQuantity: json['productQuantity'] ?? 0,
+    );
+  }
 
-    CartInfoModel(
-      id: "4",
-      image: "assets/images/millk.jpg",
-      poductName: "Milk",
-      description: "1.5 L",
-      productPrice: "\$110",
-      productQuantity: 2,
-    ),
-  ];
+
+  // static List<CartInfoModel> cartInfoList = [
+  //   CartInfoModel(
+  //     id: "1",
+  //     image: "assets/images/millk.jpg",
+  //     poductName: "Milk",
+  //     description: "1.5 L",
+  //     productPrice: "\$110",
+  //     productQuantity: 1,
+  //   ),
+  //   CartInfoModel(
+  //     id: "2",
+  //     image: "assets/images/millk.jpg",
+  //     poductName: "Milk",
+  //     description: "1.5 L",
+  //     productPrice: "\$110",
+  //     productQuantity: 2,
+  //   ),
+  //   CartInfoModel(
+  //     id: "3",
+  //     image: "assets/images/millk.jpg",
+  //     poductName: "Milk",
+  //     description: "1.5 L",
+  //     productPrice: "\$110",
+  //     productQuantity: 3,
+  //   ),
+
+  //   CartInfoModel(
+  //     id: "4",
+  //     image: "assets/images/millk.jpg",
+  //     poductName: "Milk",
+  //     description: "1.5 L",
+  //     productPrice: "\$110",
+  //     productQuantity: 2,
+  //   ),
+  // ];
 }

@@ -123,14 +123,15 @@ class PaymobManager {
 
 
   // Check transaction status
-  Future<PaymentResult> checkPaymentStatus(int orderId) async {
+Future<PaymentResult> checkPaymentStatus(int orderId) async {
   try {
+    // Get a FRESH token for each check
     String authenticationToken = await _getAuthanticationToken();
     
     final Response response = await Dio().get(
       'https://accept.paymob.com/api/ecommerce/orders/$orderId',
       queryParameters: {
-        "auth_token": authenticationToken,
+        "token": authenticationToken, // Changed from "auth_token"
       }
     );
 
@@ -142,13 +143,12 @@ class PaymobManager {
     log('Is Canceled: ${data['is_canceled']}');
     log('Paid Amount: ${data['paid_amount_cents']}');
     
-    // Get payment status from the response
     String? paymentStatus = data['payment_status']?.toString().toUpperCase();
     bool isCanceled = data['is_canceled'] == true || data['is_cancel'] == true;
     int paidAmount = data['paid_amount_cents'] ?? 0;
     
-    // Check payment status
     if (paymentStatus == 'PAID' && paidAmount > 0) {
+    
       return PaymentResult(
         status: PaymentStatus.success,
         transactionId: data['id'].toString(),
@@ -175,7 +175,6 @@ class PaymobManager {
         message: 'Payment was refunded',
       );
     } else {
-      // Unknown status - keep polling
       return PaymentResult(
         status: PaymentStatus.pending,
         message: 'Payment status: ${paymentStatus ?? "unknown"}',
@@ -183,7 +182,6 @@ class PaymobManager {
     }
   } catch (e) {
     log('Error checking payment status: $e');
-    // Don't immediately fail - could be a temporary network issue
     return PaymentResult(
       status: PaymentStatus.pending,
       message: 'Retrying payment status check...',
@@ -193,22 +191,21 @@ class PaymobManager {
 
 
 
-
-  // Poll payment status
-Future<void> _pollPaymentStatus(
+  // Alternative: Pay with order tracking
+  Future<void> _pollPaymentStatus(
   int orderId,
   Function(PaymentResult) onPaymentResult,
-  {int maxAttempts = 4, Duration interval = const Duration(seconds: 3)}
+  {int maxAttempts = 6, Duration initialInterval = const Duration(seconds: 2)}
 ) async {
   int attempts = 0;
   
   while (attempts < maxAttempts) {
-    await Future.delayed(interval);
+    // Exponential backoff: 2s, 4s, 8s, 16s...
+    await Future.delayed(initialInterval * (1 << attempts));
     
     try {
       PaymentResult result = await checkPaymentStatus(orderId);
       
-      // If we get a definitive result (success, failed, or canceled), return it
       if (result.status == PaymentStatus.success || 
           result.status == PaymentStatus.failed ||
           result.status == PaymentStatus.canceled) {
@@ -216,34 +213,31 @@ Future<void> _pollPaymentStatus(
         return;
       }
       
-      // If pending, continue polling
       attempts++;
     } catch (e) {
-      // Continue polling even if one check fails
+      log('Polling attempt ${attempts + 1} failed: $e');
       attempts++;
+      
       if (attempts >= maxAttempts) {
         onPaymentResult(PaymentResult(
           status: PaymentStatus.failed,
-          message: 'Payment status check failed after multiple attempts: $e',
+          message: 'Payment verification failed after $maxAttempts attempts',
         ));
         return;
       }
     }
   }
   
-  // Timeout - payment is still pending after max attempts
-  // Don't fail, just report pending as the order might complete later
   onPaymentResult(PaymentResult(
     status: PaymentStatus.pending,
-    message: 'Payment status check timed out - order may complete later',
+    message: 'Payment still processing - please check order history',
   ));
 }
 
 
-
 // Alternative: Pay with order tracking
   Future<void> payWithTracking({
-    required int amount,
+    required double amount,
     required String currency,
     required Function(PaymentResult) onPaymentResult,
   }) async {
