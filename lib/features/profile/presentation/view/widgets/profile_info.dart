@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:super_market/core/utils/widgets/card_info.dart';
+import 'package:super_market/features/profile/presentation/manager/orders_cubit/orders_cubit.dart';
 import 'package:super_market/features/profile/presentation/view/my_order_view.dart';
 
 class ProfileInfo extends StatelessWidget {
@@ -24,8 +26,9 @@ class ProfileInfo extends StatelessWidget {
           prefixIcon: Icons.list_alt_rounded, 
           suffixIcon: Icons.arrow_forward_ios, 
           text: "My Order", 
-          onPressed: (){
+          onPressed: () async{
             Navigator.pushNamed(context, MyOrderView.myOrderId);
+            await context.read<OrdersCubit>().getOrders();
           }
           ),
         

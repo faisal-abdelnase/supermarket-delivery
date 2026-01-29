@@ -28,6 +28,7 @@ import 'package:super_market/features/payment/presentation/view/my_cart.dart';
 import 'package:super_market/features/payment/presentation/view/payment_method_view.dart';
 import 'package:super_market/features/profile/data/model/user_info.dart';
 import 'package:super_market/features/profile/presentation/manager/cubit/profile_info_cubit.dart';
+import 'package:super_market/features/profile/presentation/manager/orders_cubit/orders_cubit.dart';
 import 'package:super_market/features/profile/presentation/view/my_order_view.dart';
 import 'package:super_market/features/profile/presentation/view/my_profile_view.dart';
 import 'package:super_market/features/splash/presentation/view/splash_view.dart';
@@ -62,6 +63,7 @@ class SuperMarketDelivery extends StatelessWidget {
         BlocProvider(create: (context) => ProductsCubit(),),
         BlocProvider(create: (context) => MyCartCubit(),),
         BlocProvider(create: (context) => PaymentCubit(),),
+        BlocProvider(create: (context) => OrdersCubit(),),
       ],
       child: MaterialApp(
         title: "Super Market Delivery",
@@ -86,6 +88,7 @@ class SuperMarketDelivery extends StatelessWidget {
           PaymentMethodView.paymentMethodId :(context) => PaymentMethodView(),
           PhoneAuth.phoneAuthId :(context) => PhoneAuth(),
           ProductsToCategory.productsToCategoryId :(context) => ProductsToCategory(),
+          
         },
       ),
     );
