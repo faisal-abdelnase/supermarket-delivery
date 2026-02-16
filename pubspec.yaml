@@ -49,10 +49,11 @@ dependencies:
   geocoding: ^4.0.0
   geolocator: ^14.0.2
   google_maps_flutter: ^2.14.0
-  location: ^8.0.1
   google_sign_in: ^6.3.0
   hive_flutter: ^1.1.0
+  http: ^1.6.0
   image_picker: ^1.2.0
+  location: ^8.0.1
   path_provider: ^2.1.5
   percent_indicator: ^4.2.5
   permission_handler: ^12.0.1
@@ -61,6 +62,7 @@ dependencies:
   shared_preferences: ^2.5.3
   skeletonizer: ^2.1.0+1
   url_launcher: ^6.3.2
+  uuid: ^4.5.2
 
 dev_dependencies:
   build_runner: ^2.4.13
@@ -105,7 +107,6 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package
-
 # Force updated Android plugin to fix Kotlin compile errors in Pub Cache
 dependency_overrides:
   flutter_google_places_sdk_android: 0.3.0

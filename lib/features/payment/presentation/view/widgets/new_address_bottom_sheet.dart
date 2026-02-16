@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:super_market/core/utils/widgets/custom_elvated_button.dart';
+import 'package:super_market/features/google_mpas/presentation/view/map_screen.dart';
 import 'package:super_market/features/payment/data/model/save_address_model.dart';
 import 'package:super_market/features/payment/presentation/view/widgets/location_text_field.dart';
 
@@ -23,11 +24,20 @@ class NewAddressBottomSheet extends StatelessWidget {
     
               Text("Add New Address", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
               LocationTextField(
+                readOnly: false,
                 controller: titleController,
                 hintText: "Title", 
-                icon: Icons.title),
+                icon: Icons.title,
+                ),
         
                 LocationTextField(
+                  onTap: () async{
+                    final result = await Navigator.pushNamed(context, MapScreen.mapScreenID);
+                    if(result != null){
+                      addressController.text = result as String;
+                    }
+                  },
+                  readOnly: true,
                   controller: addressController,
                   hintText: "Search For Location", 
                   icon: Icons.search),

@@ -16,6 +16,8 @@ import 'package:super_market/features/Auth/presentation/view/sign_in.dart';
 import 'package:super_market/features/Auth/presentation/view/sign_up.dart';
 import 'package:super_market/features/Auth/presentation/view/type_of_registeration.dart';
 import 'package:super_market/features/about/presentation/view/about_app.dart';
+import 'package:super_market/features/google_mpas/presentation/manager/cubit/google_maps_cubit.dart';
+import 'package:super_market/features/google_mpas/presentation/view/map_screen.dart';
 import 'package:super_market/features/home/presentation/manager/cubit/products_cubit.dart';
 import 'package:super_market/features/home/presentation/view/home_view.dart';
 import 'package:super_market/features/home/presentation/view/product_details_view.dart';
@@ -64,6 +66,7 @@ class SuperMarketDelivery extends StatelessWidget {
         BlocProvider(create: (context) => MyCartCubit(),),
         BlocProvider(create: (context) => PaymentCubit(),),
         BlocProvider(create: (context) => OrdersCubit(),),
+        BlocProvider(create: (context) => GoogleMapsCubit(),),
       ],
       child: MaterialApp(
         title: "Super Market Delivery",
@@ -88,6 +91,7 @@ class SuperMarketDelivery extends StatelessWidget {
           PaymentMethodView.paymentMethodId :(context) => PaymentMethodView(),
           PhoneAuth.phoneAuthId :(context) => PhoneAuth(),
           ProductsToCategory.productsToCategoryId :(context) => ProductsToCategory(),
+          MapScreen.mapScreenID :(context) => MapScreen(),
           
         },
       ),

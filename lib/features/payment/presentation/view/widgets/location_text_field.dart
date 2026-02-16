@@ -1,15 +1,19 @@
 import 'package:flutter/material.dart';
 
 class LocationTextField extends StatelessWidget {
-  const LocationTextField({super.key, required this.hintText, required this.icon, required this.controller});
+  const LocationTextField({super.key, required this.hintText, required this.icon, required this.controller, required this.readOnly, this.onTap});
 
   final String hintText;
   final IconData icon;
   final TextEditingController controller;
+  final bool readOnly;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
     return TextField(
+      onTap: onTap,
+      readOnly: readOnly,
       controller: controller,
       decoration: InputDecoration(
         hintText: hintText,

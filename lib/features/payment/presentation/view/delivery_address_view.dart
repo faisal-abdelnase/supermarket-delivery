@@ -46,6 +46,7 @@ class _DeliveryAddressViewState extends State<DeliveryAddressView> {
                 ),
 
                 LocationTextField(
+                  readOnly: false,
                   controller: locationController,
                   hintText: "Search For Location",
                   icon: Icons.search,
