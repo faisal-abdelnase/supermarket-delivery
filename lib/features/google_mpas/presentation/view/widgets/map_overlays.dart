@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:super_market/features/google_mpas/data/models/place_model.dart';
+import 'package:super_market/features/google_mpas/data/models/selected_location_model.dart';
 import 'package:super_market/features/google_mpas/presentation/manager/cubit/google_maps_cubit.dart';
 
 class MapOverlays extends StatelessWidget {
@@ -13,6 +14,8 @@ class MapOverlays extends StatelessWidget {
   final void Function(String) onChanged;
   final void Function(PlaceModel) onSuggestionTap;
 
+  final bool isSelectionMode;
+
   const MapOverlays({
     super.key,
     required this.searchController,
@@ -22,7 +25,7 @@ class MapOverlays extends StatelessWidget {
     required this.state,
     required this.onClear,
     required this.onChanged,
-    required this.onSuggestionTap,
+    required this.onSuggestionTap, required this.isSelectionMode,
   });
 
   @override
@@ -158,6 +161,179 @@ class MapOverlays extends StatelessWidget {
                 ),
               ),
             ),
+
+
+
+
+          // Selection Mode Instructions
+          if (isSelectionMode && state is! MapLocationSelectionMode)
+            Positioned(
+              top: 80,
+              left: 15,
+              right: 15,
+              child: Container(
+                padding: EdgeInsets.all(15),
+                decoration: BoxDecoration(
+                  color: Colors.blue,
+                  borderRadius: BorderRadius.circular(10),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black26,
+                      blurRadius: 10,
+                      offset: Offset(0, 2),
+                    ),
+                  ],
+                ),
+                child: Row(
+                  children: [
+                    Icon(
+                      Icons.touch_app,
+                      color: Colors.white,
+                    ),
+                    SizedBox(width: 10),
+                    Expanded(
+                      child: Text(
+                        'Tap on the map to select a location',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 14,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+
+
+
+
+
+          // Selected Location Card
+          if (state is MapLocationSelectionMode)
+              Positioned(
+                bottom: 20,
+                left: 15,
+                right: 15,
+                child: Container(
+                  padding: EdgeInsets.all(15),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(10),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black26,
+                        blurRadius: 10,
+                        offset: Offset(0, 2),
+                      ),
+                    ],
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Row(
+                        children: [
+                          Icon(
+                            Icons.location_on,
+                            color: Colors.red,
+                            size: 28,
+                          ),
+                          SizedBox(width: 10),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'Selected Location',
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                SizedBox(height: 4),
+                                if ((state as MapLocationSelectionMode).isLoadingAddress)
+                                  Row(
+                                    children: [
+                                      SizedBox(
+                                        width: 12,
+                                        height: 12,
+                                        child: CircularProgressIndicator(
+                                          strokeWidth: 2,
+                                          color: Colors.blue,
+                                        ),
+                                      ),
+                                      SizedBox(width: 8),
+                                      Text(
+                                        'Getting address...',
+                                        style: TextStyle(
+                                          fontSize: 12,
+                                          color: Colors.grey[600],
+                                        ),
+                                      ),
+                                    ],
+                                  )
+                                else
+                                  Text(
+                                    (state as MapLocationSelectionMode).address ?? 'Unknown address',
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                      color: Colors.grey[600],
+                                    ),
+                                  ),
+                                SizedBox(height: 4),
+                                Text(
+                                  'Lat: ${(state as MapLocationSelectionMode).selectedLocation.latitude.toStringAsFixed(6)}, '
+                                  'Lng: ${(state as MapLocationSelectionMode).selectedLocation.longitude.toStringAsFixed(6)}',
+                                  style: TextStyle(
+                                    fontSize: 12,
+                                    color: Colors.grey[500],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: 15),
+                      SizedBox(
+                        width: double.infinity,
+                        child: ElevatedButton(
+                          onPressed: (state as MapLocationSelectionMode).isLoadingAddress
+                              ? null
+                              : () {
+                                  // Return selected location
+                                  final selectedLocation =
+                                      SelectedLocationModel(
+                                    address: (state as MapLocationSelectionMode).address ?? 'Unknown address',
+                                    latitude: (state as MapLocationSelectionMode).selectedLocation.latitude,
+                                    longitude: (state as MapLocationSelectionMode).selectedLocation.longitude,
+                                  );
+                                  Navigator.pop(context, selectedLocation);
+                                },
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.blue,
+                            foregroundColor: Colors.white,
+                            padding: EdgeInsets.symmetric(vertical: 15),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                          ),
+                          child: Text(
+                            'Confirm Location',
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+
+
 
           if (state is MapSearchSuccess && !showSuggestions)
             Positioned(

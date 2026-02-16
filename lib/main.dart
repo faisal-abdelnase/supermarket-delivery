@@ -91,7 +91,7 @@ class SuperMarketDelivery extends StatelessWidget {
           PaymentMethodView.paymentMethodId :(context) => PaymentMethodView(),
           PhoneAuth.phoneAuthId :(context) => PhoneAuth(),
           ProductsToCategory.productsToCategoryId :(context) => ProductsToCategory(),
-          MapScreen.mapScreenID :(context) => MapScreen(),
+          MapScreen.mapScreenID :(context) => MapScreen(isSelectionMode: true,),
           
         },
       ),

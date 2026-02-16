@@ -6,9 +6,10 @@ import 'package:super_market/features/google_mpas/presentation/manager/cubit/goo
 import 'package:super_market/features/google_mpas/presentation/view/widgets/map_overlays.dart';
 
 class MapScreen extends StatefulWidget {
-  const MapScreen({super.key});
+  const MapScreen({super.key, required this.isSelectionMode});
 
   static const String mapScreenID = "/mapScreen";
+  final bool isSelectionMode;
 
   @override
   State<MapScreen> createState() => _MapScreenState();
@@ -84,6 +85,9 @@ class _MapScreenState extends State<MapScreen> {
             initialPosition = state.currentLocation;
             markers = state.markers;
             polylines = state.polylines;
+          } else if (state is MapLocationSelectionMode) {
+            initialPosition = state.selectedLocation;
+            markers = state.markers;
           } else if (state is MapSearchSuggestions) {
             initialPosition = state.currentLocation;
             markers = state.markers;
@@ -138,19 +142,28 @@ class _MapScreenState extends State<MapScreen> {
                   myLocationButtonEnabled: true,
                   zoomControlsEnabled: false,
 
-                  onTap: (_) {
-                    _searchFocusNode.unfocus();
-                    setState(() {
-                      _showSuggestions = false;
-                    });
-                  },
-                  ),
+                  onTap: widget.isSelectionMode
+                      ? (LatLng location) {
+                          _searchFocusNode.unfocus();
+                          setState(() {
+                            _showSuggestions = false;
+                          });
+                          context.read<GoogleMapsCubit>().selectLocationOnMap(location);
+                        }
+                      : (_) {
+                          _searchFocusNode.unfocus();
+                          setState(() {
+                            _showSuggestions = false;
+                          });
+                        },
+                ),
 
 
 
 
 
                 MapOverlays(
+                  isSelectionMode: widget.isSelectionMode,
                   searchController: searchController,
                   searchFocusNode: _searchFocusNode,
                   showSuggestions: _showSuggestions,

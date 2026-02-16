@@ -138,6 +138,42 @@ final class MapTrackingActive extends GoogleMapsState {
 
 
 
+
+
+final class MapLocationSelectionMode extends GoogleMapsState {
+  final LatLng selectedLocation;
+  final String? address;
+  final Set<Marker> markers;
+  final bool isLoadingAddress;
+
+  const MapLocationSelectionMode({
+    required this.selectedLocation,
+    this.address,
+    required this.markers,
+    this.isLoadingAddress = false,
+  });
+
+  @override
+  List<Object?> get props => [selectedLocation, address, markers, isLoadingAddress];
+
+  MapLocationSelectionMode copyWith({
+    LatLng? selectedLocation,
+    String? address,
+    Set<Marker>? markers,
+    bool? isLoadingAddress,
+  }) {
+    return MapLocationSelectionMode(
+      selectedLocation: selectedLocation ?? this.selectedLocation,
+      address: address ?? this.address,
+      markers: markers ?? this.markers,
+      isLoadingAddress: isLoadingAddress ?? this.isLoadingAddress,
+    );
+  }
+}
+
+
+
+
 final class MapError extends GoogleMapsState {
   final String message;
 

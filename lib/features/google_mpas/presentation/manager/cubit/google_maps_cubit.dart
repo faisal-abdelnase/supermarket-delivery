@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -24,8 +25,107 @@ class GoogleMapsCubit extends Cubit<GoogleMapsState> {
   LatLng? _lastKnownLocation;
   Set<Marker> _currentMarkers = {};
 
+  bool _isSelectionMode = false;
+
   void setMapController(GoogleMapController controller) {
     _mapController = controller;
+  }
+
+
+  void enableSelectionMode() {
+    _isSelectionMode = true;
+    if (_lastKnownLocation != null) {
+      _selectLocationOnMap(_lastKnownLocation!);
+    } else {
+      getCurrentLocation();
+    }
+  }
+
+  // Check if in selection mode
+  bool get isSelectionMode => _isSelectionMode;
+
+
+  // Disable selection mode
+  void disableSelectionMode() {
+    _isSelectionMode = false;
+  }
+
+
+
+
+  // Select location on map (when user taps)
+  Future<void> selectLocationOnMap(LatLng location) async {
+    _selectLocationOnMap(location);
+  }
+
+  void _selectLocationOnMap(LatLng location) async {
+    _lastKnownLocation = location;
+
+    // Add marker for selected location
+    Set<Marker> markers = {
+      Marker(
+        markerId: MarkerId('selected_location'),
+        position: location,
+        infoWindow: InfoWindow(title: 'Selected Location'),
+        icon: BitmapDescriptor.defaultMarkerWithHue(
+          BitmapDescriptor.hueRed,
+        ),
+      ),
+    };
+
+    // Emit state with loading address
+    emit(MapLocationSelectionMode(
+      selectedLocation: location,
+      markers: markers,
+      isLoadingAddress: true,
+    ));
+
+    // Get address from coordinates
+    try {
+      List<Placemark> placemarks = await placemarkFromCoordinates(
+        location.latitude,
+        location.longitude,
+      );
+
+      String address = 'Unknown location';
+      if (placemarks.isNotEmpty) {
+        Placemark place = placemarks.first;
+        List<String> addressParts = [];
+
+        if (place.street != null && place.street!.isNotEmpty) {
+          addressParts.add(place.street!);
+        }
+        if (place.subLocality != null && place.subLocality!.isNotEmpty) {
+          addressParts.add(place.subLocality!);
+        }
+        if (place.locality != null && place.locality!.isNotEmpty) {
+          addressParts.add(place.locality!);
+        }
+        if (place.administrativeArea != null &&
+            place.administrativeArea!.isNotEmpty) {
+          addressParts.add(place.administrativeArea!);
+        }
+        if (place.country != null && place.country!.isNotEmpty) {
+          addressParts.add(place.country!);
+        }
+
+        address = addressParts.join(', ');
+      }
+
+      emit(MapLocationSelectionMode(
+        selectedLocation: location,
+        address: address,
+        markers: markers,
+        isLoadingAddress: false,
+      ));
+    } catch (e) {
+      emit(MapLocationSelectionMode(
+        selectedLocation: location,
+        address: 'Lat: ${location.latitude.toStringAsFixed(6)}, Lng: ${location.longitude.toStringAsFixed(6)}',
+        markers: markers,
+        isLoadingAddress: false,
+      ));
+    }
   }
 
 
@@ -71,33 +171,40 @@ class GoogleMapsCubit extends Cubit<GoogleMapsState> {
       LatLng currentLocation = LatLng(position.latitude, position.longitude);
       _lastKnownLocation = currentLocation;
 
-      // Add marker for current location
-      Set<Marker> markers = {
-        Marker(
-          markerId: MarkerId('current_location'),
-          position: currentLocation,
-          infoWindow: InfoWindow(title: 'Your Location'),
-          icon: BitmapDescriptor.defaultMarkerWithHue(
-            BitmapDescriptor.hueAzure,
+
+      if (_isSelectionMode) {
+        _selectLocationOnMap(currentLocation);
+      } else {
+        // Add marker for current location
+        Set<Marker> markers = {
+          Marker(
+            markerId: MarkerId('current_location'),
+            position: currentLocation,
+            infoWindow: InfoWindow(title: 'Your Location'),
+            icon: BitmapDescriptor.defaultMarkerWithHue(
+              BitmapDescriptor.hueAzure,
+            ),
           ),
-        ),
-      };
-      
-      _currentMarkers = markers;
+        };
+        
+        _currentMarkers = markers;
 
-      emit(MapLocationLoaded(
-        currentLocation: currentLocation,
-        markers: markers,
-      ));
+        emit(MapLocationLoaded(
+          currentLocation: currentLocation,
+          markers: markers,
+        ));
 
-      // Animate camera to current location
-      if (_mapController != null) {
-        Future.delayed(Duration(milliseconds: 500), () {
-          _mapController?.animateCamera(
-            CameraUpdate.newLatLngZoom(currentLocation, 14),
-          );
-        });
+        // Animate camera to current location
+        if (_mapController != null) {
+          Future.delayed(Duration(milliseconds: 500), () {
+            _mapController?.animateCamera(
+              CameraUpdate.newLatLngZoom(currentLocation, 14),
+            );
+          });
+        }
       }
+
+      
     } catch (e) {
       emit(MapError(message: 'Error getting location: ${e.toString()}'));
     }
@@ -120,10 +227,14 @@ class GoogleMapsCubit extends Cubit<GoogleMapsState> {
     if (query.isEmpty) {
       // Return to previous state if query is empty
       if (_lastKnownLocation != null) {
-        emit(MapLocationLoaded(
-          currentLocation: _lastKnownLocation!,
-          markers: _currentMarkers,
-        ));
+        if (_isSelectionMode) {
+          _selectLocationOnMap(_lastKnownLocation!);
+        } else {
+          emit(MapLocationLoaded(
+            currentLocation: _lastKnownLocation!,
+            markers: _currentMarkers,
+          ));
+        }
       }
       return;
     }
@@ -151,7 +262,7 @@ class GoogleMapsCubit extends Cubit<GoogleMapsState> {
   // Select a place from suggestions
   Future<void> selectPlace(String placeId) async {
     final currentState = state;
-    
+
     if (currentState is MapSearchSuggestions) {
       emit(MapPlaceLoading(
         suggestions: currentState.suggestions,
@@ -170,27 +281,51 @@ class GoogleMapsCubit extends Cubit<GoogleMapsState> {
 
       _lastKnownLocation = position;
 
-      // Add marker for selected place
-      _currentMarkers = {
-        Marker(
-          markerId: MarkerId('selected_place'),
-          position: position,
-          infoWindow: InfoWindow(
-            title: placeDetails.name,
-            snippet: placeDetails.address,
+      if (_isSelectionMode) {
+        // In selection mode, treat search result as selected location
+        Set<Marker> markers = {
+          Marker(
+            markerId: MarkerId('selected_location'),
+            position: position,
+            infoWindow: InfoWindow(
+              title: placeDetails.name,
+              snippet: placeDetails.address,
+            ),
+            icon: BitmapDescriptor.defaultMarkerWithHue(
+              BitmapDescriptor.hueRed,
+            ),
           ),
-          icon: BitmapDescriptor.defaultMarkerWithHue(
-            BitmapDescriptor.hueRed,
-          ),
-        ),
-      };
+        };
 
-      emit(MapSearchSuccess(
-        location: position,
-        placeName: placeDetails.name,
-        address: placeDetails.address,
-        markers: _currentMarkers,
-      ));
+        emit(MapLocationSelectionMode(
+          selectedLocation: position,
+          address: placeDetails.address,
+          markers: markers,
+          isLoadingAddress: false,
+        ));
+      } else {
+        // Add marker for selected place
+        _currentMarkers = {
+          Marker(
+            markerId: MarkerId('selected_place'),
+            position: position,
+            infoWindow: InfoWindow(
+              title: placeDetails.name,
+              snippet: placeDetails.address,
+            ),
+            icon: BitmapDescriptor.defaultMarkerWithHue(
+              BitmapDescriptor.hueRed,
+            ),
+          ),
+        };
+
+        emit(MapSearchSuccess(
+          location: position,
+          placeName: placeDetails.name,
+          address: placeDetails.address,
+          markers: _currentMarkers,
+        ));
+      }
 
       // Animate camera to selected location
       _mapController?.animateCamera(
@@ -201,13 +336,19 @@ class GoogleMapsCubit extends Cubit<GoogleMapsState> {
     }
   }
 
+
+
   // Clear search and return to current location
   void clearSearch() {
     if (_lastKnownLocation != null) {
-      emit(MapLocationLoaded(
-        currentLocation: _lastKnownLocation!,
-        markers: _currentMarkers,
-      ));
+      if (_isSelectionMode) {
+        _selectLocationOnMap(_lastKnownLocation!);
+      } else {
+        emit(MapLocationLoaded(
+          currentLocation: _lastKnownLocation!,
+          markers: _currentMarkers,
+        ));
+      }
     } else {
       getCurrentLocation();
     }
