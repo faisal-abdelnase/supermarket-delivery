@@ -138,34 +138,57 @@ final class MapTrackingActive extends GoogleMapsState {
 
 
 
-
-
 final class MapLocationSelectionMode extends GoogleMapsState {
-  final LatLng selectedLocation;
+  final LatLng currentLocation;
+  final LatLng? selectedLocation;
   final String? address;
   final Set<Marker> markers;
+  final Set<Circle> circles;
+  final BranchModel? nearestBranch;
+  final bool isInDeliveryZone;
   final bool isLoadingAddress;
 
   const MapLocationSelectionMode({
-    required this.selectedLocation,
+    required this.currentLocation,
+    this.selectedLocation,
     this.address,
     required this.markers,
+    required this.circles,
+    this.nearestBranch,
+    this.isInDeliveryZone = false,
     this.isLoadingAddress = false,
   });
 
   @override
-  List<Object?> get props => [selectedLocation, address, markers, isLoadingAddress];
+  List<Object?> get props => [
+        currentLocation,
+        selectedLocation,
+        address,
+        markers,
+        circles,
+        nearestBranch,
+        isInDeliveryZone,
+        isLoadingAddress,
+      ];
 
   MapLocationSelectionMode copyWith({
+    LatLng? currentLocation,
     LatLng? selectedLocation,
     String? address,
     Set<Marker>? markers,
+    Set<Circle>? circles,
+    BranchModel? nearestBranch,
+    bool? isInDeliveryZone,
     bool? isLoadingAddress,
   }) {
     return MapLocationSelectionMode(
+      currentLocation: currentLocation ?? this.currentLocation,
       selectedLocation: selectedLocation ?? this.selectedLocation,
       address: address ?? this.address,
       markers: markers ?? this.markers,
+      circles: circles ?? this.circles,
+      nearestBranch: nearestBranch ?? this.nearestBranch,
+      isInDeliveryZone: isInDeliveryZone ?? this.isInDeliveryZone,
       isLoadingAddress: isLoadingAddress ?? this.isLoadingAddress,
     );
   }

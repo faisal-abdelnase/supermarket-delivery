@@ -50,7 +50,7 @@ class _NewAddressBottomSheetState extends State<NewAddressBottomSheet> {
           SizedBox(height: 12),
           LocationTextField(
             onTap: () async{
-              final result = await Navigator.pushNamed(context, MapScreen.mapScreenID);
+              final result = await Navigator.pushNamed(context, DeliveryMapView.routeId);
               if(result != null && result is SelectedLocationModel){
                 setState(() {
                   addressController.text = result.address;
