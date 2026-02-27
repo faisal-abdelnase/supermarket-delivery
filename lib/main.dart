@@ -16,6 +16,8 @@ import 'package:super_market/features/Auth/presentation/view/sign_in.dart';
 import 'package:super_market/features/Auth/presentation/view/sign_up.dart';
 import 'package:super_market/features/Auth/presentation/view/type_of_registeration.dart';
 import 'package:super_market/features/about/presentation/view/about_app.dart';
+import 'package:super_market/features/ai_chat/presentation/manager/cubit/ai_recipe_chat_cubit.dart';
+import 'package:super_market/features/ai_chat/presentation/view/ai_recipe_chat_view.dart';
 import 'package:super_market/features/google_mpas/presentation/manager/cubit/google_maps_cubit.dart';
 import 'package:super_market/features/google_mpas/presentation/view/map_screen.dart';
 import 'package:super_market/features/home/presentation/manager/cubit/products_cubit.dart';
@@ -47,6 +49,8 @@ void main() async {
   Hive.registerAdapter(UserInfoAdapter());
   await Hive.openBox<UserInfoModel>(kProfileBox);
 
+  await Hive.openBox(kRecipeChatLogBox);
+
 
   runApp(const SuperMarketDelivery());
 }
@@ -67,6 +71,9 @@ class SuperMarketDelivery extends StatelessWidget {
         BlocProvider(create: (context) => PaymentCubit(),),
         BlocProvider(create: (context) => OrdersCubit(),),
         BlocProvider(create: (context) => GoogleMapsCubit(),),
+        BlocProvider(create: (context) => AiRecipeChatCubit(
+          productsCubit: context.read<ProductsCubit>(), 
+          cartCubit: context.read<MyCartCubit>()),),
       ],
       child: MaterialApp(
         title: "Super Market Delivery",
@@ -92,6 +99,7 @@ class SuperMarketDelivery extends StatelessWidget {
           PhoneAuth.phoneAuthId :(context) => PhoneAuth(),
           ProductsToCategory.productsToCategoryId :(context) => ProductsToCategory(),
           DeliveryMapView.routeId :(context) => DeliveryMapView(),
+          AiRecipeChatView.routeId :(context) => const AiRecipeChatView(),
           
         },
       ),

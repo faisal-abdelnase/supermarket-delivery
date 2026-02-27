@@ -1,5 +1,6 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:super_market/features/ai_chat/presentation/view/ai_recipe_chat_view.dart';
 import 'package:super_market/features/favorites/presentation/view/favorite_view.dart';
 import 'package:super_market/features/home/presentation/view/home_details_view.dart';
 import 'package:super_market/features/payment/presentation/view/my_cart.dart';
@@ -22,6 +23,7 @@ class _HomeViewState extends State<HomeView> {
     const HomeDetailsView(),
     const FavoriteView(),
     const MyCart(),
+    const AiRecipeChatView(),
     const MyProfileView(),
   ];
 
@@ -36,6 +38,7 @@ class _HomeViewState extends State<HomeView> {
           Icon(Icons.home_outlined),
           Icon(Icons.favorite_border),
           Icon(Icons.shopping_cart_outlined),
+          Icon(Icons.smart_toy_outlined),
           Icon(Icons.person_outline_outlined)
         ],
 

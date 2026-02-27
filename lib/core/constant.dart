@@ -13,3 +13,13 @@ const String apiKeyPaymob = "ZXlKaGJHY2lPaUpJVXpVeE1pSXNJblI1Y0NJNklrcFhWQ0o5LmV
 const int integrationIdOnlineCardPaymob = 5470256;
 const int integrationIdCashCollection = 1234;
 
+const String kRecipeChatLogBox = "recipe_chat_log_box";
+const String kRecipeChatLogKey = "recipe_chat_log_key";
+
+
+const String kRecipeChatSessionsKey = "recipe_chat_sessions_key";
+const String kRecipeChatCurrentSessionKey = "recipe_chat_current_session_key";
+
+
+const String kGeminiApiKey = "AIzaSyAhaywUUfKL2lY04nGsJixH6g9OFggzvEs";
+
